@@ -1,0 +1,176 @@
+/* ==========================================================================
+   ABOUT PAGE HIGH-TECH ANIMATIONS & STYLES (GTS + LXT + ALANXA + OMNYSYS SYNTHESIS)
+   ========================================================================== */
+
+@keyframes textGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(236, 94, 39, 0.25), 0 0 30px rgba(236, 94, 39, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(236, 94, 39, 0.45), 0 0 50px rgba(236, 94, 39, 0.2);
+  }
+}
+
+@keyframes floatSoft {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.about-animated-gradient-text {
+  background: linear-gradient(135deg, #EC5E27 0%, #FF8A50 40%, #12151A 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textGradientShift 5s ease infinite;
+}
+
+/* Stat Counters Row */
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.about-stat-card {
+  background: #FFFFFF;
+  border: 1px solid #E9ECEF;
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow: 0 4px 20px -4px rgba(18, 21, 26, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #EC5E27, #FF8A50);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.about-stat-card:hover {
+  transform: translateY(-4px);
+  border-color: #EC5E27;
+  box-shadow: 0 14px 30px -8px rgba(236, 94, 39, 0.18);
+}
+
+.about-stat-card:hover::before {
+  opacity: 1;
+}
+
+.about-stat-value {
+  font-family: var(--font-display, "Plus Jakarta Sans", sans-serif);
+  font-size: 34px;
+  font-weight: 800;
+  color: #12151A;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.about-stat-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #2D3139;
+  line-height: 1.35;
+}
+
+.about-stat-sub {
+  font-size: 11px;
+  font-family: var(--font-mono, monospace);
+  color: #EC5E27;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+/* Pillar Interactive Card */
+.about-pillar-card {
+  background: #FFFFFF;
+  border: 1px solid #E9ECEF;
+  border-radius: 20px;
+  padding: 32px 28px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 4px 15px -4px rgba(18, 21, 26, 0.04);
+}
+
+.about-pillar-card:hover {
+  transform: translateY(-6px);
+  border-color: #EC5E27;
+  box-shadow: 0 20px 40px -15px rgba(236, 94, 39, 0.18), 0 0 0 1px rgba(236, 94, 39, 0.2);
+}
+
+.about-pillar-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #FFF3ED;
+  color: #EC5E27;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.about-pillar-card:hover .about-pillar-icon {
+  background: #EC5E27;
+  color: #FFFFFF;
+  transform: scale(1.08) rotate(3deg);
+}
+
+/* Interactive Evolution Flow */
+.about-evolution-step {
+  position: relative;
+  padding: 28px;
+  background: #FFFFFF;
+  border: 1px solid #E9ECEF;
+  border-radius: 18px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px -4px rgba(18, 21, 26, 0.04);
+}
+
+.about-evolution-step:hover {
+  border-color: #EC5E27;
+  box-shadow: 0 12px 30px -10px rgba(18, 21, 26, 0.08);
+  transform: translateY(-3px);
+}
+
+.about-step-number {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  color: #EC5E27;
+  background: #FFF3ED;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  display: inline-block;
+  margin-bottom: 12px;
+}

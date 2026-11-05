@@ -1,0 +1,176 @@
+/* ==========================================================================
+   NETWORK PAGE — CINEMATIC GLOBAL VIDEO HERO & NETWORK STYLES
+   ========================================================================== */
+
+.network-video-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+  padding: 100px 0 110px;
+  background: #0B0E14;
+}
+
+@media (max-width: 768px) {
+  .network-video-hero {
+    min-height: 480px;
+    padding: 70px 0 80px;
+  }
+}
+
+/* Background Video */
+.network-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.82;
+  filter: brightness(0.85) contrast(1.08);
+  pointer-events: none;
+}
+
+/* Gradient Overlay for High-Contrast Text Legibility */
+.network-video-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    105deg,
+    rgba(11, 14, 20, 0.94) 0%,
+    rgba(11, 14, 20, 0.82) 42%,
+    rgba(11, 14, 20, 0.45) 75%,
+    rgba(11, 14, 20, 0.58) 100%
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .network-video-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(11, 14, 20, 0.94) 0%,
+      rgba(11, 14, 20, 0.84) 55%,
+      rgba(11, 14, 20, 0.65) 100%
+    );
+  }
+}
+
+/* Ambient Radial Glow */
+.network-hero-ambient-glow {
+  position: absolute;
+  top: -15%;
+  left: 15%;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(236, 94, 39, 0.16) 0%, transparent 70%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Breadcrumb */
+.network-breadcrumb {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.82rem;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.network-breadcrumb a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.network-breadcrumb a:hover {
+  color: #FFFFFF;
+}
+
+/* Eyebrow Glass Badge */
+.network-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  background: rgba(236, 94, 39, 0.14);
+  border: 1px solid rgba(236, 94, 39, 0.38);
+  color: #FF7A45;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  margin-bottom: 22px;
+  box-shadow: 0 4px 16px rgba(236, 94, 39, 0.15);
+}
+
+/* Headline */
+.network-hero-headline {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(36px, 5.2vw, 62px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  margin: 0 0 20px;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+.network-hero-headline-highlight {
+  color: #EC5E27;
+  background: linear-gradient(135deg, #FF8A58 0%, #EC5E27 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Lead text */
+.network-hero-lead {
+  color: #E2E8F0;
+  font-size: clamp(15px, 1.25vw, 17.5px);
+  line-height: 1.75;
+  max-width: 640px;
+  margin: 0 0 34px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+}
+
+/* Secondary Button (Glass Pill) */
+.network-hero-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #FFFFFF;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.network-hero-secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+  color: #FFFFFF;
+}
+
+/* Bottom Fade */
+.network-hero-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, rgba(11, 14, 20, 0.85));
+  z-index: 3;
+  pointer-events: none;
+}

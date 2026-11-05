@@ -1,0 +1,817 @@
+/* ==========================================================================
+   DAQUBE INTERACTIVE DATA WORKFLOW CHART
+   Customizable Theme, Compact Single-Screen Height, Exact Diagram Architecture
+   ========================================================================== */
+
+:root {
+  /* EDIT BRAND COLORS HERE */
+  --dw-bg: #FDFDF1;                         /* Main section background */
+  --dw-canvas-bg: #0c0f17;                  /* Diagram arena surface */
+  --dw-card-bg: #111622;                    /* Individual card surface */
+  --dw-card-border: rgba(255, 255, 255, 0.08); /* Card border */
+  --dw-crimson-accent: #EC5E27;             /* Primary DaQube Crimson */
+  --dw-crimson-gradient: linear-gradient(135deg, #FF733E 0%, #FFA800 100%);
+  --dw-llm-gradient: linear-gradient(135deg, #FFF6F0 0%, #FEECE2 100%); /* Final LLM Card */
+  --dw-text-primary: #12151A;              /* Main text / titles */
+  --dw-text-secondary: #94a3b8;            /* Description text */
+  --dw-dashed-border: rgba(255, 255, 255, 0.18); /* Dashed box border */
+  --dw-arrow-idle: rgba(255, 255, 255, 0.35); /* Idle arrow stroke */
+  --dw-arrow-active: #EC5E27;              /* Active highlighted arrow */
+}
+
+/* --------------------------------------------------------------------------
+   1. SECTION CONTAINER (Compact height to fit without scrolling)
+   -------------------------------------------------------------------------- */
+.dw-section {
+  position: relative;
+  background-color: var(--dw-bg);
+  color: var(--dw-text-primary);
+  /* Breathing room below sticky navbar and compact bottom padding */
+  padding: 55px 4% 38px;
+  scroll-margin-top: 90px;
+  overflow: hidden;
+  /* Tech dot-matrix background pattern */
+  background-image: radial-gradient(rgba(20, 23, 26, 0.08) 1.2px, transparent 1.2px);
+  background-size: 20px 20px;
+}
+
+.dw-container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   2. SECTION HEADING (Compact, punchy typography)
+   -------------------------------------------------------------------------- */
+.dw-heading {
+  max-width: 720px;
+  margin: 0 auto 16px;
+  text-align: center;
+}
+
+.dw-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--dw-crimson-accent);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  background: rgba(236, 94, 39, 0.1);
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(236, 94, 39, 0.25);
+}
+
+.dw-heading h2 {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.18;
+  letter-spacing: -1px;
+  font-weight: 700;
+  color: #12151A;
+  margin: 0 0 8px;
+}
+
+.dw-heading h2 span {
+  color: var(--dw-crimson-accent);
+  background: var(--dw-crimson-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dw-heading p {
+  max-width: 580px;
+  margin: 0 auto;
+  color: var(--dw-text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   3. TOP PROCESS STAGES TABS (Step 01 to Step 04)
+   -------------------------------------------------------------------------- */
+.dw-stages {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #FAF9EC;
+  border: 1px solid rgba(20, 23, 26, 0.08);
+  border-radius: 14px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.dw-stage {
+  position: relative;
+  padding: 12px 14px 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: transparent;
+  user-select: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dw-stage:last-child {
+  border-right: none;
+}
+
+.dw-stage:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.dw-stage.active {
+  background: #FFFFFF;
+}
+
+.dw-stage-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.dw-stage-number {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: all 0.25s ease;
+}
+
+.dw-stage.active .dw-stage-number {
+  color: var(--dw-crimson-accent);
+  text-shadow: 0 0 10px rgba(236, 94, 39, 0.5);
+}
+
+.dw-stage-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  transition: all 0.25s ease;
+}
+
+.dw-stage.active .dw-stage-dot {
+  background: var(--dw-crimson-accent);
+  box-shadow: 0 0 8px var(--dw-crimson-accent);
+}
+
+.dw-stage h3 {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2D3139;
+  margin: 0 0 4px;
+  line-height: 1.25;
+  transition: color 0.25s ease;
+}
+
+.dw-stage.active h3 {
+  color: #12151A;
+  font-weight: 700;
+}
+
+.dw-stage p {
+  color: #5F646D;
+  font-size: 11px;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.25s ease;
+}
+
+.dw-stage.active p {
+  color: #2D3139;
+}
+
+/* Active bottom highlight indicator */
+.dw-stage-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background: transparent;
+  transition: all 0.25s ease;
+}
+
+.dw-stage.active .dw-stage-line {
+  background: var(--dw-crimson-gradient);
+  box-shadow: 0 0 12px rgba(236, 94, 39, 0.7);
+}
+
+/* --------------------------------------------------------------------------
+   4. MAIN INTERACTIVE DIAGRAM ARENA
+   -------------------------------------------------------------------------- */
+.dw-diagram-wrapper {
+  position: relative;
+  background: var(--dw-canvas-bg);
+  border: 1px solid rgba(20, 23, 26, 0.08);
+  border-radius: 18px;
+  padding: 22px 24px 34px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  cursor: crosshair;
+}
+
+.dw-diagram-inner {
+  position: relative;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   5. TOP PRODUCTION PIPELINE ROW
+   -------------------------------------------------------------------------- */
+.dw-top-pipeline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Reusable Node Card */
+.dw-node-card {
+  background: var(--dw-card-bg);
+  border: 1px solid var(--dw-card-border);
+  border-radius: 12px;
+  padding: 14px 14px 16px;
+  min-height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+}
+
+.dw-node-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Active Highlight State */
+.dw-node-card.is-active {
+  background: #FFFFFF;
+  border-color: var(--dw-crimson-accent);
+  box-shadow: 0 8px 24px rgba(236, 94, 39, 0.25),
+              0 0 16px rgba(236, 94, 39, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+}
+
+.dw-node-card.is-dimmed {
+  opacity: 0.88;
+  filter: none;
+}
+
+.dw-node-icon {
+  margin-bottom: 10px;
+  color: var(--dw-text-secondary);
+  transition: all 0.3s ease;
+}
+
+.dw-node-card.is-active .dw-node-icon {
+  color: var(--dw-crimson-accent);
+  filter: drop-shadow(0 0 8px rgba(236, 94, 39, 0.5));
+}
+
+.dw-node-card h3 {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 6px;
+  color: #FFFFFF;
+  transition: color 0.3s ease;
+}
+
+.dw-node-card.is-active h3 {
+  color: #12151A;
+}
+
+.dw-node-card p {
+  font-size: 11.5px;
+  line-height: 1.45;
+  margin: 0;
+  color: #CBD5E1;
+  transition: color 0.3s ease;
+}
+
+.dw-node-card.is-active p {
+  color: #2D3139;
+}
+
+/* --------------------------------------------------------------------------
+   6. SOLID CONNECTOR ARROWS (Top Row)
+   -------------------------------------------------------------------------- */
+.dw-solid-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 0 2px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.dw-solid-arrow.is-active {
+  color: var(--dw-crimson-accent);
+  filter: drop-shadow(0 0 8px rgba(236, 94, 39, 0.6));
+  transform: scale(1.15);
+}
+
+.dw-accent-arrow {
+  color: rgba(236, 94, 39, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   7. DASHED GROUP CONTAINERS (Post Training & Evaluation)
+   -------------------------------------------------------------------------- */
+.dw-dashed-group {
+  position: relative;
+  border: 1.5px dashed var(--dw-dashed-border);
+  border-radius: 14px;
+  padding: 12px 10px 10px;
+  background: rgba(255, 255, 255, 0.015);
+  transition: all 0.3s ease;
+}
+
+.dw-dashed-group.is-active {
+  border-color: rgba(236, 94, 39, 0.7);
+  background: rgba(236, 94, 39, 0.03);
+  box-shadow: 0 0 20px rgba(236, 94, 39, 0.12);
+}
+
+.dw-group-badge {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1c2333;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #e2e8f0;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 1.5px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.dw-dashed-group.is-active .dw-group-badge {
+  background: var(--dw-crimson-accent);
+  color: #FFFFFF;
+  border-color: var(--dw-crimson-accent);
+  box-shadow: 0 0 10px rgba(236, 94, 39, 0.4);
+}
+
+.post-training-group {
+  flex: 2.2;
+}
+
+.dw-group-cards {
+  display: flex;
+  gap: 10px;
+}
+
+.dw-inner-card {
+  min-height: 122px;
+  padding: 10px 12px;
+}
+
+/* --------------------------------------------------------------------------
+   8. HUMAN-ALIGNED LLM (Distinct Solid Card)
+   -------------------------------------------------------------------------- */
+.dw-llm-card {
+  position: relative;
+  background: linear-gradient(135deg, #1b263b 0%, #111726 100%);
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.dw-llm-accent-glow {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.dw-llm-card.is-active {
+  background: #FFFFFF;
+  border-color: var(--dw-crimson-accent);
+  box-shadow: 0 8px 28px rgba(236, 94, 39, 0.3), 0 0 16px rgba(236, 94, 39, 0.2);
+}
+
+.dw-llm-icon {
+  color: #38bdf8;
+}
+
+.dw-llm-card.is-active .dw-llm-icon {
+  color: var(--dw-crimson-accent);
+}
+
+/* --------------------------------------------------------------------------
+   9. BOTTOM ROW: QUALITY CONTROL & EVALUATION (Directly under Post-Training)
+   -------------------------------------------------------------------------- */
+.dw-bottom-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 64px; /* Generous breathing room for floating arrow labels */
+  margin-bottom: 24px; /* Space for the bottom feedback return loop */
+  position: relative;
+  z-index: 2;
+}
+
+.evaluation-group {
+  width: 48%;
+  min-width: 440px;
+}
+
+.dw-eval-card {
+  min-height: 110px;
+  padding: 10px 14px;
+}
+
+.dw-eval-tag {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #94A3B8;
+  margin-bottom: 4px;
+}
+
+.dw-eval-card.is-active .dw-eval-tag {
+  color: var(--dw-crimson-accent);
+}
+
+/* --------------------------------------------------------------------------
+   10. SVG ARROWS & CONNECTORS OVERLAY
+   -------------------------------------------------------------------------- */
+.dw-svg-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dw-svg-path {
+  fill: none;
+  stroke: var(--dw-arrow-idle);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+  transition: all 0.3s ease;
+}
+
+.dw-svg-path.is-active {
+  stroke: var(--dw-arrow-active);
+  stroke-width: 2;
+  stroke-dasharray: 6 3;
+  animation: dwDashPulse 1.2s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(236, 94, 39, 0.55));
+}
+
+@keyframes dwDashPulse {
+  to {
+    stroke-dashoffset: -18;
+  }
+}
+
+/* Floating Text Labels along arrows */
+.dw-arrow-label-pill {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: #182234;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.24);
+  padding: 5px 13px;
+  border-radius: 999px;
+  color: #FFFFFF;
+  font-size: 10px;
+  line-height: 1.3;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
+}
+
+.dw-arrow-label-pill strong {
+  color: #FFFFFF;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.dw-arrow-label-pill span {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #F1F5F9;
+}
+
+.dw-arrow-label-pill.is-active {
+  background: #FFFFFF;
+  border-color: var(--dw-crimson-accent);
+  color: #12151A;
+  box-shadow: 0 0 20px rgba(236, 94, 39, 0.45);
+}
+
+.dw-arrow-label-pill.is-active strong {
+  color: #12151A;
+}
+
+.dw-arrow-label-pill.is-active span {
+  color: #EC5E27;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   11. ENLARGED AR GLASSES MAGNIFIER (Vision Lens HUD)
+   -------------------------------------------------------------------------- */
+.ar-glasses-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  will-change: left, top;
+}
+
+/* Big futuristic AR Lens */
+.ar-glasses-frame {
+  position: relative;
+  width: 380px;
+  height: 190px;
+  border-radius: 48px;
+  border: 2px solid rgba(240, 245, 255, 0.9);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.7),
+              0 24px 64px rgba(0, 0, 0, 0.75),
+              0 0 28px rgba(236, 94, 39, 0.28),
+              inset 0 1.5px 2px rgba(255, 255, 255, 0.7);
+  background: rgba(10, 14, 22, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  overflow: hidden;
+}
+
+/* Top Digital Crown Hardware detail */
+.ar-glasses-crown {
+  position: absolute;
+  top: -5px;
+  right: 50px;
+  width: 16px;
+  height: 6px;
+  background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
+  border-radius: 3px 3px 0 0;
+  border: 1px solid #475569;
+  z-index: 10;
+}
+
+/* Nose Bridge hardware element */
+.ar-glasses-bridge {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 14px;
+  background: #090c13;
+  border-radius: 14px 14px 0 0;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.7);
+  z-index: 12;
+}
+
+/* Optical sheen reflection */
+.ar-glasses-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.05) 28%,
+    transparent 45%,
+    rgba(236, 94, 39, 0.12) 80%,
+    rgba(236, 94, 39, 0.22) 100%
+  );
+  pointer-events: none;
+  z-index: 8;
+}
+
+/* Inner optical viewport */
+.ar-glasses-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 46px;
+  background: var(--dw-canvas-bg);
+}
+
+.ar-glasses-magnified-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+/* AR HUD Overlay */
+.ar-glasses-hud {
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ar-glasses-hud-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+}
+
+.ar-hud-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(10, 14, 22, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ar-hud-dot {
+  width: 4.5px;
+  height: 4.5px;
+  border-radius: 50%;
+  background: var(--dw-crimson-accent);
+  box-shadow: 0 0 6px var(--dw-crimson-accent);
+}
+
+.ar-hud-zoom {
+  background: rgba(236, 94, 39, 0.9);
+  color: #FFFFFF;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 2.5px 7px;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(236, 94, 39, 0.6);
+}
+
+/* Center HUD Crosshair */
+.ar-glasses-crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 14;
+}
+
+.ar-glasses-crosshair::before,
+.ar-glasses-crosshair::after {
+  content: "";
+  position: absolute;
+  background: rgba(236, 94, 39, 0.85);
+  box-shadow: 0 0 6px var(--dw-crimson-accent);
+}
+
+.ar-glasses-crosshair::before {
+  top: 11px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+}
+
+.ar-glasses-crosshair::after {
+  left: 11px;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+}
+
+/* Corner Reticle Brackets */
+.ar-bracket {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid rgba(236, 94, 39, 0.7);
+}
+
+.ar-bracket.tl {
+  top: 8px;
+  left: 14px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.ar-bracket.tr {
+  top: 8px;
+  right: 14px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.ar-bracket.bl {
+  bottom: 8px;
+  left: 14px;
+  border-right: none;
+  border-top: none;
+}
+
+.ar-bracket.br {
+  bottom: 8px;
+  right: 14px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Magnified cloned content optimization */
+.is-magnified-view .dw-diagram-wrapper {
+  box-shadow: none;
+  border-color: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   12. RESPONSIVE BREAKPOINTS
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .dw-stages {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dw-top-pipeline {
+    flex-wrap: wrap;
+  }
+
+  .evaluation-group {
+    width: 80%;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .dw-section {
+    padding: 35px 3% 28px;
+  }
+
+  .dw-stages {
+    grid-template-columns: 1fr;
+    gap: 1px;
+  }
+
+  .dw-diagram-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 16px 14px 24px;
+    border-radius: 14px;
+  }
+
+  .dw-diagram-inner {
+    min-width: 820px;
+  }
+
+  .ar-glasses-container {
+    display: none;
+  }
+}
