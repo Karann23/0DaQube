@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <path id="textPathTop" d="M 60 250 A 190 190 0 1 1 440 250" fill="none" />
+    <path id="textPathBottom" d="M 440 250 A 190 190 0 0 1 60 250" fill="none" />
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#006699" />
+      <stop offset="100%" stop-color="#004477" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Solid Ring -->
+  <circle cx="250" cy="250" r="242" fill="#006699" />
+  <circle cx="250" cy="250" r="234" fill="#FFFFFF" />
+  <circle cx="250" cy="250" r="222" fill="url(#blueGrad)" />
+  <circle cx="250" cy="250" r="150" fill="#FFFFFF" stroke="#006699" stroke-width="4" />
+
+  <!-- Circular Outer Text -->
+  <text fill="#FFFFFF" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="25" font-weight="800" letter-spacing="2.5">
+    <textPath href="#textPathTop" startOffset="50%" text-anchor="middle">
+      INFORMATION SECURITY
+    </textPath>
+  </text>
+  <text fill="#FFFFFF" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="25" font-weight="800" letter-spacing="2.5">
+    <textPath href="#textPathBottom" startOffset="50%" text-anchor="middle">
+      ISO/IEC 27001 : 2022
+    </textPath>
+  </text>
+
+  <!-- Side Star Emblems -->
+  <polygon points="70,250 76,234 92,234 79,244 84,260 70,250 56,260 61,244 48,234 64,234" fill="#FFB74D" />
+  <polygon points="430,250 436,234 452,234 439,244 444,260 430,250 416,260 421,244 408,234 424,234" fill="#FFB74D" />
+
+  <!-- Center Globe Grid Lines -->
+  <g stroke="#E2E8F0" stroke-width="2.5" fill="none">
+    <ellipse cx="250" cy="250" rx="110" ry="110" />
+    <ellipse cx="250" cy="250" rx="65" ry="110" />
+    <ellipse cx="250" cy="250" rx="25" ry="110" />
+    <line x1="140" y1="250" x2="360" y2="250" />
+    <line x1="155" y1="205" x2="345" y2="205" />
+    <line x1="155" y1="295" x2="345" y2="295" />
+  </g>
+
+  <!-- Big Bold ISO Text in Center -->
+  <text x="250" y="272" fill="#006699" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="74" font-weight="900" text-anchor="middle" letter-spacing="4">
+    ISO
+  </text>
+  <rect x="175" y="295" width="150" height="30" rx="6" fill="#006699" />
+  <text x="250" y="317" fill="#FFFFFF" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="20" font-weight="800" text-anchor="middle" letter-spacing="1.5">
+    27001
+  </text>
+</svg>
