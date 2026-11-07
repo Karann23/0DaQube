@@ -4545,3 +4545,140 @@ html, body {
   -webkit-perspective: 1000px;
   perspective: 1000px;
 }
+
+
+/* ==========================================================================
+   CASE STUDY WIDER CONTAINER & 4-IN-ONE-LINE GRID OVERRIDES
+   ========================================================================== */
+
+.case-detail-wrap {
+  max-width: 1360px !important;
+  width: min(1360px, calc(100% - 32px)) !important;
+  margin: 0 auto !important;
+  padding: 40px 16px 80px !important;
+}
+
+.article-hero-inner {
+  max-width: 1360px !important;
+  width: min(1360px, calc(100% - 32px)) !important;
+  margin: 0 auto !important;
+  padding: 0 16px !important;
+}
+
+.article-hero-inner p {
+  max-width: 960px !important;
+}
+
+.article-cover {
+  max-width: 1360px !important;
+  width: min(1360px, calc(100% - 32px)) !important;
+  margin: -30px auto 0 !important;
+  padding: 0 16px !important;
+  aspect-ratio: 21 / 8.5 !important;
+}
+
+/* 4 boxes in ONE single horizontal line on desktop */
+.case-approach-list {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+  margin-top: 22px !important;
+  align-items: stretch !important;
+}
+
+.case-approach-list > div {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  padding: 22px !important;
+  background: #F8FAFC !important;
+  border: 1px solid rgba(20, 23, 26, 0.08) !important;
+  border-radius: 16px !important;
+  height: 100% !important;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.case-approach-list > div:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(236, 94, 39, 0.45) !important;
+  box-shadow: 0 14px 30px rgba(18, 21, 26, 0.08) !important;
+}
+
+/* 4 deliverable boxes in ONE single horizontal line on desktop */
+.case-deliverables {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+  margin-top: 22px !important;
+  align-items: stretch !important;
+}
+
+.case-deliverables > div {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  padding: 20px !important;
+  background: #F8FAFC !important;
+  border: 1px solid rgba(20, 23, 26, 0.08) !important;
+  border-radius: 16px !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  color: #12151A !important;
+  line-height: 1.5 !important;
+  height: 100% !important;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.case-deliverables > div:hover {
+  transform: translateY(-3px) !important;
+  border-color: rgba(16, 185, 129, 0.45) !important;
+  box-shadow: 0 12px 26px rgba(18, 21, 26, 0.06) !important;
+}
+
+.case-deliverables > div > svg {
+  margin-top: 2px !important;
+}
+
+/* 5 workflow phase boxes in ONE single horizontal line on desktop */
+.case-workflow-grid {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  margin-top: 22px !important;
+  align-items: stretch !important;
+}
+
+/* Section Photo Space Container */
+.case-section-photo-box {
+  margin-top: 28px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(20, 23, 26, 0.1);
+  background: #090C10;
+}
+
+.case-section-photo-box img {
+  width: 100%;
+  max-height: 460px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 1120px) {
+  .case-approach-list,
+  .case-deliverables {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .case-workflow-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .case-approach-list,
+  .case-deliverables,
+  .case-workflow-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

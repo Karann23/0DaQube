@@ -45,7 +45,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Automotive Data Collection",
       icon: Car,
       summary: "High-resolution road and street photos captured across varied traffic conditions, weather patterns, and camera angles.",
-      photoUrl: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/ADAS_card.jpg",
       photoLabel: "Surround-View Automotive Road Array",
       useCases: [
         "Pedestrian detection and crosswalk safety monitoring",
@@ -60,7 +60,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Healthcare Data Collection",
       icon: HeartPulse,
       summary: "Standardized medical and clinical photography collected across diverse demographics under controlled clinical lighting.",
-      photoUrl: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Heathcare_card.jpg",
       photoLabel: "Standardized Clinical Diagnostic Capture",
       useCases: [
         "Skin lesion and dermatology classification",
@@ -75,7 +75,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Human Interactions & Expressions",
       icon: Users2,
       summary: "Diverse facial photos and human emotional expressions captured across global ethnicities, age groups, and illumination levels.",
-      photoUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Human Interactions & Expressions_card.jpg",
       photoLabel: "Demographic Facial & Expression Bank",
       useCases: [
         "Facial recognition and biometric identity verification",
@@ -90,7 +90,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Retail & Food Dataset Collection",
       icon: ShoppingBag,
       summary: "Real-world supermarket shelf and packaged grocery photos covering thousands of items with natural lighting and package variations.",
-      photoUrl: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Retail & Food Dataset Collection_card.jpg",
       photoLabel: "Supermarket Shelf SKU Manifest",
       useCases: [
         "Automated retail checkout and visual item search",
@@ -105,7 +105,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Surveillance & Security",
       icon: Shield,
       summary: "Wide-area security camera and thermal infrared photos for automated facility monitoring, safety alerts, and perimeter defense.",
-      photoUrl: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Surveillance & Security_card.png",
       photoLabel: "Perimeter Security Camera Array",
       useCases: [
         "Perimeter intrusion and unauthorized access alerts",
@@ -120,7 +120,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Document Dataset Collection",
       icon: FileText,
       summary: "Scanned and photographed business documents, invoices, receipts, and multilingual forms for optical character recognition.",
-      photoUrl: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Document Dataset Collection_card.png",
       photoLabel: "Financial Invoices & Forms Capture",
       useCases: [
         "Automated invoice, receipt, and tax form parsing",
@@ -135,7 +135,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Object & Specific Scenarios Collections",
       icon: Boxes,
       summary: "Multi-angle photos of physical objects, industrial machinery parts, and varied indoor and outdoor operational environments.",
-      photoUrl: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Object & Specific Scenarios Collections_card.jpg",
       photoLabel: "Industrial Component & Tool Inspection",
       useCases: [
         "Manufacturing surface defect and scratch inspection",
@@ -150,7 +150,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Human Body & Anatomy",
       icon: Activity,
       summary: "Full-body posture, hand gesture, and anatomical photos captured across diverse body types for kinematic pose estimation.",
-      photoUrl: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Human Body & Anatomy_card.jpg",
       photoLabel: "Full-Body Kinematic Pose Dataset",
       useCases: [
         "33-point skeletal joint and pose estimation",
@@ -165,7 +165,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Sports & Activities",
       icon: Activity,
       summary: "High-speed action photos capturing athlete movements, equipment trajectories, and live game situations across sporting arenas.",
-      photoUrl: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Sports & Activities_card.webp",
       photoLabel: "Athletic Arena & Sprint Capture",
       useCases: [
         "Player tracking and movement analytics",
@@ -180,7 +180,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Fashion & Apparel",
       icon: Shirt,
       summary: "Multi-angle clothing and apparel photos capturing different fabrics, fits, and draping across diverse model body types.",
-      photoUrl: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Fashion & Apparel_card.jpg",
       photoLabel: "Studio Fashion & Fabric Catalog",
       useCases: [
         "Virtual fitting room and try-on applications",
@@ -195,7 +195,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Virtual Reality (VR) Environments",
       icon: Glasses,
       summary: "First-person perspective photos and 360-degree panoramic room captures built for spatial headsets and smart glasses.",
-      photoUrl: "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Virtual Reality (VR) Environments_card.avif",
       photoLabel: "360-Degree Panoramic Room Capture",
       useCases: [
         "First-person smart glasses user perspective models",
@@ -210,7 +210,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Environmental & Urban Collections",
       icon: Landmark,
       summary: "High-resolution photos of city streets, urban architecture, traffic intersections, and public transit infrastructure.",
-      photoUrl: "https://images.unsplash.com/photo-1477959858617-67f30bc75b82?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Environmental & Urban Collections_card.jpg",
       photoLabel: "Smart City Infrastructure Capture",
       useCases: [
         "Urban infrastructure and road quality inspection",
@@ -225,7 +225,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Environmental Conservation",
       icon: Trees,
       summary: "Remote camera-trap photos and drone forestry captures monitoring wildlife habitats, flora, and natural ecosystems.",
-      photoUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Environmental Conservation_card.jpg",
       photoLabel: "Forest Canopy & Camera-Trap Capture",
       useCases: [
         "Wild animal species identification in camera traps",
@@ -240,7 +240,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Space & Astronomy",
       icon: Orbit,
       summary: "High-resolution satellite imagery and telescopic astronomy photos for orbital monitoring and earth observation.",
-      photoUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Space & Astronomy_card.jpg",
       photoLabel: "Multispectral Satellite Earth Observation",
       useCases: [
         "Maritime port traffic and vessel tracking",
@@ -255,7 +255,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Underwater Exploration",
       icon: Waves,
       summary: "High-clarity underwater photos of marine ecosystems, subsea energy pipelines, and submerged equipment.",
-      photoUrl: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Underwater Exploration_card.jpg",
       photoLabel: "Subsea Pipeline & Marine Biology Capture",
       useCases: [
         "Subsea oil and gas pipeline crack inspection",
@@ -270,7 +270,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Cultural & Heritage Preservation",
       icon: Landmark,
       summary: "Detailed multi-angle photos and photogrammetry of historic architecture, ancient monuments, and museum antiquities.",
-      photoUrl: "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Cultural & Heritage Preservation_card.avif",
       photoLabel: "Historic Monument Facade Photogrammetry",
       useCases: [
         "Millimeter-accurate 3D digital twin preservation",
@@ -285,7 +285,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Art & Creativity",
       icon: Sparkles,
       summary: "Ultra-high-resolution digitizations of fine art paintings, classical sculptures, graphic illustrations, and creative media.",
-      photoUrl: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Image Collection/Art & Creativity_card.jpg",
       photoLabel: "Fine Art Painting & Brushwork Scan",
       useCases: [
         "Generative AI style and texture reference training",
@@ -304,7 +304,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Autonomous Driving & Traffic Video",
       icon: Car,
       summary: "Synchronized multi-camera driving video capturing dynamic traffic, pedestrian crossings, and rapid maneuvers.",
-      photoUrl: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/video collection/ADAS_card.jpg",
       photoLabel: "Multi-Camera Automotive Frame",
       useCases: [
         "Highway lane changes and overtaking maneuvers",
@@ -319,7 +319,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Human Action & Motion Recognition",
       icon: Activity,
       summary: "Multi-angle video recordings of people performing everyday tasks, athletic movements, and workplace routines.",
-      photoUrl: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/video collection/Human Action & Motion Recognition_card.jpg",
       photoLabel: "Action Recognition Sequence",
       useCases: [
         "Workout and sports movement tracking",
@@ -334,7 +334,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "CCTV & Security Surveillance Video",
       icon: Shield,
       summary: "Continuous video feeds from stationary and moving cameras monitoring commercial and industrial facilities.",
-      photoUrl: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/video collection/CCTV & Security Surveillance Video_card.jpg",
       photoLabel: "Surveillance Monitor Frame",
       useCases: [
         "Perimeter breach and unauthorized access detection",
@@ -349,7 +349,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "First-Person Egocentric Video",
       icon: Glasses,
       summary: "Wearable camera video capturing the wearer's exact field of view and real-time hand-object interactions.",
-      photoUrl: "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/video collection/First-Person Egocentric Video_card.jpg",
       photoLabel: "Smart Glasses Field of View",
       useCases: [
         "Smart glasses visual AI assistants",
@@ -364,7 +364,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Retail & Shopper Interaction Video",
       icon: ShoppingBag,
       summary: "In-store video recordings capturing customer browsing, product pickups, and self-checkout actions.",
-      photoUrl: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/video collection/Retail & Shopper Interaction Video_card.jpg",
       photoLabel: "In-Store Shopper Interaction Frame",
       useCases: [
         "Autonomous grab-and-go store tracking",
@@ -379,7 +379,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Robotics & Teleoperation Video",
       icon: Bot,
       summary: "Synchronized video recorded during robotic arm manipulation, sorting, and automated material handling.",
-      photoUrl: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/video collection/Robotics & Teleoperation Video_card.jpg",
       photoLabel: "Robotic Gripper Frame",
       useCases: [
         "Robotic pick-and-place training",
@@ -389,27 +389,12 @@ export const SERVICE_DOMAINS_MAP = {
       ]
     },
     {
-      id: "social-content-video",
-      badge: "Content Moderation",
-      title: "Social Media & Content Moderation Video",
-      icon: Sparkles,
-      summary: "Real-world short-form and user-generated video clips curated for trust, safety, and content recommendation algorithms.",
-      photoUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1200&q=85",
-      photoLabel: "Short-Form Social Media Stream",
-      useCases: [
-        "Harmful content and policy violation filtering",
-        "Automated video highlight tagging",
-        "Audio-visual sync and speech-to-caption alignment",
-        "Trending topic and video genre categorization"
-      ]
-    },
-    {
       id: "medical-surgical-video",
       badge: "Surgical Procedures",
       title: "Medical & Surgical Video",
       icon: HeartPulse,
       summary: "High-definition endoscopic and operating room video recordings documenting surgical procedures and anatomical anatomy.",
-      photoUrl: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/video collection/Medical & Surgical Video_card.avif",
       photoLabel: "Laparoscopic Surgical Procedure Frame",
       useCases: [
         "Surgical instrument tracking and phase detection",
@@ -424,7 +409,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Sports & Athletic Motion Video",
       icon: Activity,
       summary: "High-framerate 120 FPS video capturing player agility, ball aerodynamics, and competitive team maneuvers.",
-      photoUrl: "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/video collection/Sports & Athletic Motion Video_card.jpg",
       photoLabel: "High-Framerate Arena Play Sequence",
       useCases: [
         "Tactical game formation analysis",
@@ -439,7 +424,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Drone & Aerial Infrastructure Video",
       icon: Orbit,
       summary: "Corridor and perimeter drone footage surveying power grids, bridges, railway corridors, and civil infrastructure.",
-      photoUrl: "https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/video collection/Drone & Aerial Infrastructure Video_card.jpg",
       photoLabel: "Infrastructure Aerial Survey Capture",
       useCases: [
         "High-voltage power line asset inspection",
@@ -458,7 +443,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Spontaneous Conversational Speech",
       icon: MessageSquare,
       summary: "Natural, unscripted discussions between multiple native speakers with realistic interruptions and colloquial expressions.",
-      photoUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/video collection/",
       photoLabel: "Multi-Speaker Conversational Acoustic Room",
       useCases: [
         "Virtual assistant dialogue handling",

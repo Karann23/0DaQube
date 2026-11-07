@@ -1,29 +1,10 @@
+
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ArrowUpRight,
-  ClipboardCheck,
-  Eye,
-  FileCheck2,
-  LockKeyhole,
   ShieldCheck,
-  SlidersHorizontal,
-  CheckCircle2,
-  Sparkles,
-  Cpu,
-  Building2,
-  Scale,
-  Lock,
-  Server,
-  Key,
-  Database,
-  UserCheck,
-  AlertTriangle,
-  Mail,
-  FileText
 } from "lucide-react";
-import { SectionHeading } from "../components/section-heading";
-import { ThreeDTiltCard } from "../components/ThreeDVisualizers";
 
 const certificationsList = [
   {
@@ -108,174 +89,345 @@ const certificationsList = [
   }
 ];
 
-const qualityPillars = [
+const legalSections = [
   {
-    icon: SlidersHorizontal,
-    title: "Statistical Inter-Annotator Agreement",
-    metric: "Krippendorff's α ≥ 0.88",
-    text: "Statistical agreement calculated across independent raters on every batch, separating genuine ambiguity from annotator variance."
+    id: "privacy",
+    eyebrow: "YOUR INFORMATION",
+    title: "Privacy Policy",
+    intro: (
+      <>
+        At <strong>DaQube</strong>, safeguarding your privacy and ensuring the
+        security of your personal data are fundamental priorities. This Privacy
+        Policy outlines the types of information we collect, how it is used, and
+        the measures we take to protect your data when you interact with our
+        platform and services.
+      </>
+    ),
+    content: [
+      {
+        title: "1. Data We Collect",
+        paragraphs: [
+          "To deliver a seamless, efficient, and personalized experience, DaQube collects specific categories of information:"
+        ],
+        bullets: [
+          <>
+            <strong>Identity &amp; Professional Data:</strong> When you inquire
+            about our services, register on our platform, or submit an
+            application for a role, we may collect your full name, email
+            address, contact number, and relevant professional or career
+            details.
+          </>,
+          <>
+            <strong>Technical &amp; Interaction Data:</strong> We automatically
+            log telemetry data regarding how you navigate and use our website,
+            including your IP address, browser specifications, device
+            identifiers, access times, and the specific pages you view.
+          </>,
+          <>
+            <strong>Cookies &amp; Tracking Technologies:</strong> We use cookies
+            and similar local storage technologies to remember your
+            preferences, optimize site performance, and improve functionality.
+          </>
+        ]
+      },
+      {
+        title: "2. How Your Information Is Used",
+        paragraphs: [
+          "DaQube processes the collected data to support its core operational and business objectives, including:"
+        ],
+        bullets: [
+          "Operating, maintaining, and continuously improving our platform and services.",
+          "Communicating important administrative updates, system changes, or policy revisions.",
+          "Enabling access to interactive platform tools and features at your request.",
+          "Addressing user inquiries, delivering technical support, and evaluating recruitment applications.",
+          "Analyzing platform usage metrics and performance trends to enhance user experience and service quality."
+        ]
+      },
+      {
+        title: "3. Information Security",
+        paragraphs: [
+          "DaQube uses technical, administrative, and organizational safeguards designed to protect personal data against unauthorized access, alteration, or disclosure. While we work to protect information using appropriate security measures, no digital transmission over the internet or electronic storage system can be guaranteed to be completely secure."
+        ]
+      },
+      {
+        title: "4. Email Communications & Delivery",
+        paragraphs: [
+          "When you create an account or engage with our platform, you may receive essential transactional and operational messages required to maintain your account, including one-time verification passcodes, security alerts, and password recovery emails. Where you have given permission, we may also send platform announcements, assessment alerts, and service updates."
+        ],
+        bullets: [
+          <>
+            <strong>Managing Your Preferences:</strong> You can withdraw from
+            non-essential or promotional mailing lists at any time by using the
+            unsubscribe link in our emails, adjusting your preferences through
+            an available unsubscribe portal, or contacting our support team.
+          </>,
+          <>
+            <strong>Email Delivery:</strong> Where Amazon Simple Email Service
+            (SES) is used to manage email delivery, addresses that generate a
+            hard bounce or spam complaint may be added to a suppression list to
+            prevent further delivery attempts.
+          </>
+        ]
+      },
+      {
+        title: "5. Sharing & Third-Party Service Providers",
+        paragraphs: [
+          "DaQube does not sell, rent, or trade your personally identifiable information to external commercial entities. We may share necessary information with trusted infrastructure partners and service providers who help us host our platform, support business operations, or deliver services, such as email communications. These providers are expected to protect the information they process and use it only for the services they provide to us."
+        ]
+      },
+      {
+        title: "6. Regulatory Compliance & Your Privacy Rights",
+        paragraphs: [
+          "Depending on your jurisdiction, you may have rights concerning your personal information under applicable privacy laws, including the General Data Protection Regulation (GDPR) and India's Digital Personal Data Protection Act, 2023."
+        ],
+        bullets: [
+          <><strong>Access:</strong> You may request a copy of the personal data we hold about you.</>,
+          <><strong>Correction:</strong> You may request that incomplete or inaccurate personal information be corrected.</>,
+          <><strong>Deletion:</strong> You may ask us to delete your personal data, subject to applicable legal and operational requirements.</>,
+          <><strong>Retention:</strong> We retain personal information only for as long as it is needed for the purposes described in this policy or as required by applicable legal, tax, or regulatory obligations.</>
+        ]
+      },
+      {
+        title: "7. Contact Information",
+        paragraphs: [
+          <>
+            If you have questions, concerns, or requests regarding this Privacy
+            Policy or how your data is handled, contact us at{" "}
+            <a className="font-semibold text-[#EC5E27] hover:underline" href="mailto:karan@daqube.ai">
+              karan@daqube.ai
+            </a>.
+          </>
+        ]
+      }
+    ]
   },
   {
-    icon: Eye,
-    title: "Double-Blind Gold Task Injection",
-    metric: "5% Continuous Gold Sampling",
-    text: "Pre-screened gold tasks dynamically injected into queues without raters' knowledge, triggering immediate alerts on quality slips."
-  },
-  {
-    icon: LockKeyhole,
-    title: "Air-Gapped Infrastructure & VDI",
-    metric: "Zero-Trust Architecture",
-    text: "Confidential model weights and customer telemetry processed inside air-gapped virtual desktops with disabled copy/paste."
-  },
-  {
-    icon: FileCheck2,
-    title: "100% Cryptographic Data Lineage",
-    metric: "SHA-256 Provenance",
-    text: "Every collected utterance, frame, and annotation carries immutable timestamped credentials and copyright clearance."
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Deterministic Task Taxonomies",
-    metric: "Sub-Pixel Boundaries",
-    text: "Operationalized rubrics with counterexamples eliminate guesswork for visual segmentation, LiDAR cuboids, and RLHF ranking."
-  },
-  {
-    icon: ShieldCheck,
-    title: "HIPAA BAA & Regulatory Adherence",
-    metric: "GDPR · CCPA · DPDP Act",
-    text: "Dedicated healthcare cleanrooms executing Business Associate Agreements (BAA) with complete de-identification."
+    id: "terms",
+    eyebrow: "WEBSITE USE",
+    title: "Terms & Conditions",
+    intro: (
+      <>
+        These Terms and Conditions govern your access to and use of the website
+        operated by <strong>DaQube AI Solutions</strong>, India (“DaQube”, “we”,
+        “our”, or “us”). By accessing or browsing this website, you agree to
+        these terms. If you do not agree, please do not use the website.
+      </>
+    ),
+    content: [
+      {
+        title: "Scope of Our Services",
+        paragraphs: [
+          "This website provides an overview of our capabilities across AI data operations, digital growth strategies, and creative design. All material published here is for general information and does not constitute a binding commercial offer. Any formal engagement or project undertaken by DaQube is subject to a separate written agreement, such as a Master Services Agreement (MSA), Statement of Work (SOW), or signed proposal. If these website terms conflict with a signed client agreement, the signed agreement will take precedence."
+        ]
+      },
+      {
+        title: "Acceptable Website Use",
+        paragraphs: ["When using this website, you agree not to:"],
+        bullets: [
+          "Engage in activity that violates applicable local, national, or international laws.",
+          "Attempt to bypass security controls or gain unauthorized access to our web servers, databases, or internal infrastructure.",
+          "Submit unsolicited promotions, malicious scripts, or fraudulent information through our contact forms.",
+          "Use automated tools to harvest, scrape, or extract website content or architecture in bulk without our permission."
+        ]
+      },
+      {
+        title: "Project Submissions & Inquiries",
+        paragraphs: [
+          "By submitting a project inquiry or business brief through our website, you confirm that the information you provide is accurate to the best of your knowledge and that you have the right to share it. An inquiry does not establish a client relationship or require either party to enter into a commercial arrangement. Personal information submitted through an inquiry is handled in accordance with our Privacy Policy."
+        ]
+      },
+      {
+        title: "Intellectual Property",
+        paragraphs: [
+          "Unless otherwise stated, the materials on this website, including source code, visual design, written content, graphics, and brand marks, belong to DaQube or its licensors. You may view and reference the website for personal or internal business evaluation. Commercial reproduction, redistribution, or modification without prior written permission is not permitted. Client trademarks, brand names, and endorsements remain the property of their respective owners."
+        ]
+      },
+      {
+        title: "External Platforms & Links",
+        paragraphs: [
+          "Our website may link to or integrate with third-party platforms, including Google, LinkedIn, Instagram, and WhatsApp. DaQube does not control these services. Your use of them is subject to their own terms and privacy policies."
+        ]
+      },
+      {
+        title: "Website Availability & Disclaimers",
+        paragraphs: [
+          "We make reasonable efforts to keep website information accurate and current. However, we do not guarantee that all content is exhaustive or free from errors, or that the website will always be available without interruption."
+        ]
+      },
+      {
+        title: "Limitation of Liability",
+        paragraphs: [
+          "To the fullest extent permitted by applicable law, DaQube will not be liable for indirect, incidental, or consequential losses arising from your use of this website or reliance on its content. Nothing in these terms excludes or limits liability where doing so would be unlawful."
+        ]
+      },
+      {
+        title: "Governing Law",
+        paragraphs: [
+          "These Terms and Conditions are governed by the laws of the Republic of India. Any dispute arising in connection with the use of this website will be subject to the jurisdiction of the competent courts in India."
+        ]
+      }
+    ]
   }
 ];
+
+function LegalSection({ section }) {
+  return (
+    <section
+      id={section.id}
+      className="scroll-mt-28 border-t border-[#E9ECEF] py-14 md:py-20"
+    >
+      <div className="mb-9 max-w-3xl">
+        <span className="mb-3 inline-flex items-center rounded-full border border-[#EC5E27]/25 bg-[#FFF3ED] px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-[#EC5E27]">
+          {section.eyebrow}
+        </span>
+        <h2 className="text-3xl font-extrabold tracking-tight text-[#12151A] md:text-4xl">
+          {section.title}
+        </h2>
+        <p className="mt-4 text-sm leading-7 text-[#5F646D] md:text-base">
+          {section.intro}
+        </p>
+      </div>
+
+      <div className="grid gap-x-14 gap-y-9 lg:grid-cols-[minmax(0,1fr)_minmax(250px,0.32fr)]">
+        <div className="space-y-8">
+          {section.content.map((item) => (
+            <article key={item.title}>
+              <h3 className="text-base font-bold text-[#12151A] md:text-lg">
+                {item.title}
+              </h3>
+
+              {item.paragraphs?.map((paragraph, index) => (
+                <p
+                  key={index}
+                  className="mt-2 text-sm leading-7 text-[#626873] md:text-[15px]"
+                >
+                  {paragraph}
+                </p>
+              ))}
+
+              {item.bullets && (
+                <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-7 text-[#626873] md:text-[15px]">
+                  {item.bullets.map((bullet, index) => (
+                    <li key={index}>{bullet}</li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          ))}
+        </div>
+
+        <aside className="h-fit rounded-2xl border border-[#E9ECEF] bg-[#F8FAFC] p-5 lg:sticky lg:top-28">
+          <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFF3ED] text-[#EC5E27]">
+            <ShieldCheck size={19} />
+          </div>
+          <h3 className="text-sm font-bold text-[#12151A]">
+            {section.id === "privacy" ? "Your privacy matters" : "Using our website"}
+          </h3>
+          <p className="mt-2 text-xs leading-6 text-[#68707A]">
+            {section.id === "privacy"
+              ? "For privacy-related questions or requests, contact our team directly. We will review your request in line with applicable requirements."
+              : "For questions about these terms or a potential project engagement, contact the DaQube team before proceeding."}
+          </p>
+          <a
+            href="mailto:karan@daqube.ai"
+            className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#EC5E27] hover:underline"
+          >
+            Contact DaQube <ArrowUpRight size={14} />
+          </a>
+        </aside>
+      </div>
+    </section>
+  );
+}
 
 export function QualityPage() {
   return (
     <>
-      {/* 1. PAGE HERO */}
+      {/* PAGE HERO */}
       <section className="page-hero relative overflow-hidden">
         <div className="container relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFF3ED] border border-[#EC5E27]/30 mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#EC5E27] animate-ping" />
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#EC5E27]/30 bg-[#FFF3ED] px-3.5 py-1.5">
+            <span className="h-2 w-2 animate-ping rounded-full bg-[#EC5E27]" />
             <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#EC5E27]">
               ENTERPRISE TRUST & QUALITY ASSURANCE
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-[#12151A] max-w-4xl leading-[1.12]">
+          <h1 className="max-w-4xl text-3xl font-extrabold leading-[1.12] tracking-tight text-[#12151A] sm:text-4xl md:text-6xl">
             Quality is an Empirical Science. <br />
             <span className="text-[#EC5E27]">Not a Marketing Slogan.</span>
           </h1>
 
-          <p className="max-w-2xl text-base md:text-lg text-[#5F646D] leading-relaxed mt-4 mb-8">
-            Frontier AI systems fail when trained on noisy, ambiguous, or uncalibrated labels. DaQube enforces mathematical consensus, continuous blind gold testing, and air-gapped security for leading machine learning enterprises.
+          <p className="mb-8 mt-4 max-w-2xl text-base leading-relaxed text-[#5F646D] md:text-lg">
+            Frontier AI systems fail when trained on noisy, ambiguous, or
+            uncalibrated labels. DaQube focuses on clear project specifications,
+            structured review, and dependable quality checks for AI data
+            workflows.
           </p>
 
-          <div className="hero-actions flex flex-wrap gap-4 items-center">
+          <div className="hero-actions flex flex-wrap items-center gap-4">
             <Link className="button button-crimson shadow-xl" to="/contact">
-              Request Security & Quality Audit <ArrowUpRight size={17} />
+              Discuss a Project <ArrowUpRight size={17} />
             </Link>
-            <a className="text-link font-semibold text-[#12151A] hover:text-[#EC5E27] flex items-center gap-1" href="#certifications">
+            <a
+              className="text-link flex items-center gap-1 font-semibold text-[#12151A] hover:text-[#EC5E27]"
+              href="#certifications"
+            >
               View Certifications & Standards <ArrowRight size={16} />
             </a>
           </div>
         </div>
       </section>
 
-      {/* 2. SUBPAGE NAVIGATION CARDS */}
-      <section className="section section-tint !py-10">
+      {/* CERTIFIED COMPLIANCE & STANDARDS: ORIGINAL EIGHT CARDS PRESERVED */}
+      <section
+        id="certifications"
+        className="section section-white border-b border-[#E9ECEF] !py-12"
+      >
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ThreeDTiltCard maxTilt={6}>
-              <Link
-                to="/quality/security-compliance"
-                className="p-8 rounded-2xl bg-white border border-[#E9ECEF] hover:border-[#EC5E27] block transition-all h-full shadow-sm hover:shadow-xl group"
-              >
-                <div className="w-12 h-12 rounded-xl bg-[#FFF3ED] text-[#EC5E27] flex items-center justify-center mb-4 group-hover:bg-[#EC5E27] group-hover:text-white transition-all">
-                  <ShieldCheck size={24} />
-                </div>
-                <span className="text-xs font-mono font-bold text-[#EC5E27] uppercase tracking-wider block mb-1">
-                  SUBPAGE 01 / AIR-GAPPED VDI
-                </span>
-                <h3 className="text-xl font-bold text-[#12151A] mb-2 group-hover:text-[#EC5E27] transition-colors">
-                  Enterprise Security & Compliance
-                </h3>
-                <p className="text-sm text-[#5F646D] leading-relaxed mb-4">
-                  ISO 27001 Certified audit alignment, ISO/IEC 27001 certified controls, HIPAA Business Associate Agreements, and encrypted data storage enclaves.
-                </p>
-                <span className="text-xs font-bold text-[#EC5E27] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                  Inspect Security Architecture <ArrowRight size={14} />
-                </span>
-              </Link>
-            </ThreeDTiltCard>
-
-            <ThreeDTiltCard maxTilt={6}>
-              <Link
-                to="/quality/calibration-framework"
-                className="p-8 rounded-2xl bg-white border border-[#E9ECEF] hover:border-[#EC5E27] block transition-all h-full shadow-sm hover:shadow-xl group"
-              >
-                <div className="w-12 h-12 rounded-xl bg-[#FFF3ED] text-[#EC5E27] flex items-center justify-center mb-4 group-hover:bg-[#EC5E27] group-hover:text-white transition-all">
-                  <CheckCircle2 size={24} />
-                </div>
-                <span className="text-xs font-mono font-bold text-[#EC5E27] uppercase tracking-wider block mb-1">
-                  SUBPAGE 02 / MATHEMATICAL AGREEMENT
-                </span>
-                <h3 className="text-xl font-bold text-[#12151A] mb-2 group-hover:text-[#EC5E27] transition-colors">
-                  Statistical Calibration Framework
-                </h3>
-                <p className="text-sm text-[#5F646D] leading-relaxed mb-4">
-                  Inter-annotator agreement metrics (Krippendorff's Alpha, Cohen's Kappa, IoU), dynamic blind gold injection, and multi-pass rater adjudication workflows.
-                </p>
-                <span className="text-xs font-bold text-[#EC5E27] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                  Review Calibration Metrics <ArrowRight size={14} />
-                </span>
-              </Link>
-            </ThreeDTiltCard>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. CERTIFICATIONS & STANDARDS SHOWCASE (8 UNIFIED LOGOS) */}
-      <section id="certifications" className="section section-white !py-12 border-b border-[#E9ECEF]">
-        <div className="container">
-          <div className="text-center max-w-3xl mx-auto mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFF3ED] border border-[#EC5E27]/30 text-xs font-mono font-bold text-[#EC5E27] uppercase tracking-wider mb-3">
+          <div className="mx-auto mb-10 max-w-3xl text-center">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#EC5E27]/30 bg-[#FFF3ED] px-3 py-1 text-xs font-mono font-bold uppercase tracking-wider text-[#EC5E27]">
               <ShieldCheck size={14} /> CERTIFIED COMPLIANCE & STANDARDS
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#12151A] tracking-tight">
+            <h2 className="text-2xl font-extrabold tracking-tight text-[#12151A] sm:text-3xl md:text-4xl">
               Enterprise Governance & Accreditations
             </h2>
-            <p className="text-sm text-[#5F646D] mt-2">
-              DaQube's operations, security controls, and AI dataset pipelines are aligned with international information security, quality management, and ethical AI standards.
+            <p className="mt-2 text-sm text-[#5F646D]">
+              DaQube's operations, security controls, and AI dataset pipelines
+              are aligned with international information security, quality
+              management, and ethical AI standards.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {certificationsList.map((cert) => (
               <div
                 key={cert.id}
-                className="p-5 rounded-2xl bg-white border border-[#E9ECEF] hover:border-[#EC5E27] transition-all flex flex-col justify-between shadow-xs hover:shadow-lg group"
+                className="group flex flex-col justify-between rounded-2xl border border-[#E9ECEF] bg-white p-5 shadow-xs transition-all hover:border-[#EC5E27] hover:shadow-lg"
               >
                 <div>
-                  {/* Standardized Logo Box maintaining uniform size across all 8 */}
-                  <div className="h-24 w-full rounded-xl bg-[#F8FAFC] border border-[#F1F3F5] flex items-center justify-center p-2 mb-4 group-hover:bg-[#FFF8F5] transition-colors">
+                  <div className="mb-4 flex h-24 w-full items-center justify-center rounded-xl border border-[#F1F3F5] bg-[#F8FAFC] p-2 transition-colors group-hover:bg-[#FFF8F5]">
                     <img
                       src={cert.logo}
                       alt={cert.alt}
-                      className="max-h-16 max-w-[140px] w-auto h-auto object-contain rounded"
+                      className="h-auto max-h-16 w-auto max-w-[140px] rounded object-contain"
                       loading="lazy"
                     />
                   </div>
 
-                  <span className={`text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded border inline-block mb-2 ${cert.tagColor}`}>
+                  <span
+                    className={`mb-2 inline-block rounded border px-2 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider ${cert.tagColor}`}
+                  >
                     {cert.tag}
                   </span>
-                  <h3 className="text-base font-bold text-[#12151A] mb-0.5 leading-snug group-hover:text-[#EC5E27] transition-colors">
+                  <h3 className="mb-0.5 text-base font-bold leading-snug text-[#12151A] transition-colors group-hover:text-[#EC5E27]">
                     {cert.code}
                   </h3>
-                  <div className="text-xs font-semibold text-[#8E939D] mb-2">
+                  <div className="mb-2 text-xs font-semibold text-[#8E939D]">
                     {cert.title}
                   </div>
                 </div>
-                <p className="text-xs text-[#5F646D] leading-relaxed pt-2 border-t border-[#F8F9FA]">
+                <p className="border-t border-[#F8F9FA] pt-2 text-xs leading-relaxed text-[#5F646D]">
                   {cert.desc}
                 </p>
               </div>
@@ -284,181 +436,12 @@ export function QualityPage() {
         </div>
       </section>
 
-      {/* 4. THE 6 QUALITY PILLARS GRID */}
-      <section id="pillars" className="section section-tint">
-        <div className="container">
-          <SectionHeading
-            eyebrow="EMPIRICAL CONTROLS"
-            title="Six Rigorous Principles Built Into Every Sprint."
-            description="We reject subjective crowd metrics. Every dataset delivery is backed by reproducible statistical consensus and certified acceptance gates."
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-            {qualityPillars.map((p) => (
-              <article
-                key={p.title}
-                className="p-7 rounded-2xl bg-white border border-[#E9ECEF] flex flex-col justify-between hover:border-[#EC5E27]/40 transition-all shadow-xs"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-[#FFF3ED] text-[#EC5E27] flex items-center justify-center">
-                      <p.icon size={20} />
-                    </div>
-                    <span className="text-[11px] font-mono font-bold text-[#EC5E27] px-2.5 py-1 rounded bg-[#FFF3ED] border border-[#EC5E27]/30">
-                      {p.metric}
-                    </span>
-                  </div>
-                  <h3 className="text-base font-bold text-[#12151A] mb-2">{p.title}</h3>
-                  <p className="text-xs text-[#5F646D] leading-relaxed">{p.text}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. STREAMLINED TRUST CENTER (CONCISE, SCANNABLE ARCHITECTURE) */}
-      <section id="trust-center" className="section section-white border-t border-[#E9ECEF]">
-        <div className="container max-w-5xl">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFF3ED] border border-[#EC5E27]/30 text-xs font-mono font-bold text-[#EC5E27] uppercase tracking-wider mb-3">
-              <ShieldCheck size={14} /> DaQube Trust Center
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#12151A] tracking-tight">
-              Transparent Sourcing & Security Controls
-            </h2>
-            <p className="text-sm text-[#5F646D] max-w-xl mx-auto mt-2">
-              High-quality human-sourced data to power frontier AI, governed by strict ethics and security.
-            </p>
-          </div>
-
-          {/* 4 Streamlined Core Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-[#E9ECEF]">
-              <div className="w-9 h-9 rounded-xl bg-[#FFF3ED] text-[#EC5E27] flex items-center justify-center mb-3">
-                <Database size={18} />
-              </div>
-              <h3 className="text-base font-bold text-[#12151A] mb-1.5">Direct First-Party Sourcing</h3>
-              <p className="text-xs text-[#5F646D] leading-relaxed mb-3">
-                All data is collected from real human contributors who knowingly participate in guided tasks, surveys, and domain annotation. We strictly do not scrape private accounts or buy unverified broker data.
-              </p>
-              <div className="text-[11px] font-semibold text-[#EC5E27] flex items-center gap-1.5">
-                <CheckCircle2 size={13} /> 100% Commissioned Human Ground Truth
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-[#E9ECEF]">
-              <div className="w-9 h-9 rounded-xl bg-[#FFF3ED] text-[#EC5E27] flex items-center justify-center mb-3">
-                <Scale size={18} />
-              </div>
-              <h3 className="text-base font-bold text-[#12151A] mb-1.5">Consent & Contributor Rights</h3>
-              <p className="text-xs text-[#5F646D] leading-relaxed mb-3">
-                Explicit opt-in consent for every project sprint. Contributors receive transparent living-wage compensation benchmarks, maintain the right to withdraw, and must be 18+ years of age.
-              </p>
-              <div className="text-[11px] font-semibold text-[#EC5E27] flex items-center gap-1.5">
-                <CheckCircle2 size={13} /> Ethical Labor & Voluntary Participation
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-[#E9ECEF]">
-              <div className="w-9 h-9 rounded-xl bg-[#FFF3ED] text-[#EC5E27] flex items-center justify-center mb-3">
-                <Lock size={18} />
-              </div>
-              <h3 className="text-base font-bold text-[#12151A] mb-1.5">Multi-Layered Data Protection</h3>
-              <p className="text-xs text-[#5F646D] leading-relaxed mb-3">
-                TLS 1.2+ in transit, AES-256 at rest, dedicated rotated key management, air-gapped virtual desktop infrastructure (VDI) with disabled peripheral ports, and automated PII scrubbing.
-              </p>
-              <div className="text-[11px] font-semibold text-[#EC5E27] flex items-center gap-1.5">
-                <CheckCircle2 size={13} /> Air-Gapped Cleanroom Governance
-              </div>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-[#F8FAFC] border border-[#E9ECEF]">
-              <div className="w-9 h-9 rounded-xl bg-[#FFF3ED] text-[#EC5E27] flex items-center justify-center mb-3">
-                <ShieldCheck size={18} />
-              </div>
-              <h3 className="text-base font-bold text-[#12151A] mb-1.5">Client Enclaves & 72-Hour SLA</h3>
-              <p className="text-xs text-[#5F646D] leading-relaxed mb-3">
-                Non-commingled private cloud storage (AWS, GCP, Azure), certified cryptographic data destruction upon delivery, and a guaranteed 72-hour security incident notification SLA.
-              </p>
-              <div className="text-[11px] font-semibold text-[#EC5E27] flex items-center gap-1.5">
-                <CheckCircle2 size={13} /> Strict Confidentiality & Incident Containment
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Security Contact Bar */}
-          <div className="mt-6 p-4 rounded-xl bg-[#FFF8F5] border border-[#EC5E27]/20 flex flex-wrap items-center justify-between gap-3 text-xs">
-            <span className="text-[#12151A] font-medium">
-              Have security questions or need to review our complete compliance dossier?
-            </span>
-            <a
-              href="mailto:security@daqube.ai"
-              className="font-bold text-[#EC5E27] hover:underline flex items-center gap-1"
-            >
-              security@daqube.ai <ArrowRight size={13} />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. TECHNICAL FAQ */}
-      <section className="section section-tint">
-        <div className="container max-w-4xl">
-          <div className="text-center mb-10">
-            <span className="eyebrow">TRUST ASSURANCE FAQ</span>
-            <h2 className="font-display text-2xl md:text-3xl font-extrabold text-[#12151A] tracking-tight mt-1">
-              Enterprise Compliance & Data Handling
-            </h2>
-          </div>
-
-          <div className="space-y-4">
-            <details className="bg-white p-5 rounded-2xl border border-[#E9ECEF] cursor-pointer group shadow-xs">
-              <summary className="font-bold text-[#12151A] text-sm md:text-base list-none flex items-center justify-between">
-                <span>Can DaQube operate inside customer-managed VPC / cloud enclaves?</span>
-                <span className="text-[#EC5E27] font-bold text-lg group-open:rotate-45 transition-transform">+</span>
-              </summary>
-              <p className="text-xs md:text-sm text-[#5F646D] leading-relaxed mt-3 pt-3 border-t border-[#F8F9FA]">
-                Yes. For sensitive defense, healthcare, and enterprise IP, our annotator workforce connects directly to your private AWS / Azure / GCP tenancy via Zero-Trust Network Access (ZTNA) with multi-factor authentication. Data never leaves your storage buckets.
-              </p>
-            </details>
-
-            <details className="bg-white p-5 rounded-2xl border border-[#E9ECEF] cursor-pointer group shadow-xs">
-              <summary className="font-bold text-[#12151A] text-sm md:text-base list-none flex items-center justify-between">
-                <span>How are annotator biases and drift tracked across multi-month sprints?</span>
-                <span className="text-[#EC5E27] font-bold text-lg group-open:rotate-45 transition-transform">+</span>
-              </summary>
-              <p className="text-xs md:text-sm text-[#5F646D] leading-relaxed mt-3 pt-3 border-t border-[#F8F9FA]">
-                We maintain ongoing rolling statistical baselines per annotator. If a rater’s agreement score with gold benchmarks diverges by more than 1.5 standard deviations over 50 consecutive tasks, their queue is suspended automatically for review and re-calibration by senior adjudicators.
-              </p>
-            </details>
-
-            <details className="bg-white p-5 rounded-2xl border border-[#E9ECEF] cursor-pointer group shadow-xs">
-              <summary className="font-bold text-[#12151A] text-sm md:text-base list-none flex items-center justify-between">
-                <span>Do you provide commercial indemnification against IP infringement?</span>
-                <span className="text-[#EC5E27] font-bold text-lg group-open:rotate-45 transition-transform">+</span>
-              </summary>
-              <p className="text-xs md:text-sm text-[#5F646D] leading-relaxed mt-3 pt-3 border-t border-[#F8F9FA]">
-                Yes. 100% of collected voice corpora, image assets, and expert demonstrations include signed legal releases granting perpetual, royalty-free commercial derivative rights. We provide full legal indemnification documentation upon delivery.
-              </p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. BOTTOM CTA */}
-      <section className="section section-white">
-        <div className="container cta-panel">
-          <div className="cta-symbol"><ShieldCheck size={26} /></div>
-          <div className="cta-copy">
-            <span className="eyebrow">AUDIT OUR PIPELINES</span>
-            <h2>Review our security whitepaper or schedule an audit.</h2>
-            <p>Our compliance officer and security architects are available to review security packages and execute mutual NDAs.</p>
-          </div>
-          <Link className="button button-crimson" to="/contact">
-            Request Compliance Package <ArrowRight size={17} />
-          </Link>
-          <span className="cta-watermark">DQ</span>
+      {/* PRIVACY POLICY AND TERMS */}
+      <section className="section section-white !py-0">
+        {/* Wider than the original max-w-5xl trust container to reduce side whitespace */}
+        <div className="container max-w-6xl">
+          <LegalSection section={legalSections[0]} />
+          <LegalSection section={legalSections[1]} />
         </div>
       </section>
     </>

@@ -497,191 +497,1317 @@ export function getServiceBySlug(slug) {
     return false;
   });
 }
+
 export const articles = [
-    { slug: "why-data-coverage-matters", title: "Why Data Coverage Matters More Than Dataset Size", category: "DATA STRATEGY", readTime: "5 min read", date: "October 2026", excerpt: "A large dataset can still leave a model unprepared for the conditions it will meet. Coverage starts with the task, not the file count.", image: image("photo-1518770660439-4636190af475"), imageAlt: "Close-up of technology components", intro: "Dataset size is easy to count. Coverage is harder—and often more useful to reason about. A model can see millions of examples and still struggle when lighting changes, a phrase is spoken with an unfamiliar accent, or a document arrives in a layout it has rarely encountered.", sections: [{ heading: "Start with the operating environment", paragraphs: ["Before collecting data, list the situations the system is expected to handle: environments, devices, user groups, languages, object types, background conditions and known edge cases. This becomes a coverage map rather than a vague request for more examples.", "The map should reflect actual product use. A retail vision model may need shelves with different packaging and occlusion. A speech system may need variation in speaking rate, room acoustics and regional vocabulary. The right dimensions depend on the task."] }, { heading: "Measure gaps, not just totals", paragraphs: ["Track how examples are distributed across the dimensions that matter. A dataset with balanced class counts can still be unbalanced by lighting, geography or recording conditions. A simple coverage matrix often reveals missing combinations before training begins.", "Do not create every possible combination blindly. Prioritize by likely frequency, impact of failure, risk and the cost of collecting representative examples. Document the rationale so the plan can evolve with the product."] }, { heading: "Connect collection to evaluation", paragraphs: ["Coverage planning should inform both the training set and the evaluation set. Keep evaluation examples that test meaningful variations, and avoid letting near-duplicates leak across splits. Where appropriate, use separate collection windows or source groups to test generalization.", "Finally, review errors after model evaluation. Repeated failure patterns can indicate a missing slice, ambiguous label definition or a mismatch between the data and the deployment environment."] }], takeaway: "Build a coverage plan before scaling collection. The goal is not simply more data—it is evidence that the dataset represents the task the model must perform." },
-    { slug: "annotation-guidelines-that-scale", title: "How to Write Annotation Guidelines That Scale", category: "ANNOTATION", readTime: "6 min read", date: "October 2026", excerpt: "Consistent labels come from shared decisions. Strong guidelines make the easy cases quick and the difficult cases predictable.", image: image("photo-1535378620166-273708d44e4c"), imageAlt: "Digital interface showing technical analysis", intro: "Annotation guidelines are the operating manual for a dataset. When definitions are vague, two careful annotators can make different choices and both believe they are right. A scalable guideline reduces that ambiguity before it becomes expensive to correct.", sections: [{ heading: "Define labels operationally", paragraphs: ["A label name alone is not a definition. Explain what qualifies, what does not, how to treat partial visibility and which label wins when categories overlap. Use observable criteria rather than assumptions about intent.", "For visual tasks, specify geometry rules, occlusion handling, minimum visibility and whether truncated objects should be labeled. For text tasks, specify boundary rules, nested entities and how to handle misspellings or mixed-language spans."] }, { heading: "Use examples and counterexamples", paragraphs: ["Include clear positives, clear negatives and borderline cases. Counterexamples are especially valuable because they show where a label should stop. Keep examples close to the decision rule they illustrate.", "Create a short decision tree for frequent ambiguities. If an annotator must repeatedly ask a project lead the same question, the guideline likely needs another example or a clearer rule."] }, { heading: "Calibrate before production", paragraphs: ["Run a pilot batch and compare annotations. Review disagreement patterns, update the guideline and repeat until the team can apply the rules consistently enough for the project's acceptance criteria.", "During production, track recurring questions and changes. Version the guideline, record the date a rule changed and decide whether earlier batches need re-review. This keeps the dataset coherent as the project grows."] }], takeaway: "A scalable guideline is specific, example-rich, versioned and tested on real edge cases before production work accelerates." },
-    { slug: "building-a-useful-speech-dataset", title: "Building a Useful Speech Dataset Across Languages and Environments", category: "AUDIO & SPEECH", readTime: "5 min read", date: "September 2026", excerpt: "Language coverage is more than a list of locales. Recording conditions, prompts and transcript conventions shape how useful speech data becomes.", image: image("photo-1590602847861-f357a9332bbc"), imageAlt: "Audio recording microphone and headphones", intro: "Speech data quality depends on the relationship between what was said, how it was recorded and how it is represented. A useful collection plan makes those factors explicit instead of treating every audio file as interchangeable.", sections: [{ heading: "Plan language and speaker variation", paragraphs: ["Define the target languages and locales, then decide which variation matters for the intended product: regional vocabulary, speaking rate, conversational versus read speech, or domain-specific terminology. Collect only attributes that are justified by the task and appropriate to handle.", "Prompts should cover the vocabulary and interactions expected in deployment without forcing every speaker into an unnatural style. If spontaneous speech matters, scripted reading alone will not represent the full task."] }, { heading: "Control recording quality", paragraphs: ["Specify formats, sample rates, duration, clipping limits, acceptable background noise and file naming. Recording instructions should be easy to follow on the devices participants actually use.", "A quality check should distinguish technical problems from useful real-world variation. Noise that makes speech unintelligible may be a defect; ordinary room acoustics may be an important part of the target environment."] }, { heading: "Keep audio and transcripts aligned", paragraphs: ["Decide whether transcripts are verbatim or normalized, how to mark disfluencies, how to label speakers and whether timestamps are required. These conventions influence both training and evaluation.", "Review a sample early. Clear examples of difficult words, overlapping speech and non-speech sounds reduce disagreement and make later batches easier to compare."] }], takeaway: "A useful speech dataset is deliberately varied, technically documented and paired with transcript conventions that match the model's intended job." },
-    { slug: "human-feedback-for-language-models", title: "What Makes Human Feedback Useful for Language Model Evaluation?", category: "AI EVALUATION", readTime: "6 min read", date: "September 2026", excerpt: "Preference labels are only as useful as the question, rubric and context that produced them.", image: image("photo-1553877522-43269d4ea984"), imageAlt: "People collaborating around a table", intro: "Human feedback can help teams compare model outputs and identify shortcomings, but a preference label without a clear criterion is difficult to interpret. Evaluation becomes more useful when the task, rubric and context are explicit.", sections: [{ heading: "Separate the dimensions", paragraphs: ["A response may be helpful but factually weak, safe but incomplete, or concise but poorly aligned with the instruction. If evaluators are asked to choose the 'best' answer without guidance, they may weigh these dimensions differently.", "Define the dimensions relevant to the product and decide whether they should be scored separately or combined. Include examples of severe errors and explain when a small style preference should not outweigh a substantive issue."] }, { heading: "Make comparisons fair", paragraphs: ["For pairwise ranking, present candidates with the same prompt and relevant context. Randomize order where appropriate and provide an option for ties or neither response meeting the bar, if that reflects the task.", "Calibration examples help reviewers learn the rubric. Track disagreement and investigate whether it reflects unclear instructions, missing context or genuine ambiguity rather than assuming every difference is annotator error."] }, { heading: "Turn scores into action", paragraphs: ["Summaries should go beyond an average score. Group errors by type, severity and scenario, then connect those patterns to potential improvements in prompts, training data, policy or evaluation coverage.", "Keep a record of the rubric version and evaluation conditions. This makes later comparisons more meaningful and helps teams distinguish model changes from changes in how the evaluation was conducted."] }], takeaway: "Human feedback is strongest when the evaluation question is precise, reviewers are calibrated and results lead to a documented next step." }
-];
-export const caseStudies = [
     {
-        slug: "autonomous-lidar-sensor-fusion",
-        title: "3D LiDAR & Multi-Camera Sensor Fusion for Level 4 Autonomous Mobility",
-        industry: "Autonomous Vehicles & Robotics",
-        type: "Production Case Study",
-        image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=85",
-        imageAlt: "Autonomous vehicle equipped with LiDAR sensors and cameras",
-        summary: "Generating 1.2M sub-5cm oriented 3D bounding cuboids and dense point-cloud semantic segmentation synchronized with 8-camera video streams.",
-        challenge: "Dynamic occlusion during heavy urban traffic, rain-induced laser backscatter, and temporal tracking ID swaps when vehicles cross intersections. The perception pipeline required ground truth capable of training multi-modal sensor fusion networks with sub-5cm corner alignment tolerances.",
-        approach: [
-            "Extrinsic camera-to-LiDAR calibration verification using automated projection matrix scripts.",
-            "Oriented 3D cuboid fitting with 9-degree-of-freedom rotation and continuous velocity vector calculation.",
-            "Temporal track-ID linking across 120-frame continuous sequences through full vehicle occlusions.",
-            "Double-blind peer review with automated collision-box geometry plausibility filters."
+        "slug": "adas-data-collection-future-ai",
+        "title": "Beyond the Steering Wheel: How ADAS Data Collection Is Shaping the Future of AI",
+        "category": "AUTONOMOUS SYSTEMS",
+        "readTime": "6 min read",
+        "date": "November 2026",
+        "excerpt": "How multi-sensor ADAS data collection—spanning road images, driving videos, radar, LiDAR, and in-cabin voice commands—trains smarter, safer automotive AI systems.",
+        "image": "/images/case-studies/adas-data-collection.jpg",
+        "imageAlt": "Autonomous vehicle capturing road images, 3D LiDAR point clouds, and multi-sensor ADAS data",
+        "intro": "The automotive industry is changing quickly. Modern vehicles are becoming smarter with features that can detect nearby objects, warn drivers about possible dangers, and help prevent accidents. These technologies are made possible by Advanced Driver Assistance Systems (ADAS) and Artificial Intelligence (AI). AI models need large amounts of useful data to learn how to recognise objects and respond to different situations—making ADAS data collection a foundational pillar in the development of smarter and safer vehicles.",
+        "sections": [
+            {
+                "heading": "What Is ADAS Data Collection & Why It Matters",
+                "paragraphs": [
+                    "Advanced Driver Assistance Systems (ADAS)—including lane departure warnings, parking assistance, collision alerts, automatic emergency braking, and traffic sign recognition—use cameras, radar, LiDAR, and in-cabin microphones to perceive the vehicle's surroundings. Before this raw sensor stream can train reliable machine learning models, it must capture diverse weather, lighting, and traffic conditions and be accurately labelled, organised, checked, and prepared according to strict project requirements.",
+                    "Road images and multi-angle driving videos",
+                    "Information about nearby vehicles, cyclists, and pedestrians",
+                    "Traffic signs, signals, and road markings",
+                    "Lane markings and varying road surface conditions",
+                    "Vehicle movement dynamics and multi-sensor readings (LiDAR/Radar)",
+                    "Driver voice commands and in-cabin audio recordings"
+                ]
+            },
+            {
+                "heading": "How ADAS Data Collection Supports AI Development",
+                "paragraphs": [
+                    "Helping Machine Learning Models Learn: Training models on labelled road images, driving videos, and sensor readings of cars, bikes, pedestrians, traffic lights, and road signs so they accurately identify objects in unseen driving scenes.",
+                    "Supporting Road Safety: Training AI systems to recognise hazards—vehicles moving too close, pedestrians crossing, or obstacles blocking the driving path—across rain, fog, low light, and busy urban roads to power collision warnings and emergency braking.",
+                    "Improving the Driving Experience: Supporting comfort and convenience features like parking assistance, adaptive cruise control, lane keeping assistance, and personalised driver settings (seat position, temperature, entertainment).",
+                    "Integrating Audio and Speech Data in ADAS: Collecting diverse voice recordings across accents, speaking styles, background road/cabin noise, and common commands so drivers can control navigation, calls, and settings hands-free."
+                ]
+            },
+            {
+                "heading": "The Role of Audio and Speech Data in Modern Vehicles",
+                "paragraphs": [
+                    "When we talk about ADAS data, images and sensor information often get the most attention. However, audio and speech data also play an important role in modern vehicles. Many vehicles now support voice commands that allow drivers to control navigation, make calls, adjust settings, or interact with entertainment systems without using their hands.",
+                    "To develop these features, AI models need suitable speech and audio data for training. Voice recordings help models understand different accents, speaking styles, background noise, and common commands. At DaQube.ai, audio and speech data collection is planned alongside visual and sensor requirements for projects that involve multiple types of information."
+                ]
+            },
+            {
+                "heading": "What Does the Future Hold for ADAS Data Collection?",
+                "paragraphs": [
+                    "As automotive technology continues to develop, the demand for useful and diverse training data is expected to grow. Future ADAS systems will need to work reliably across different environments, road conditions, weather situations, and traffic patterns.",
+                    "We will also see greater use of AI in connected vehicles, advanced driver monitoring, voice-controlled systems, and autonomous driving research—all depending on well-prepared datasets that help AI models understand real-world situations."
+                ]
+            }
         ],
-        workflow: [
-            "Sensor Stream Synchronization & Ingestion",
-            "3D Ground-Plane Estimation & Point Normalization",
-            "Cuboid Delineation & Temporal Link Tracking",
-            "Multi-Camera Sensor Projection Audit",
-            "KITTI / Waymo Open Dataset Format Delivery"
-        ],
-        deliverables: [
-            "1,200,000 calibrated 3D bounding cuboids with velocity vectors",
-            "Dense point-cloud semantic segmentation masks (ground, curb, obstacles)",
-            "Topologically verified polyline road marking vectors",
-            "Validation reports certifying Inter-Annotator Agreement IoU ≥ 0.93"
-        ],
-        note: "Delivered under air-gapped ISO 27001 cleanroom protocols with encrypted AWS S3 transfer."
+        "takeaway": "DaQube.ai supports automotive AI and machine learning development through tailored data collection, 2D/3D image and video annotation, in-cabin speech capture, and structured dataset preparation."
     },
     {
-        slug: "frontier-llm-alignment",
-        title: "Supervised Fine-Tuning & Direct Preference Optimization (DPO) for a 70B Frontier LLM",
-        industry: "Generative AI & Foundation Models",
-        type: "Production Case Study",
-        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=85",
-        imageAlt: "Neural network representation of artificial intelligence alignment",
-        summary: "Curating 85,000 verified multi-turn expert reasoning demonstrations and pairwise preference scorecards across STEM, medicine, and software architecture.",
-        challenge: "Web pre-training corpora saturation and generic crowd raters producing superficial, sycophantic responses. The foundation model team needed rigorous chain-of-thought demonstrations authored by verified domain specialists (PhDs, MDs, Staff Engineers) with strict factual attribution.",
-        approach: [
-            "Assembled a Tier-4 network of 450 verified domain specialists across 22 disciplines.",
-            "Authored multi-dimensional scoring rubrics covering instruction adherence, reasoning validity, conciseness, and safety neutrality.",
-            "Generated pairwise chosen-vs-rejected completion trajectories with explicit margin rationale.",
-            "Continuous gold-task calibration preventing rater drift and enforcing Krippendorff’s Alpha ≥ 0.89."
+        "slug": "multimodal-datasets-ai-development",
+        "title": "The Role of Multimodal Datasets in AI Development",
+        "category": "DATA STRATEGY",
+        "readTime": "7 min read",
+        "date": "November 2026",
+        "excerpt": "How combining two or more data modalities—text, images, audio, video, and sensor data—enables richer context, natural human interaction, and higher AI accuracy.",
+        "image": "/images/case-studies/multimodal-datasets.jpg",
+        "imageAlt": "3D visualization of multimodal AI combining text, image, audio, video, and sensor datasets",
+        "intro": "Artificial Intelligence (AI) is becoming a part of our everyday lives across healthcare, education, entertainment, and self-driving cars. Just as humans use sight, sound, and reading together to understand their surroundings, multimodal AI systems learn from multiple types of information—combining text, images, videos, audio, and sensor data to gain a deeper, more accurate understanding of the world.",
+        "sections": [
+            {
+                "heading": "Challenges in Collecting & Integrating Multimodal Datasets",
+                "paragraphs": [
+                    "While multimodal datasets provide richer context than single-modality data, collecting and preparing them introduces three major operational hurdles: (1) Data Collection and Integration—synchronizing different data types from multiple sources (such as matching a video clip with its exact audio recording or connecting an image with its clinical text report); (2) High Processing Requirements—training models across combined modalities requires greater compute and structured formatting; and (3) Data Quality and Accuracy—blurry images, unclear audio, incorrect labels, or incomplete text can degrade cross-modal learning without rigorous cleaning, annotation, and validation.",
+                    "Text Data: Articles, reports, messages, product descriptions, and social media posts",
+                    "Image Data: Photographs, medical scans, product images, and satellite imagery",
+                    "Audio Data: Voice recordings, conversations, music, environmental sounds, and speech samples",
+                    "Video Data: Recorded activities, real-world events, human movements, and audio-synced clips",
+                    "Sensor Data: GPS coordinates, camera feeds, radar, LiDAR, and patient monitoring devices"
+                ]
+            },
+            {
+                "heading": "Core Benefits & Real-World Multimodal Applications",
+                "paragraphs": [
+                    "Better Understanding of Information: Combining modalities provides crucial context missed by single-source data—for example, pairing written medical reports with X-ray or MRI scans and patient sensor readings in healthcare.",
+                    "More Natural Human Interaction: Multimodal AI works seamlessly across voice, text, and images, allowing voice assistants and customer support bots to accept spoken questions, written messages, or product photos.",
+                    "Improved AI Performance in Self-Driving Vehicles: Combining camera images, GPS, radar, and LiDAR sensors to detect vehicles, pedestrians, traffic signs, and road conditions simultaneously.",
+                    "Cross-Platform Content & Social Media Monitoring: Analysing text, images, and videos together to identify harmful content, understand user activity, and recommend relevant media."
+                ]
+            },
+            {
+                "heading": "What Is the Future of Multimodal Datasets in AI?",
+                "paragraphs": [
+                    "Multimodal AI use is expanding rapidly across industries as systems handle more complex tasks. In Education, AI learning assistants combine written lessons, videos, voice instructions, and interactive exercises to create better learning experiences. In Entertainment, AI systems combine viewing and listening preferences to suggest movies, music, and content.",
+                    "In Robotics, robots combine camera images, audio, and sensor data to navigate surroundings and perform physical tasks. In Transportation, combining camera, GPS, and sensor data improves traffic monitoring and smart infrastructure."
+                ]
+            },
+            {
+                "heading": "How DaQube.ai Supports Multimodal AI Development",
+                "paragraphs": [
+                    "Collecting information from different sources is only one part of the process—the data also needs to be organised, checked, and prepared according to the project's requirements. DaQube.ai supports AI development through data collection and dataset preparation across images, videos, audio, text, and documents, making cross-modal dataset preparation simpler and more organised."
+                ]
+            }
         ],
-        workflow: [
-            "Domain Rubric Specification & Taxonomy Design",
-            "Credentialed Specialist Response Drafting",
-            "Blind Multi-Rater Pairwise Ranking & Scoring",
-            "Lead Adjudication & Citation Attribution Check",
-            "HuggingFace Datasets & Parquet Export"
-        ],
-        deliverables: [
-            "85,000 multi-turn instruction-response demonstration pairs",
-            "160,000 pairwise preference comparisons formatted for DPO/KTO training",
-            "Comprehensive failure-mode taxonomy categorizing model hallucinations",
-            "Clean IP provenance documentation and zero training data contamination guarantee"
-        ],
-        note: "All prompts insulated from public web scrape to preserve closed-circuit evaluation integrity."
+        "takeaway": "DaQube.ai supports multimodal AI development through coordinated data collection and dataset preparation across images, videos, audio, text, and documents."
     },
     {
-        slug: "clinical-diagnostic-ocr",
-        title: "Cell-Accurate Tabular OCR & Ground Truth for Clinical Diagnostics",
-        industry: "Healthcare & Biomedical NLP",
-        type: "Production Case Study",
-        image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=85",
-        imageAlt: "Medical diagnosis and clinical laboratory records analysis",
-        summary: "Extracting complex nested tables, spanning headers, and handwritten physician notes from 500,000 clinical records under strict HIPAA compliance.",
-        challenge: "Standard off-the-shelf OCR engines failed to parse multi-page medical test panels with irregular grid layouts, skewed mobile photos, and handwritten clinical margin notes, introducing dangerous numeric hallucinations in lab values.",
-        approach: [
-            "Executed full HIPAA Business Associate Agreements (BAA) with air-gapped VDI isolation.",
-            "Engineered reading-order directed acyclic graphs linking test parameter labels to numeric values and reference units.",
-            "Double-blind multi-pass transcription of critical numerical and diagnostic fields achieving 99.9% character-level accuracy.",
-            "Standardized outputs into FHIR-compliant structured JSON schema with pixel polygon coordinates."
+        "slug": "human-vs-self-annotated-adas-data",
+        "title": "Human-Annotated vs. Self-Annotated ADAS Data: What's the Difference?",
+        "category": "ANNOTATION",
+        "readTime": "6 min read",
+        "date": "November 2026",
+        "excerpt": "Comparing manual human annotation and AI-based automated self-annotation for ADAS perception—and why a hybrid human-in-the-loop workflow delivers the best balance of speed and quality.",
+        "image": "/images/case-studies/human-vs-self-adas.jpg",
+        "imageAlt": "Dual-monitor workstation comparing raw rainy street footage with human-verified 3D ADAS annotations",
+        "intro": "Modern vehicles rely on AI and ADAS features like lane detection, automatic emergency braking, parking assistance, and collision warnings. While cameras, radar, and sensors collect massive volumes of road data, raw data is not enough—it must be accurately labelled so AI models understand what is happening on the road. This comparison examines human annotation versus automated self-annotation and shows how combining both methods optimizes large-scale ADAS pipelines.",
+        "sections": [
+            {
+                "heading": "Choosing Between Manual Precision and Automated Scale",
+                "paragraphs": [
+                    "ADAS perception models require millions of labelled images, video frames, and sensor sweeps marking vehicles, pedestrians, road signs, and lane markings. Relying solely on manual human annotation takes significant time, requires large teams, and risks inter-annotator differences without strict guidelines. Conversely, relying solely on automated self-annotation tools struggles with rare road conditions, poor lighting, occluded objects, and unusual events—producing label errors if not reviewed by humans.",
+                    "Human-Annotated ADAS Data: Manual labelling by trained annotators following project guidelines",
+                    "Self-Annotated ADAS Data: Automated pre-labelling using AI tools and machine learning models",
+                    "Hybrid Human-in-the-Loop Data: Automated initial bounding boxes/labels verified and corrected by human specialists"
+                ]
+            },
+            {
+                "heading": "Comparing Human Annotation vs. Self-Annotation",
+                "paragraphs": [
+                    "Human Annotation Benefits: Superior attention to detail, ability to handle complex scenes (crowded roads, poor visibility, partially hidden objects), and high flexibility when project guidelines evolve.",
+                    "Human Annotation Limitations: Slower manual throughput across millions of frames, higher staffing requirements, and potential human inconsistencies requiring strict guidelines and quality checks.",
+                    "Self-Annotation Benefits: Faster processing of massive video/image volumes, effortless scalability, consistent rule application once configured, and reduced repetitive manual effort.",
+                    "Self-Annotation Limitations: Accuracy depends heavily on the underlying pre-labelling model, struggles with unusual/rare road events or poor lighting, and still requires human review before training."
+                ]
+            },
+            {
+                "heading": "Why Combining Both Methods Can Be a Better Choice",
+                "paragraphs": [
+                    "Instead of depending completely on human or automated annotation, many ADAS projects benefit from using both methods together. In this hybrid approach, AI-based tools first identify objects and create initial labels. Human annotators then review the results, correct mistakes, and handle difficult cases.",
+                    "For example, an automated tool may detect most vehicles and pedestrians in a road video. However, if some objects are hidden, unclear, or incorrectly labelled, a human annotator reviews and corrects them—saving time while maintaining tight control over annotation quality."
+                ]
+            },
+            {
+                "heading": "ADAS Data Annotation Solutions at DaQube.ai",
+                "paragraphs": [
+                    "Whether your project requires object detection, bounding box annotation, image classification, video annotation, or sensor labelling, DaQube.ai plans the annotation workflow according to the type and complexity of your driving data to deliver properly organised, high-accuracy datasets."
+                ]
+            }
         ],
-        workflow: [
-            "HIPAA Compliance & De-Identification Protocol",
-            "Document Layout & Table Cell Segmentation",
-            "Hierarchical Key-Value Linkage & Directed Graph Mapping",
-            "Double-Blind Numeric Value Verification",
-            "FHIR JSON & ALTO XML Handoff"
-        ],
-        deliverables: [
-            "500,000 annotated clinical records with cell-level polygon ground truth",
-            "Hierarchical key-value linkages for complex lab test panels",
-            "Handwritten clinical note transcription with explicit uncertainty flags",
-            "Full HIPAA audit logs and cryptographic data purge verification certificates"
-        ],
-        note: "Processed entirely within air-gapped, ISO 27001 Certified compliant computing enclaves."
+        "takeaway": "DaQube.ai designs tailored ADAS annotation workflows combining automated pre-labelling speed with rigorous human review and quality assurance."
     },
     {
-        slug: "multilingual-speech-pipeline",
-        title: "Planning a Multilingual Speech Collection Pipeline Across 140 Micro-Dialects",
-        industry: "Speech & Acoustic Intelligence",
-        type: "Production Case Study",
-        image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=85",
-        imageAlt: "Studio microphone for speech recording",
-        summary: "Capturing 15,000 hours of spontaneous in-cabin and ambient voice corpora across 140 regional dialects with sub-10ms Praat phonetic alignment.",
-        challenge: "Voice assistants frequently fail outside standardized broadcast accents, exhibiting catastrophic word error rate (WER) spikes in real-world reverberant environments, moving vehicles, and noisy public spaces.",
-        approach: [
-            "Deployed native acoustic collectors across 140 regional micro-locales with signed biometric consent.",
-            "Calibrated multi-microphone array rigs capturing synchronized near-field and far-field 48kHz 24-bit WAV audio.",
-            "Designed spontaneous conversational prompt matrices eliciting natural hesitation, interruptions, and overlapping speech.",
-            "Trained phonetic transcribers using Praat TextGrid for frame-accurate word and phoneme boundary alignment."
+        "slug": "image-and-video-annotation-services",
+        "title": "Image and Video Annotation Services: Building Reliable Computer Vision",
+        "category": "ANNOTATION",
+        "readTime": "5 min read",
+        "date": "November 2026",
+        "excerpt": "Transforming raw images and video frames into high-accuracy training datasets using bounding boxes, semantic and instance segmentation, keypoint landmarks, and action recognition.",
+        "image": "/images/case-studies/image-video-annotation.jpg",
+        "imageAlt": "Computer vision interface displaying object bounding boxes, semantic segmentation, instance masks, and keypoints",
+        "intro": "Image and video annotation is a core foundation of training AI and computer vision models. It involves adding structured labels, tags, and spatial boundaries to images and multi-frame videos so machines can recognise people, vehicles, products, animals, and dynamic movements across manufacturing, retail, healthcare, agriculture, and transportation.",
+        "sections": [
+            {
+                "heading": "Why Quality Annotation Matters for Model Performance",
+                "paragraphs": [
+                    "The performance of any computer vision model depends directly on the quality and consistency of its training labels. Incorrect, loose, or inconsistent annotations across frames confuse object detectors and degrade model accuracy. High-performing visual AI requires clear annotation guidelines, method selection matched to the exact task (boxes vs. pixel masks vs. skeletal keypoints), and continuous quality review.",
+                    "1. Object Detection & Bounding Box Annotation (People, cars, products, animals)",
+                    "2. Semantic Segmentation (Pixel-level category assignment: roads, buildings, trees, vehicles)",
+                    "3. Instance Segmentation (Separating individual overlapping objects of the same class, e.g., 5 distinct cars)",
+                    "4. Keypoint Annotation (Facial features, body joints, hand positions, pose landmarks)",
+                    "5. Action Recognition & Video Annotation (Tracking walking, running, jumping, lifting, machinery operation across frames)"
+                ]
+            },
+            {
+                "heading": "Five Core Image & Video Annotation Methodologies",
+                "paragraphs": [
+                    "Object Detection and Bounding Box Annotation: Identifying target objects in images or video frames and enclosing them in tight boxes with class labels (person, car, product, animal) for reliable detection.",
+                    "Semantic Segmentation: Assigning a category label to every single pixel in an image or video frame—separating roads, buildings, trees, vehicles, and people for full-scene understanding.",
+                    "Instance Segmentation: Going a step further by identifying and separating each individual object even when multiple objects share the same category (such as five overlapping cars in traffic).",
+                    "Keypoint & Action Recognition Annotation: Marking anatomical landmarks (facial features, body joints, hand positions) for pose/gesture estimation, and labelling continuous activities (walking, lifting, operating machinery) across video frames."
+                ]
+            },
+            {
+                "heading": "Quality Assurance & Guideline Discipline at DaQube.ai",
+                "paragraphs": [
+                    "At DaQube.ai, we focus on providing accurate and consistent annotated data based on each project's specific requirements. Our workflow includes following clear annotation guidelines, reviewing completed batches, and verifying labels to maintain quality throughout the lifecycle.",
+                    "Whether you need object detection, image classification, video tracking, pixel segmentation, or activity recognition, we deliver well-organised datasets across manufacturing, retail, healthcare, agriculture, and transportation."
+                ]
+            }
         ],
-        workflow: [
-            "Linguistic Locale Quota & Hardware Rig Configuration",
-            "In-Field Consented Voice Capture & SNR Screening",
-            "Verbatim Orthographic & Phonetic Transcription",
-            "Speaker Diarization & Non-Speech Acoustic Tagging",
-            "Synchronized BWF WAV & JSONL Delivery"
-        ],
-        deliverables: [
-            "15,000 hours of spontaneous conversational audio in 48kHz 24-bit uncompressed WAV",
-            "Sub-10ms word-level and phoneme-level time-stamped Praat TextGrid alignments",
-            "Multi-speaker diarization manifests with calibrated SNR decibel metrics",
-            "100% GDPR, CCPA, and Illinois BIPA compliant explicit opt-in model releases"
-        ],
-        note: "Recorded across verified ambient conditions including moving automotive cabins and noisy cafeterias."
+        "takeaway": "DaQube.ai delivers accuracy-driven image and video annotation services from focused pilot batches to enterprise-scale computer vision pipelines."
     },
     {
-        slug: "retail-shelf-vision",
-        title: "60 FPS Visual Tracking & Hand-Object Recognition Pipeline for Automated Retail",
-        industry: "Retail & Computer Vision",
-        type: "Production Case Study",
-        image: "https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?auto=format&fit=crop&w=1200&q=85",
-        imageAlt: "Retail store shelves with organized products and vision tracking",
-        summary: "Annotating 800,000 high-speed video frames with sub-pixel polygon masks, 21-point hand skeleton keypoints, and persistent customer re-identification.",
-        challenge: "Cashierless checkout systems must resolve rapid hand-object interactions, product grab-and-replace events, and severe customer occlusion across multiple ceiling-mounted camera feeds without tracking ID swaps.",
-        approach: [
-            "Established dynamic keyframe sampling algorithms focusing rater attention on interaction transition points.",
-            "Labeled 21 anatomical hand keypoints and pixel-tight item boundary polygons.",
-            "Propagated persistent track IDs across multi-camera overlapping and non-overlapping viewpoints.",
-            "Audited frame-to-frame boundary jitter to ensure temporal consistency for video control models."
+        "slug": "annotated-medical-images-ai-training",
+        "title": "Where Can I Get Annotated Medical Images for AI Training?",
+        "category": "DATA STRATEGY",
+        "readTime": "6 min read",
+        "date": "November 2026",
+        "excerpt": "How to source annotated medical imaging datasets (DICOM, NIfTI), evaluate clinical fit, privacy, and annotator qualifications, and scope custom medical image annotation pilots.",
+        "image": "/images/case-studies/medical-images-ai.jpg",
+        "imageAlt": "Clinical workstation displaying 3D brain MRI scan with segmented regions in orange and emerald green",
+        "intro": "Annotated medical images can be obtained from public research databases, healthcare research partnerships, and providers of custom data or annotation services. However, a dataset that looks promising at first glance may differ in scanner type, patient population, or labeling criteria from what your clinical ML project actually requires. Here is how to source, audit, and plan reliable medical imaging datasets.",
+        "sections": [
+            {
+                "heading": "Where to Find Medical Image Datasets & Why Clinical Fit Matters",
+                "paragraphs": [
+                    "A dataset designed for brain MRI segmentation is fundamentally different from one designed for pathology classification. Public repositories (like The Cancer Imaging Archive or NCI Imaging Data Commons) are useful for prototyping, but licenses, citation rules, scanner protocols, and label definitions vary widely. Hospital and university collaborations offer clinical depth but depend on institutional permissions and privacy governance. When existing datasets lack the required anatomy, protocol, or boundary definitions, custom collection or clinical annotation is required.",
+                    "Public Repositories: The Cancer Imaging Archive (TCIA) and NCI Imaging Data Commons (research & prototyping)",
+                    "Organizational Collaborations: Hospitals, universities, and medical research institutes",
+                    "Custom Data & Annotation Providers: Tailored collection and clinical guideline-driven annotation (DaQube.ai)",
+                    "Clinical Formats Supported: Native DICOM and NIfTI workflows preserving metadata and coordinate systems"
+                ]
+            },
+            {
+                "heading": "Four Essential Checks Before Choosing Medical Imaging Data",
+                "paragraphs": [
+                    "Fit of Image and Population: Evaluate the imaging modality, target anatomy, scanner conditions, patient population demographics, and any known dataset limitations before committing.",
+                    "Annotation Quality & Qualifications: Examine label definitions, clinical qualifications of the annotators, quality assurance procedures, and the escalation/disagreement resolution process.",
+                    "Rights, Licensing and Privacy: Verify permitted usage rights (research vs. commercial), de-identification protocols, and formal legal/privacy compliance agreements.",
+                    "Technical Compatibility (DICOM / NIfTI): Inspect image and annotation formats, metadata retention, coordinate systems, and pipeline integration—always testing a sample in your own workflow so converted files don't strip vital clinical details."
+                ]
+            },
+            {
+                "heading": "When Does Custom Medical Image Annotation Make Sense?",
+                "paragraphs": [
+                    "Custom annotation is worth considering when an available dataset lacks the anatomy, imaging protocol, or labeling detail your project requires. For example, an ML team developing a segmentation model might need anatomical boundaries defined according to its own clinical annotation guide rather than a broad image-level label.",
+                    "Always begin with a small pilot: have appropriate clinical experts review the task definition and sample labels, then resolve unclear cases before scaling. Custom labels improve fit for a project, though they must be paired with clinical and regulatory validation."
+                ]
+            },
+            {
+                "heading": "How to Plan for Reliable Delivery",
+                "paragraphs": [
+                    "Establish a clear written project brief defining the quantity and kind of images, labeling criteria, necessary clinical skills, file formats (DICOM/NIfTI), privacy safeguards, review process, and acceptance criteria.",
+                    "Agree on a pilot batch, review milestones, feedback turnaround times, and a delivery schedule before production begins, including how changes to scope or data access will be managed."
+                ]
+            }
         ],
-        workflow: [
-            "Multi-Camera Rig Ingestion & Perspective Synchronization",
-            "Temporal Keyframe Sampling & Dynamic Interpolation",
-            "Hand Keypoint & Object Polygon Mask Delineation",
-            "Cross-Camera Persistent Re-ID Continuity Audit",
-            "COCO Video & Darwin JSON Schema Export"
-        ],
-        deliverables: [
-            "800,000 temporal video frames annotated with pixel-tight instance masks",
-            "Persistent tracking trajectories with zero ID switches during multi-shopper occlusions",
-            "Hand-object contact event timestamp metadata (start, pick, return)",
-            "Automated IoU quality validation scorecards"
-        ],
-        note: "Tested on complex retail packaging variations including reflective foils and transparent plastics."
+        "takeaway": "Contact DaQube.ai with your modality, target clinical use, annotation needs, expected volume, and timeline to scope a custom medical dataset pilot and quotation."
     },
     {
-        slug: "adversarial-red-teaming",
-        title: "Multi-Turn Adversarial Red Teaming & Harm Auditing for Autonomous Agents",
-        industry: "AI Safety & Offensive Security",
-        type: "Production Case Study",
-        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=85",
-        imageAlt: "Cyber security matrix representing offensive AI testing",
-        summary: "Executing 5,000 adversarial jailbreak trajectories, indirect prompt injection probes, and tool-use privilege escalation audits on frontier agentic systems.",
-        challenge: "Autonomous foundation agents with tool access (APIs, databases, web browsers) introduce severe privilege escalation surfaces: indirect prompt injection via ingested PDFs, multilingual encoded jailbreaks, and recursive policy overrides.",
-        approach: [
-            "Formed an offensive testing squad of ethical hackers, forensic linguists, and offensive security researchers.",
-            "Constructed adversarial exploit trees mapped directly to the MITRE ATLAS and OWASP Top 10 for LLMs matrices.",
-            "Synthesized successful high-yield manual jailbreaks into automated boundary perturbation suites.",
-            "Authored balanced refusal demonstration pairs that decline hazardous payloads neutrally without false-refusal drift."
+        "slug": "video-datasets-human-activity-recognition",
+        "title": "Video Datasets for Human Activity Recognition: Collection, Labeling & Fit",
+        "category": "ANNOTATION",
+        "readTime": "6 min read",
+        "date": "November 2026",
+        "excerpt": "How human activity recognition video datasets are designed, recorded, and temporally labeled—covering clip classification, start/end timestamps, pose keypoints, and dataset split hygiene.",
+        "image": "/images/case-studies/video-activity-recognition.jpg",
+        "imageAlt": "Warehouse logistics scene with 3D human pose keypoints, bounding boxes, and temporal movement trajectories",
+        "intro": "A person lifts a box, pauses, then sets it down. To recognize that sequence, a machine learning model needs more than a single static image: it needs examples of movement over time and structured labels that explain what is happening. Video datasets for human activity recognition bring those examples together—matching the exact actions, camera perspectives, and environmental conditions your model will encounter in deployment.",
+        "sections": [
+            {
+                "heading": "Why Dataset Fit & Negative Examples Matter in Video AI",
+                "paragraphs": [
+                    "An action that looks obvious to a person can appear completely different to a model when the camera angle shifts or the view is partially blocked. Public video datasets rarely match specific deployment environments—for example, lifting a parcel in an industrial warehouse looks very different from lifting a small object at home. Models also fail without contrasting negative examples (such as bending down without lifting) and careful train/validation/test split grouping by participant or session to prevent data leakage.",
+                    "Clip-Level Action Labels: Describing the primary activity across an entire short video segment",
+                    "Temporal Action Localization: Marking exact start and end timestamps of actions within longer recordings",
+                    "Spatial Person Tracks & Bounding Boxes: Identifying and following the specific person performing the action",
+                    "Skeletal Pose Keypoints: Tracking body joint articulation and posture throughout the movement",
+                    "Contrasting Negative Examples: Recording look-alike non-target motions (e.g., bending without lifting)"
+                ]
+            },
+            {
+                "heading": "How Activity Recognition Videos Are Collected, Labeled & Protected",
+                "paragraphs": [
+                    "Collection Brief & Camera Spec Design: Define target actions, environments, participant variation, camera perspectives, clip duration, frame rate (FPS), resolution, and file format based on motion detail.",
+                    "Annotation Guidelines & Pilot Calibration: Define what counts as an action, how to mark exact start/end timestamps, and how to handle overlapping or partially occluded movements—tested first via a short pilot.",
+                    "Quality Assurance & Leakage-Free Splits: Review sampled clips, compare inter-annotator timestamp alignment, check class coverage, and group footage by participant or recording session across train/val/test splits.",
+                    "Privacy, Consent & Usage Rights Governance: Establish informed participant consent, access controls, retention limits, and evaluate anonymization tradeoffs (such as face blurring vs. model utility) with legal advisers."
+                ]
+            },
+            {
+                "heading": "Where Can Human Activity Recognition Be Used?",
+                "paragraphs": [
+                    "Possible applications include Workplace Safety (identifying defined movements for review, such as heavy lifting or entering a restricted zone), Sports Analysis (classifying movements in training footage to support coaching and video review), and Assisted Living (exploring detection of events such as falls, with human oversight and safeguards appropriate to the setting).",
+                    "Each application requires its own definition of success: a model used to assist a human reviewer should be evaluated differently from one used to trigger an automated alert."
+                ]
+            },
+            {
+                "heading": "Handling Privacy and Usage Rights in Video Collection",
+                "paragraphs": [
+                    "Video can identify people and reveal sensitive information. Before recording or acquiring footage, establish the appropriate permissions and legal basis, including participant consent where required. Techniques such as blurring may reduce some privacy risks, but they do not automatically make footage anonymous and can remove visual features useful to the model—always test the tradeoff for your specific use case."
+                ]
+            }
         ],
-        workflow: [
-            "Agent Threat Modeling & Tool Interface Attack Surface Mapping",
-            "Manual Multi-Turn Offensive Testing & Bypass Discovery",
-            "Adversarial Payload Mutation & Boundary Stressing",
-            "Safety Refusal Dataset Synthesis (Chosen Defense Trajectories)",
-            "MITRE ATLAS Mapped Vulnerability Matrix & Executive Audit Report"
+        "takeaway": "Planning a human activity recognition project? Share your target actions, environments, camera views, annotation types, volume, and timeline with DaQube.ai for a custom quotation."
+    },
+    {
+        "slug": "training-ml-models-text-data",
+        "title": "Training Machine Learning Models: Why Text Data Is So Important",
+        "category": "AI EVALUATION",
+        "readTime": "6 min read",
+        "date": "November 2026",
+        "excerpt": "How structured text data collection, cleaning, and annotation power Natural Language Processing (NLP), sentiment analysis, named entity recognition, and human-like LLM generation.",
+        "image": "/images/case-studies/text-data-ml.jpg",
+        "imageAlt": "Floating translucent document cards with glowing orange and emerald green named entity recognition and sentiment highlights",
+        "intro": "From chatbots and voice assistants to search engines and automated customer support tools, modern AI depends on machine learning to understand human language and provide useful results. Just as humans learn by reading books and articles, ML models learn from large volumes of well-organized text data—helping them understand words, sentence structures, contextual meaning, and how people naturally communicate.",
+        "sections": [
+            {
+                "heading": "Turning Raw Unstructured Text into High-Signal Training Fuel",
+                "paragraphs": [
+                    "Text data comes from articles, business documents, customer reviews, social media posts, chat conversations, and product descriptions. However, raw text frequently contains duplicate entries, irrelevant noise, spelling issues, and inconsistent formatting. Without structured cleaning, sorting, organization, and task-specific labelling (sentiment, intent, named entities), language models fail to extract accurate insights or generate reliable responses.",
+                    "Articles, blogs, and online informational content",
+                    "Business documents, contracts, and analytical reports",
+                    "Customer reviews, survey responses, and product feedback",
+                    "Social media posts and public discussion comments",
+                    "Chat conversations and customer support ticket messages",
+                    "Product descriptions and structured website content"
+                ]
+            },
+            {
+                "heading": "Four Core Ways Text Data Trains Machine Learning Models",
+                "paragraphs": [
+                    "1. Helping AI Understand Human Language (Core NLP): Training models to understand word connections and sentence meaning for sentiment analysis, text classification, named entity recognition, translation, and question answering.",
+                    "2. Understanding Customer Opinions & Feedback (Sentiment Analysis): Analysing thousands of reviews, surveys, and support chats to classify whether customers are happy, unhappy, or neutral and surface recurring product insights.",
+                    "3. Finding Useful Information in Large Documents (NER & Extraction): Scanning reports and business documents to automatically identify company names, people, places, contact details, dates, and organizational relationships.",
+                    "4. Helping AI Generate Human-Like Text: Training chatbots, AI writing tools, content assistants, and automated support agents to respond naturally to user questions and explain complex information."
+                ]
+            },
+            {
+                "heading": "Why Choose DaQube.ai for Text Data Solutions?",
+                "paragraphs": [
+                    "Every AI project has distinct linguistic requirements: some need customer reviews, while others require multi-turn support conversations, financial documents, or domain-specific articles. DaQube.ai supports diverse text formats, performs text classification, sentiment labelling, and entity recognition, and removes duplicates, spelling issues, and formatting inconsistencies.",
+                    "When ready-made datasets do not match your domain, we prepare custom text datasets structured around your exact model objective and expected output format."
+                ]
+            },
+            {
+                "heading": "The Future of Text Data in AI Development",
+                "paragraphs": [
+                    "As chatbots, semantic search engines, and large language models handle increasingly complex conversations, organised and properly labelled text datasets will continue driving advances in AI Chatbots, Automated Customer Support, Business Analytics, Language Translation, and Content Generation."
+                ]
+            }
         ],
-        deliverables: [
-            "5,000 multi-turn exploit trajectories with full step-by-step jailbreak logs",
-            "Comprehensive vulnerability matrix with severity scoring (CVSS mapped)",
-            "Safety alignment fine-tuning dataset containing neutral refusals",
-            "Remediation guidance report for prompt guardrails and tool authorization policies"
+        "takeaway": "DaQube.ai provides custom text data collection, cleaning, entity/sentiment labelling, and dataset preparation tailored to your NLP and LLM requirements."
+    },
+    {
+        "slug": "unlocking-power-of-data-daqube",
+        "title": "Unlocking the Power of Data: Improve Your AI Projects with DaQube.ai",
+        "category": "DATA STRATEGY",
+        "readTime": "7 min read",
+        "date": "November 2026",
+        "excerpt": "A complete guide to DaQube.ai's six core data solutions—spanning image, speech, video, and text collection, multi-method visual annotation, and audio transcription.",
+        "image": "/images/case-studies/unlocking-data-daqube.jpg",
+        "imageAlt": "Isometric 3D enterprise AI data pipeline hub converging image, speech, video, and text streams into a glowing orange core",
+        "intro": "Artificial Intelligence is transforming how businesses operate—from recognising objects in images to understanding human speech. Behind every successful AI model is one essential ingredient: well-organised, accurately labelled, and quality-checked training data. DaQube.ai provides end-to-end AI data collection, annotation, and dataset preparation solutions designed to help businesses, researchers, and developers build reliable machine learning models.",
+        "sections": [
+            {
+                "heading": "Solving the End-to-End Data Bottleneck in AI Development",
+                "paragraphs": [
+                    "AI models require large volumes of relevant, representative training data to recognize patterns and perform reliably in production. However, sourcing raw data across multiple modalities—and then cleaning, sorting, annotating, and validating it—is time-consuming and complex. Off-the-shelf datasets frequently miss project-specific categories, accents, or environments, requiring a partner capable of managing both custom collection and precision annotation under one roof.",
+                    "1. Image Data Collection (Products, vehicles, people, animals, buildings, roads, medical images)",
+                    "2. Speech Data Collection (Voice recordings, conversations, regional accents, speech samples)",
+                    "3. Video Data Collection (Object tracking, action recognition, activity detection, scene understanding)",
+                    "4. Text Data Collection (Articles, reviews, messages, product descriptions, documents for NLP)",
+                    "5. Image & Video Annotation (Bounding boxes, classification, semantic/instance segmentation, keypoints)",
+                    "6. Audio Transcription (Converting speech recordings and interviews into structured text)"
+                ]
+            },
+            {
+                "heading": "Six Integrated Data Solutions & Five Operational Pillars",
+                "paragraphs": [
+                    "Visual & Motion Data (Image & Video Collection + Annotation): Collecting representative image and video datasets and enriching them with object detection boxes, classification, semantic/instance segmentation, keypoints, and frame tracking.",
+                    "Audio, Speech & Transcription Solutions: Capturing diverse voice recordings, conversations, and accents, paired with accurate speech-to-text audio transcription for voice assistants, customer support, and speech recognition.",
+                    "Text Data Collection for NLP: Gathering and preparing articles, customer reviews, messages, and documents for sentiment analysis, text classification, and named entity recognition.",
+                    "Five Quality Pillars at DaQube.ai: (1) Solutions based on your exact requirements, (2) Multi-modality coverage, (3) Strict focus on data quality checks, (4) Custom dataset preparation, and (5) Organised cleaning, sorting, validation, and formatting."
+                ]
+            },
+            {
+                "heading": "Why Choose DaQube.ai as Your AI Data Partner?",
+                "paragraphs": [
+                    "Choosing the right data partner is a critical step in any AI project. Not every application can rely on a generic ready-made dataset—many require data collected and prepared for a specific purpose and delivery format.",
+                    "At DaQube.ai, we combine requirement-driven collection across images, videos, audio, speech, text, and documents with structured cleaning, sorting, annotation, validation, and formatting so developers can focus on building high-performing models."
+                ]
+            }
         ],
-        note: "Conducted under strict NDA and clean-room security protocols prior to model public release."
+        "takeaway": "DaQube.ai supports custom dataset requirements across images, video, audio, speech, text, and documents—from initial collection through annotation and validation."
     }
 ];
+
+export const caseStudies = [
+    {
+        "slug": "adas-data-collection-future-ai",
+        "aliases": [
+            "autonomous-lidar-sensor-fusion",
+            "autonomous-perception"
+        ],
+        "title": "Beyond the Steering Wheel: How ADAS Data Collection Is Shaping the Future of AI",
+        "industry": "Autonomous Vehicles & ADAS",
+        "category": "AUTONOMOUS SYSTEMS",
+        "type": "ADAS Case Study",
+        "readTime": "6 min read",
+        "date": "November 2026",
+        "image": "/images/case-studies/adas-data-collection.jpg",
+        "imageAlt": "Autonomous vehicle capturing road images, 3D LiDAR point clouds, and multi-sensor ADAS data",
+        "sectionPhotos": {
+            "section1": "",
+            "section2": "",
+            "section3": ""
+        },
+        "sectionPhotoGuides": {
+            "section1": "Forward-facing urban driving scene at dusk/rain showing glowing 3D bounding cuboids around vehicles, pedestrians, and lane lines.",
+            "section2": "Split-view screenshot of an annotated road frame showing labelled traffic signs, bounding boxes on cars/bikes, and lane marking vectors.",
+            "section3": "Modern vehicle cockpit dashboard displaying voice command waveform overlay alongside navigation and ADAS driver-assistance HUD."
+        },
+        "summary": "How multi-sensor ADAS data collection—spanning road images, driving videos, radar, LiDAR, and in-cabin voice commands—trains smarter, safer automotive AI systems.",
+        "intro": "The automotive industry is changing quickly. Modern vehicles are becoming smarter with features that can detect nearby objects, warn drivers about possible dangers, and help prevent accidents. These technologies are made possible by Advanced Driver Assistance Systems (ADAS) and Artificial Intelligence (AI). AI models need large amounts of useful data to learn how to recognise objects and respond to different situations—making ADAS data collection a foundational pillar in the development of smarter and safer vehicles.",
+        "note": "DaQube.ai supports automotive AI and machine learning development through tailored data collection, 2D/3D image and video annotation, in-cabin speech capture, and structured dataset preparation.",
+        "challengeTitle": "What Is ADAS Data Collection & Why It Matters",
+        "challenge": "Advanced Driver Assistance Systems (ADAS)—including lane departure warnings, parking assistance, collision alerts, automatic emergency braking, and traffic sign recognition—use cameras, radar, LiDAR, and in-cabin microphones to perceive the vehicle's surroundings. Before this raw sensor stream can train reliable machine learning models, it must capture diverse weather, lighting, and traffic conditions and be accurately labelled, organised, checked, and prepared according to strict project requirements.",
+        "collectedDataTypes": [
+            "Road images and multi-angle driving videos",
+            "Information about nearby vehicles, cyclists, and pedestrians",
+            "Traffic signs, signals, and road markings",
+            "Lane markings and varying road surface conditions",
+            "Vehicle movement dynamics and multi-sensor readings (LiDAR/Radar)",
+            "Driver voice commands and in-cabin audio recordings"
+        ],
+        "approachTitle": "How ADAS Data Collection Supports AI Development",
+        "approach": [
+            "Helping Machine Learning Models Learn: Training models on labelled road images, driving videos, and sensor readings of cars, bikes, pedestrians, traffic lights, and road signs so they accurately identify objects in unseen driving scenes.",
+            "Supporting Road Safety: Training AI systems to recognise hazards—vehicles moving too close, pedestrians crossing, or obstacles blocking the driving path—across rain, fog, low light, and busy urban roads to power collision warnings and emergency braking.",
+            "Improving the Driving Experience: Supporting comfort and convenience features like parking assistance, adaptive cruise control, lane keeping assistance, and personalised driver settings (seat position, temperature, entertainment).",
+            "Integrating Audio and Speech Data in ADAS: Collecting diverse voice recordings across accents, speaking styles, background road/cabin noise, and common commands so drivers can control navigation, calls, and settings hands-free."
+        ],
+        "comparisonTable": {
+            "title": "ADAS Sensor & Modality Coverage Matrix",
+            "headers": [
+                "Data Modality",
+                "Primary ADAS Function",
+                "DaQube Preparation & QA"
+            ],
+            "rows": [
+                [
+                    "Road Images & Video",
+                    "Lane keeping, traffic sign recognition, object detection",
+                    "2D/3D bounding boxes, lane polylines, frame tracking"
+                ],
+                [
+                    "Radar & LiDAR Sensors",
+                    "Distance estimation, collision alerts, emergency braking",
+                    "Point-cloud calibration, 3D cuboids, occlusion checks"
+                ],
+                [
+                    "In-Cabin Voice & Audio",
+                    "Hands-free navigation, calls, cabin climate & media control",
+                    "Multi-accent speech collection, noise tagging, transcription"
+                ],
+                [
+                    "Driver Behaviour & Prefs",
+                    "Adaptive cruise, personalised seat/temp/infotainment",
+                    "Session metadata organisation and privacy-checked logging"
+                ]
+            ]
+        },
+        "deepDiveSections": [
+            {
+                "heading": "The Role of Audio and Speech Data in Modern Vehicles",
+                "paragraphs": [
+                    "When we talk about ADAS data, images and sensor information often get the most attention. However, audio and speech data also play an important role in modern vehicles. Many vehicles now support voice commands that allow drivers to control navigation, make calls, adjust settings, or interact with entertainment systems without using their hands.",
+                    "To develop these features, AI models need suitable speech and audio data for training. Voice recordings help models understand different accents, speaking styles, background noise, and common commands. At DaQube.ai, audio and speech data collection is planned alongside visual and sensor requirements for projects that involve multiple types of information."
+                ]
+            },
+            {
+                "heading": "What Does the Future Hold for ADAS Data Collection?",
+                "paragraphs": [
+                    "As automotive technology continues to develop, the demand for useful and diverse training data is expected to grow. Future ADAS systems will need to work reliably across different environments, road conditions, weather situations, and traffic patterns.",
+                    "We will also see greater use of AI in connected vehicles, advanced driver monitoring, voice-controlled systems, and autonomous driving research—all depending on well-prepared datasets that help AI models understand real-world situations."
+                ]
+            }
+        ],
+        "workflow": [
+            "Data Collection Based on Project Needs (Images, Video, Audio, Sensors)",
+            "Image & Video Annotation (Vehicles, Pedestrians, Signs, Bounding Boxes)",
+            "Multi-Modal Data Integration (Combining Visual, Audio, Text & Sensor Streams)",
+            "Data Quality & Organisation (Clear Guidelines, Audits & Quality Checks)",
+            "Custom Dataset Delivery (Formatted to Project Goals & Pipeline Specs)"
+        ],
+        "deliverables": [
+            "Custom road image and multi-condition driving video datasets (rain, fog, low light, urban)",
+            "Annotated vehicles, bikes, pedestrians, traffic lights, road signs, and lane markings",
+            "In-cabin voice command and speech datasets across diverse accents and cabin noise levels",
+            "Quality-checked, well-organised multimodal ADAS datasets tailored to expected delivery formats"
+        ],
+        "faqs": [
+            {
+                "q": "What types of data are collected for ADAS machine learning models?",
+                "a": "ADAS data collection includes road images and driving videos, information about nearby vehicles and pedestrians, traffic signs and road markings, lane markings and road conditions, vehicle movement and sensor readings (cameras, radar, LiDAR), and driver voice commands and audio recordings."
+            },
+            {
+                "q": "Why is diverse weather and lighting coverage critical for ADAS?",
+                "a": "Road safety systems like collision warnings and automatic emergency braking must work reliably in real-world hazards. Training data must cover difficult conditions such as rain, fog, low light, and busy urban roads so models do not fail outside ideal daylight conditions."
+            },
+            {
+                "q": "How does DaQube.ai support both visual and audio requirements in automotive projects?",
+                "a": "DaQube.ai provides custom data collection across images, videos, audio, and text, paired with vehicle/pedestrian/sign annotation, speech recording across diverse accents and cabin noise environments, and strict dataset quality organisation."
+            }
+        ]
+    },
+    {
+        "slug": "multimodal-datasets-ai-development",
+        "aliases": [
+            "frontier-llm-alignment"
+        ],
+        "title": "The Role of Multimodal Datasets in AI Development",
+        "industry": "Multimodal AI & Foundation Models",
+        "category": "DATA STRATEGY",
+        "type": "Multimodal Case Study",
+        "readTime": "7 min read",
+        "date": "November 2026",
+        "image": "/images/case-studies/multimodal-datasets.jpg",
+        "imageAlt": "3D visualization of multimodal AI combining text, image, audio, video, and sensor datasets",
+        "sectionPhotos": {
+            "section1": "",
+            "section2": "",
+            "section3": ""
+        },
+        "sectionPhotoGuides": {
+            "section1": "3D visualization of converging data layers: acoustic waveforms, visual frames, text cards, and sensor nodes flowing into a unified AI core.",
+            "section2": "Split card showing a medical X-ray/MRI scan paired side-by-side with structured clinical report text and sensor vitals.",
+            "section3": "4-panel visual showcasing Healthcare, Autonomous Vehicles, Customer Support (voice + photo + chat), and Robotics."
+        },
+        "summary": "How combining two or more data modalities—text, images, audio, video, and sensor data—enables richer context, natural human interaction, and higher AI accuracy.",
+        "intro": "Artificial Intelligence (AI) is becoming a part of our everyday lives across healthcare, education, entertainment, and self-driving cars. Just as humans use sight, sound, and reading together to understand their surroundings, multimodal AI systems learn from multiple types of information—combining text, images, videos, audio, and sensor data to gain a deeper, more accurate understanding of the world.",
+        "note": "DaQube.ai supports multimodal AI development through coordinated data collection and dataset preparation across images, videos, audio, text, and documents.",
+        "challengeTitle": "Challenges in Collecting & Integrating Multimodal Datasets",
+        "challenge": "While multimodal datasets provide richer context than single-modality data, collecting and preparing them introduces three major operational hurdles: (1) Data Collection and Integration—synchronizing different data types from multiple sources (such as matching a video clip with its exact audio recording or connecting an image with its clinical text report); (2) High Processing Requirements—training models across combined modalities requires greater compute and structured formatting; and (3) Data Quality and Accuracy—blurry images, unclear audio, incorrect labels, or incomplete text can degrade cross-modal learning without rigorous cleaning, annotation, and validation.",
+        "collectedDataTypes": [
+            "Text Data: Articles, reports, messages, product descriptions, and social media posts",
+            "Image Data: Photographs, medical scans, product images, and satellite imagery",
+            "Audio Data: Voice recordings, conversations, music, environmental sounds, and speech samples",
+            "Video Data: Recorded activities, real-world events, human movements, and audio-synced clips",
+            "Sensor Data: GPS coordinates, camera feeds, radar, LiDAR, and patient monitoring devices"
+        ],
+        "approachTitle": "Core Benefits & Real-World Multimodal Applications",
+        "approach": [
+            "Better Understanding of Information: Combining modalities provides crucial context missed by single-source data—for example, pairing written medical reports with X-ray or MRI scans and patient sensor readings in healthcare.",
+            "More Natural Human Interaction: Multimodal AI works seamlessly across voice, text, and images, allowing voice assistants and customer support bots to accept spoken questions, written messages, or product photos.",
+            "Improved AI Performance in Self-Driving Vehicles: Combining camera images, GPS, radar, and LiDAR sensors to detect vehicles, pedestrians, traffic signs, and road conditions simultaneously.",
+            "Cross-Platform Content & Social Media Monitoring: Analysing text, images, and videos together to identify harmful content, understand user activity, and recommend relevant media."
+        ],
+        "comparisonTable": {
+            "title": "Multimodal Industry Deployment Matrix",
+            "headers": [
+                "Industry Sector",
+                "Combined Modalities",
+                "AI Capability Unlocked"
+            ],
+            "rows": [
+                [
+                    "Healthcare",
+                    "Medical Reports (Text) + X-Ray/MRI/Ultrasound (Image) + Vitals (Sensor)",
+                    "Clinical research support & comprehensive diagnostic context"
+                ],
+                [
+                    "Self-Driving Vehicles",
+                    "Camera (Image/Video) + Radar + LiDAR + GPS (Sensor)",
+                    "Real-time obstacle detection, lane tracking & navigation decisions"
+                ],
+                [
+                    "Customer Support",
+                    "Written Chat (Text) + Spoken Queries (Voice) + Product Photos (Image)",
+                    "Faster issue resolution across natural multi-channel inputs"
+                ],
+                [
+                    "Education & Robotics",
+                    "Lessons (Text) + Video + Voice Instructions + Spatial Sensors",
+                    "Interactive tutoring & embodied robotic environment perception"
+                ]
+            ]
+        },
+        "deepDiveSections": [
+            {
+                "heading": "What Is the Future of Multimodal Datasets in AI?",
+                "paragraphs": [
+                    "Multimodal AI use is expanding rapidly across industries as systems handle more complex tasks. In Education, AI learning assistants combine written lessons, videos, voice instructions, and interactive exercises to create better learning experiences. In Entertainment, AI systems combine viewing and listening preferences to suggest movies, music, and content.",
+                    "In Robotics, robots combine camera images, audio, and sensor data to navigate surroundings and perform physical tasks. In Transportation, combining camera, GPS, and sensor data improves traffic monitoring and smart infrastructure."
+                ]
+            },
+            {
+                "heading": "How DaQube.ai Supports Multimodal AI Development",
+                "paragraphs": [
+                    "Collecting information from different sources is only one part of the process—the data also needs to be organised, checked, and prepared according to the project's requirements. DaQube.ai supports AI development through data collection and dataset preparation across images, videos, audio, text, and documents, making cross-modal dataset preparation simpler and more organised."
+                ]
+            }
+        ],
+        "workflow": [
+            "Cross-Modal Requirement Scoping (Defining Target Modalities & Use Case)",
+            "Multi-Source Data Collection (Images, Videos, Audio, Text & Documents)",
+            "Cross-Modal Integration & Alignment (Matching Video-Audio & Image-Text)",
+            "Data Cleaning, Annotation & Validation (Eliminating Blur, Noise & Label Errors)",
+            "Organised Multimodal Dataset Delivery (Ready for Model Training)"
+        ],
+        "deliverables": [
+            "Synchronized image-text, video-audio, and multi-sensor dataset packages",
+            "Cleaned, validated, and cross-referenced annotations across all modalities",
+            "Domain-specific multimodal corpora for healthcare, automotive, support, and robotics",
+            "Structured metadata schemas connecting paired files across modalities"
+        ],
+        "faqs": [
+            {
+                "q": "What is a multimodal dataset?",
+                "a": "A multimodal dataset is a collection of data that includes two or more different types of information (modalities), such as written text paired with images, videos, audio recordings, or sensor data."
+            },
+            {
+                "q": "Why is data alignment challenging in multimodal AI?",
+                "a": "Different data types must be properly connected and synchronized—such as matching a video clip with its exact audio recording or linking a medical scan with its corresponding clinical text report—while ensuring no blurry images, unclear audio, or incorrect labels compromise the pair."
+            },
+            {
+                "q": "Which industries benefit most from multimodal datasets?",
+                "a": "Healthcare, self-driving vehicles, customer support, social media monitoring, education, entertainment, robotics, and smart transportation all rely on multimodal datasets to handle complex real-world tasks."
+            }
+        ]
+    },
+    {
+        "slug": "human-vs-self-annotated-adas-data",
+        "aliases": [],
+        "title": "Human-Annotated vs. Self-Annotated ADAS Data: What's the Difference?",
+        "industry": "Autonomous Vehicles & ADAS",
+        "category": "ANNOTATION",
+        "type": "Comparative Case Study",
+        "readTime": "6 min read",
+        "date": "November 2026",
+        "image": "/images/case-studies/human-vs-self-adas.jpg",
+        "imageAlt": "Dual-monitor workstation comparing raw rainy street footage with human-verified 3D ADAS annotations",
+        "sectionPhotos": {
+            "section1": "",
+            "section2": "",
+            "section3": ""
+        },
+        "sectionPhotoGuides": {
+            "section1": "Dual-monitor workstation showing raw rainy night driving footage on the left screen and crisp 3D bounding cuboids/lane masks on the right screen.",
+            "section2": "Visual split comparing an automated pre-label (missing a partially hidden pedestrian in fog) vs. the human-corrected annotation.",
+            "section3": "Clean pipeline graphic: Sensor Capture → AI Pre-Label → Human Expert Correction → QA Audit → Final Dataset."
+        },
+        "summary": "Comparing manual human annotation and AI-based automated self-annotation for ADAS perception—and why a hybrid human-in-the-loop workflow delivers the best balance of speed and quality.",
+        "intro": "Modern vehicles rely on AI and ADAS features like lane detection, automatic emergency braking, parking assistance, and collision warnings. While cameras, radar, and sensors collect massive volumes of road data, raw data is not enough—it must be accurately labelled so AI models understand what is happening on the road. This comparison examines human annotation versus automated self-annotation and shows how combining both methods optimizes large-scale ADAS pipelines.",
+        "note": "DaQube.ai designs tailored ADAS annotation workflows combining automated pre-labelling speed with rigorous human review and quality assurance.",
+        "challengeTitle": "Choosing Between Manual Precision and Automated Scale",
+        "challenge": "ADAS perception models require millions of labelled images, video frames, and sensor sweeps marking vehicles, pedestrians, road signs, and lane markings. Relying solely on manual human annotation takes significant time, requires large teams, and risks inter-annotator differences without strict guidelines. Conversely, relying solely on automated self-annotation tools struggles with rare road conditions, poor lighting, occluded objects, and unusual events—producing label errors if not reviewed by humans.",
+        "collectedDataTypes": [
+            "Human-Annotated ADAS Data: Manual labelling by trained annotators following project guidelines",
+            "Self-Annotated ADAS Data: Automated pre-labelling using AI tools and machine learning models",
+            "Hybrid Human-in-the-Loop Data: Automated initial bounding boxes/labels verified and corrected by human specialists"
+        ],
+        "approachTitle": "Comparing Human Annotation vs. Self-Annotation",
+        "approach": [
+            "Human Annotation Benefits: Superior attention to detail, ability to handle complex scenes (crowded roads, poor visibility, partially hidden objects), and high flexibility when project guidelines evolve.",
+            "Human Annotation Limitations: Slower manual throughput across millions of frames, higher staffing requirements, and potential human inconsistencies requiring strict guidelines and quality checks.",
+            "Self-Annotation Benefits: Faster processing of massive video/image volumes, effortless scalability, consistent rule application once configured, and reduced repetitive manual effort.",
+            "Self-Annotation Limitations: Accuracy depends heavily on the underlying pre-labelling model, struggles with unusual/rare road events or poor lighting, and still requires human review before training."
+        ],
+        "comparisonTable": {
+            "title": "Human Annotation vs. Self-Annotation: Direct Comparison",
+            "headers": [
+                "Comparison Dimension",
+                "Human Annotation",
+                "Self-Annotation (Automated)"
+            ],
+            "rows": [
+                [
+                    "Process",
+                    "Manual labelling by trained people",
+                    "Labelling using AI-based tools and models"
+                ],
+                [
+                    "Speed",
+                    "Generally slower",
+                    "Generally faster across large volumes"
+                ],
+                [
+                    "Complex situations",
+                    "Can handle detailed and unusual cases with proper training",
+                    "May struggle with unfamiliar or occluded situations"
+                ],
+                [
+                    "Consistency",
+                    "Depends on annotators and clear guidelines",
+                    "Provides consistent results when properly configured"
+                ],
+                [
+                    "Scalability",
+                    "Requires additional human resources for large projects",
+                    "Can process large volumes of data rapidly"
+                ],
+                [
+                    "Human involvement",
+                    "High",
+                    "Low to moderate, depending on the review workflow"
+                ]
+            ]
+        },
+        "deepDiveSections": [
+            {
+                "heading": "Why Combining Both Methods Can Be a Better Choice",
+                "paragraphs": [
+                    "Instead of depending completely on human or automated annotation, many ADAS projects benefit from using both methods together. In this hybrid approach, AI-based tools first identify objects and create initial labels. Human annotators then review the results, correct mistakes, and handle difficult cases.",
+                    "For example, an automated tool may detect most vehicles and pedestrians in a road video. However, if some objects are hidden, unclear, or incorrectly labelled, a human annotator reviews and corrects them—saving time while maintaining tight control over annotation quality."
+                ]
+            },
+            {
+                "heading": "ADAS Data Annotation Solutions at DaQube.ai",
+                "paragraphs": [
+                    "Whether your project requires object detection, bounding box annotation, image classification, video annotation, or sensor labelling, DaQube.ai plans the annotation workflow according to the type and complexity of your driving data to deliver properly organised, high-accuracy datasets."
+                ]
+            }
+        ],
+        "workflow": [
+            "Collect Images, Videos & Sensor Data from Required Automotive Sources",
+            "Run Automated AI Tools to Generate Initial Pre-Annotations",
+            "Human Annotator Review, Edge-Case Labelling & Error Correction",
+            "Multi-Stage Quality Checks for Missing or Incorrect Annotations",
+            "Final Dataset Preparation & Delivery According to Project Specs"
+        ],
+        "deliverables": [
+            "Human-verified 2D/3D bounding box and object detection datasets",
+            "Corrected edge-case annotations for occluded objects, crowded intersections, and low-visibility scenes",
+            "Multi-frame driving video annotations with consistent object tracking",
+            "Quality-audited ADAS datasets ready for perception model training"
+        ],
+        "faqs": [
+            {
+                "q": "What is the main difference between human-annotated and self-annotated ADAS data?",
+                "a": "Human annotation relies on trained people manually reviewing and labelling images, videos, and sensor data, making it ideal for complex or occluded scenes. Self-annotation uses AI models to automatically generate labels at high speed, which is fast and scalable but can struggle with rare or poor-visibility road conditions."
+            },
+            {
+                "q": "When should an ADAS project use a hybrid annotation workflow?",
+                "a": "A hybrid workflow is ideal when you have large volumes of driving footage that need fast turnaround without sacrificing safety-critical accuracy. Automated tools generate the initial bounding boxes, and human annotators review and fix occluded, blurry, or unusual objects."
+            },
+            {
+                "q": "How does DaQube.ai reduce human annotation errors across large teams?",
+                "a": "DaQube.ai establishes clear project labelling guidelines, trains annotators on edge cases, and performs multi-stage quality checks to identify and resolve missing or inconsistent labels before delivery."
+            }
+        ]
+    },
+    {
+        "slug": "image-and-video-annotation-services",
+        "aliases": [
+            "retail-shelf-vision",
+            "retail-shelf-perception"
+        ],
+        "title": "Image and Video Annotation Services: Building Reliable Computer Vision",
+        "industry": "Computer Vision & Annotation",
+        "category": "ANNOTATION",
+        "type": "Service Case Study",
+        "readTime": "5 min read",
+        "date": "November 2026",
+        "image": "/images/case-studies/image-video-annotation.jpg",
+        "imageAlt": "Computer vision interface displaying object bounding boxes, semantic segmentation, instance masks, and keypoints",
+        "sectionPhotos": {
+            "section1": "",
+            "section2": "",
+            "section3": ""
+        },
+        "sectionPhotoGuides": {
+            "section1": "Composite visual showing an urban street and retail store with glowing bounding boxes, colored instance segmentation masks, and tracking paths.",
+            "section2": "5-card visual strip illustrating: (1) Bounding Box, (2) Semantic Mask, (3) Instance Mask (5 separate cars), (4) Body Keypoints, (5) Video Action Track.",
+            "section3": "Close-up of polygon boundary vertices and keypoint joint markers being verified against a project checklist."
+        },
+        "summary": "Transforming raw images and video frames into high-accuracy training datasets using bounding boxes, semantic and instance segmentation, keypoint landmarks, and action recognition.",
+        "intro": "Image and video annotation is a core foundation of training AI and computer vision models. It involves adding structured labels, tags, and spatial boundaries to images and multi-frame videos so machines can recognise people, vehicles, products, animals, and dynamic movements across manufacturing, retail, healthcare, agriculture, and transportation.",
+        "note": "DaQube.ai delivers accuracy-driven image and video annotation services from focused pilot batches to enterprise-scale computer vision pipelines.",
+        "challengeTitle": "Why Quality Annotation Matters for Model Performance",
+        "challenge": "The performance of any computer vision model depends directly on the quality and consistency of its training labels. Incorrect, loose, or inconsistent annotations across frames confuse object detectors and degrade model accuracy. High-performing visual AI requires clear annotation guidelines, method selection matched to the exact task (boxes vs. pixel masks vs. skeletal keypoints), and continuous quality review.",
+        "collectedDataTypes": [
+            "1. Object Detection & Bounding Box Annotation (People, cars, products, animals)",
+            "2. Semantic Segmentation (Pixel-level category assignment: roads, buildings, trees, vehicles)",
+            "3. Instance Segmentation (Separating individual overlapping objects of the same class, e.g., 5 distinct cars)",
+            "4. Keypoint Annotation (Facial features, body joints, hand positions, pose landmarks)",
+            "5. Action Recognition & Video Annotation (Tracking walking, running, jumping, lifting, machinery operation across frames)"
+        ],
+        "approachTitle": "Five Core Image & Video Annotation Methodologies",
+        "approach": [
+            "Object Detection and Bounding Box Annotation: Identifying target objects in images or video frames and enclosing them in tight boxes with class labels (person, car, product, animal) for reliable detection.",
+            "Semantic Segmentation: Assigning a category label to every single pixel in an image or video frame—separating roads, buildings, trees, vehicles, and people for full-scene understanding.",
+            "Instance Segmentation: Going a step further by identifying and separating each individual object even when multiple objects share the same category (such as five overlapping cars in traffic).",
+            "Keypoint & Action Recognition Annotation: Marking anatomical landmarks (facial features, body joints, hand positions) for pose/gesture estimation, and labelling continuous activities (walking, lifting, operating machinery) across video frames."
+        ],
+        "comparisonTable": {
+            "title": "Computer Vision Annotation Method Selection Guide",
+            "headers": [
+                "Annotation Type",
+                "Granularity Level",
+                "Ideal AI Use Cases"
+            ],
+            "rows": [
+                [
+                    "Bounding Boxes",
+                    "Rectangular object enclosure",
+                    "Vehicle/person detection, retail product localization"
+                ],
+                [
+                    "Semantic Segmentation",
+                    "Every pixel assigned to a class",
+                    "Road/scene parsing, land-use & medical tissue mapping"
+                ],
+                [
+                    "Instance Segmentation",
+                    "Pixel mask per individual object",
+                    "Counting & separating overlapping cars, shoppers, or parcels"
+                ],
+                [
+                    "Keypoint Annotation",
+                    "Skeletal joints & facial landmarks",
+                    "Human pose estimation, gesture recognition, ergonomics"
+                ],
+                [
+                    "Video Action Recognition",
+                    "Multi-frame temporal tracking",
+                    "Walking, lifting, machinery operation & safety monitoring"
+                ]
+            ]
+        },
+        "deepDiveSections": [
+            {
+                "heading": "Quality Assurance & Guideline Discipline at DaQube.ai",
+                "paragraphs": [
+                    "At DaQube.ai, we focus on providing accurate and consistent annotated data based on each project's specific requirements. Our workflow includes following clear annotation guidelines, reviewing completed batches, and verifying labels to maintain quality throughout the lifecycle.",
+                    "Whether you need object detection, image classification, video tracking, pixel segmentation, or activity recognition, we deliver well-organised datasets across manufacturing, retail, healthcare, agriculture, and transportation."
+                ]
+            }
+        ],
+        "workflow": [
+            "Project Requirement & Taxonomy Definition",
+            "Annotation Guideline Setup & Method Selection",
+            "Precision Labelling (Boxes, Segmentation, Keypoints, Video Tracks)",
+            "Multi-Stage Review & Label Consistency Verification",
+            "Organised Dataset Delivery in Model-Ready Formats"
+        ],
+        "deliverables": [
+            "Bounding box and object detection datasets across multi-industry scenes",
+            "Pixel-accurate semantic and instance segmentation masks",
+            "Skeletal keypoint and facial landmark annotations for pose and gesture models",
+            "Frame-by-frame video object tracking and action recognition labels"
+        ],
+        "faqs": [
+            {
+                "q": "What is the difference between semantic segmentation and instance segmentation?",
+                "a": "Semantic segmentation assigns a category to every pixel (e.g., marking all cars as 'vehicle' and all pavement as 'road'). Instance segmentation identifies each object separately within the same category—for example, if an image contains five cars, each car is masked as its own distinct individual object."
+            },
+            {
+                "q": "Where is keypoint annotation typically used?",
+                "a": "Keypoint annotation marks specific landmarks such as facial features, body joints, or hand positions. It is widely used for human pose estimation, facial analysis, gesture recognition, and movement tracking."
+            },
+            {
+                "q": "Which industries use DaQube.ai's image and video annotation services?",
+                "a": "Our annotation solutions support manufacturing, retail, healthcare, agriculture, transportation, autonomous driving, and security/workplace monitoring."
+            }
+        ]
+    },
+    {
+        "slug": "annotated-medical-images-ai-training",
+        "aliases": [
+            "clinical-diagnostic-ocr",
+            "multimodal-medical-qa"
+        ],
+        "title": "Where Can I Get Annotated Medical Images for AI Training?",
+        "industry": "Healthcare & Medical AI",
+        "category": "DATA STRATEGY",
+        "type": "Clinical AI Case Study",
+        "readTime": "6 min read",
+        "date": "November 2026",
+        "image": "/images/case-studies/medical-images-ai.jpg",
+        "imageAlt": "Clinical workstation displaying 3D brain MRI scan with segmented regions in orange and emerald green",
+        "sectionPhotos": {
+            "section1": "",
+            "section2": "",
+            "section3": ""
+        },
+        "sectionPhotoGuides": {
+            "section1": "Radiology workstation displaying a 3D MRI or CT scan with multi-region segmentation contours in high-contrast orange and emerald green.",
+            "section2": "Infographic card showing the 4 checks: (1) Image & Population Fit, (2) Annotator Qualifications, (3) De-Identification & Rights, (4) DICOM/NIfTI Compatibility.",
+            "section3": "Visual workflow showing Clinical Brief → Small Sample Pilot → Specialist Disagreement Resolution → Scaled QA Delivery."
+        },
+        "summary": "How to source annotated medical imaging datasets (DICOM, NIfTI), evaluate clinical fit, privacy, and annotator qualifications, and scope custom medical image annotation pilots.",
+        "intro": "Annotated medical images can be obtained from public research databases, healthcare research partnerships, and providers of custom data or annotation services. However, a dataset that looks promising at first glance may differ in scanner type, patient population, or labeling criteria from what your clinical ML project actually requires. Here is how to source, audit, and plan reliable medical imaging datasets.",
+        "note": "Contact DaQube.ai with your modality, target clinical use, annotation needs, expected volume, and timeline to scope a custom medical dataset pilot and quotation.",
+        "challengeTitle": "Where to Find Medical Image Datasets & Why Clinical Fit Matters",
+        "challenge": "A dataset designed for brain MRI segmentation is fundamentally different from one designed for pathology classification. Public repositories (like The Cancer Imaging Archive or NCI Imaging Data Commons) are useful for prototyping, but licenses, citation rules, scanner protocols, and label definitions vary widely. Hospital and university collaborations offer clinical depth but depend on institutional permissions and privacy governance. When existing datasets lack the required anatomy, protocol, or boundary definitions, custom collection or clinical annotation is required.",
+        "collectedDataTypes": [
+            "Public Repositories: The Cancer Imaging Archive (TCIA) and NCI Imaging Data Commons (research & prototyping)",
+            "Organizational Collaborations: Hospitals, universities, and medical research institutes",
+            "Custom Data & Annotation Providers: Tailored collection and clinical guideline-driven annotation (DaQube.ai)",
+            "Clinical Formats Supported: Native DICOM and NIfTI workflows preserving metadata and coordinate systems"
+        ],
+        "approachTitle": "Four Essential Checks Before Choosing Medical Imaging Data",
+        "approach": [
+            "Fit of Image and Population: Evaluate the imaging modality, target anatomy, scanner conditions, patient population demographics, and any known dataset limitations before committing.",
+            "Annotation Quality & Qualifications: Examine label definitions, clinical qualifications of the annotators, quality assurance procedures, and the escalation/disagreement resolution process.",
+            "Rights, Licensing and Privacy: Verify permitted usage rights (research vs. commercial), de-identification protocols, and formal legal/privacy compliance agreements.",
+            "Technical Compatibility (DICOM / NIfTI): Inspect image and annotation formats, metadata retention, coordinate systems, and pipeline integration—always testing a sample in your own workflow so converted files don't strip vital clinical details."
+        ],
+        "comparisonTable": {
+            "title": "Medical Imaging Data Source Evaluation Matrix",
+            "headers": [
+                "Source Option",
+                "Best Suited For",
+                "Key Verification Requirement"
+            ],
+            "rows": [
+                [
+                    "Public Repositories (TCIA, NCI IDC)",
+                    "Initial research, benchmarking & prototyping",
+                    "Check license terms (commercial vs. academic), citations & label granularity"
+                ],
+                [
+                    "Hospital & University Partnerships",
+                    "Specific clinical settings & longitudinal patient cohorts",
+                    "Institutional IRB/privacy approvals, de-identification & governance"
+                ],
+                [
+                    "Custom Provider & Clinical Annotation",
+                    "Project-specific segmentation boundaries & custom protocols",
+                    "Run a clinician-reviewed pilot batch & verify scope/access upfront"
+                ]
+            ]
+        },
+        "deepDiveSections": [
+            {
+                "heading": "When Does Custom Medical Image Annotation Make Sense?",
+                "paragraphs": [
+                    "Custom annotation is worth considering when an available dataset lacks the anatomy, imaging protocol, or labeling detail your project requires. For example, an ML team developing a segmentation model might need anatomical boundaries defined according to its own clinical annotation guide rather than a broad image-level label.",
+                    "Always begin with a small pilot: have appropriate clinical experts review the task definition and sample labels, then resolve unclear cases before scaling. Custom labels improve fit for a project, though they must be paired with clinical and regulatory validation."
+                ]
+            },
+            {
+                "heading": "How to Plan for Reliable Delivery",
+                "paragraphs": [
+                    "Establish a clear written project brief defining the quantity and kind of images, labeling criteria, necessary clinical skills, file formats (DICOM/NIfTI), privacy safeguards, review process, and acceptance criteria.",
+                    "Agree on a pilot batch, review milestones, feedback turnaround times, and a delivery schedule before production begins, including how changes to scope or data access will be managed."
+                ]
+            }
+        ],
+        "workflow": [
+            "Define Clinical Application, Modality (DICOM/NIfTI) & Target Anatomy",
+            "Audit Sample Data for Population Fit, Privacy & Technical Compatibility",
+            "Execute Small Pilot with Clinical Expert Review of Sample Labels",
+            "Resolve Ambiguous Cases & Lock Escalation / QA Disagreement Rules",
+            "Scale Production with Milestone Reviews & Acceptance Verification"
+        ],
+        "deliverables": [
+            "Sample dataset and technical documentation evaluation prior to full commitment",
+            "Clinically guided segmentation masks and classification labels in DICOM or NIfTI",
+            "Written project brief covering annotator qualifications, escalation rules, and QA milestones",
+            "De-identified, privacy-reviewed imaging packages with coordinate and metadata integrity"
+        ],
+        "faqs": [
+            {
+                "q": "Can I use public medical image datasets commercially?",
+                "a": "Sometimes. Rights vary by dataset, so review the specific license, access terms, and attribution requirements before use. Public access does not automatically mean unrestricted commercial use."
+            },
+            {
+                "q": "Who should annotate medical images?",
+                "a": "The answer depends on the task. Some labels require relevant clinical expertise, while other steps may be supported by trained annotators working under a suitable clinical review process. Define qualifications and escalation rules in the project brief."
+            },
+            {
+                "q": "Are annotated images enough to validate a medical AI model?",
+                "a": "No. You also need an evaluation plan suited to the intended use, including an appropriate held-out test set and relevant clinical, privacy, and regulatory review. Dataset annotation alone does not establish safety or fitness for deployment."
+            }
+        ]
+    },
+    {
+        "slug": "video-datasets-human-activity-recognition",
+        "aliases": [],
+        "title": "Video Datasets for Human Activity Recognition: Collection, Labeling & Fit",
+        "industry": "Video & Motion AI",
+        "category": "ANNOTATION",
+        "type": "Video AI Case Study",
+        "readTime": "6 min read",
+        "date": "November 2026",
+        "image": "/images/case-studies/video-activity-recognition.jpg",
+        "imageAlt": "Warehouse logistics scene with 3D human pose keypoints, bounding boxes, and temporal movement trajectories",
+        "sectionPhotos": {
+            "section1": "",
+            "section2": "",
+            "section3": ""
+        },
+        "sectionPhotoGuides": {
+            "section1": "Industrial warehouse or motion studio showing workers lifting parcels with glowing 3D pose skeleton keypoints and floor movement trajectories.",
+            "section2": "Video player timeline graphic showing video frames above a timestamp bar marking [00:01.2s Action Start: Reach] → [00:02.8s Lift] → [00:04.5s Set Down].",
+            "section3": "Side-by-side frame comparison: Left = 'Lifting Parcel (Positive Target)', Right = 'Bending to Tie Shoe Without Lifting (Contrasting Negative)'."
+        },
+        "summary": "How human activity recognition video datasets are designed, recorded, and temporally labeled—covering clip classification, start/end timestamps, pose keypoints, and dataset split hygiene.",
+        "intro": "A person lifts a box, pauses, then sets it down. To recognize that sequence, a machine learning model needs more than a single static image: it needs examples of movement over time and structured labels that explain what is happening. Video datasets for human activity recognition bring those examples together—matching the exact actions, camera perspectives, and environmental conditions your model will encounter in deployment.",
+        "note": "Planning a human activity recognition project? Share your target actions, environments, camera views, annotation types, volume, and timeline with DaQube.ai for a custom quotation.",
+        "challengeTitle": "Why Dataset Fit & Negative Examples Matter in Video AI",
+        "challenge": "An action that looks obvious to a person can appear completely different to a model when the camera angle shifts or the view is partially blocked. Public video datasets rarely match specific deployment environments—for example, lifting a parcel in an industrial warehouse looks very different from lifting a small object at home. Models also fail without contrasting negative examples (such as bending down without lifting) and careful train/validation/test split grouping by participant or session to prevent data leakage.",
+        "collectedDataTypes": [
+            "Clip-Level Action Labels: Describing the primary activity across an entire short video segment",
+            "Temporal Action Localization: Marking exact start and end timestamps of actions within longer recordings",
+            "Spatial Person Tracks & Bounding Boxes: Identifying and following the specific person performing the action",
+            "Skeletal Pose Keypoints: Tracking body joint articulation and posture throughout the movement",
+            "Contrasting Negative Examples: Recording look-alike non-target motions (e.g., bending without lifting)"
+        ],
+        "approachTitle": "How Activity Recognition Videos Are Collected, Labeled & Protected",
+        "approach": [
+            "Collection Brief & Camera Spec Design: Define target actions, environments, participant variation, camera perspectives, clip duration, frame rate (FPS), resolution, and file format based on motion detail.",
+            "Annotation Guidelines & Pilot Calibration: Define what counts as an action, how to mark exact start/end timestamps, and how to handle overlapping or partially occluded movements—tested first via a short pilot.",
+            "Quality Assurance & Leakage-Free Splits: Review sampled clips, compare inter-annotator timestamp alignment, check class coverage, and group footage by participant or recording session across train/val/test splits.",
+            "Privacy, Consent & Usage Rights Governance: Establish informed participant consent, access controls, retention limits, and evaluate anonymization tradeoffs (such as face blurring vs. model utility) with legal advisers."
+        ],
+        "comparisonTable": {
+            "title": "Activity Recognition Annotation & Application Matrix",
+            "headers": [
+                "Annotation / Application",
+                "Technical Output",
+                "Operational Consideration"
+            ],
+            "rows": [
+                [
+                    "Action Classification",
+                    "Clip-level activity category label",
+                    "Best for pre-segmented short clips with single actions"
+                ],
+                [
+                    "Temporal Localization",
+                    "Exact start & end timestamps in long video",
+                    "Requires clear boundary rules for action onset/completion"
+                ],
+                [
+                    "Person Tracks & Keypoints",
+                    "Bounding box trajectories + joint skeletons",
+                    "Essential when multiple people appear or posture matters"
+                ],
+                [
+                    "Workplace / Sports / Care",
+                    "Domain-specific movement & safety alerts",
+                    "Group splits by participant/session to prevent data leakage"
+                ]
+            ]
+        },
+        "deepDiveSections": [
+            {
+                "heading": "Where Can Human Activity Recognition Be Used?",
+                "paragraphs": [
+                    "Possible applications include Workplace Safety (identifying defined movements for review, such as heavy lifting or entering a restricted zone), Sports Analysis (classifying movements in training footage to support coaching and video review), and Assisted Living (exploring detection of events such as falls, with human oversight and safeguards appropriate to the setting).",
+                    "Each application requires its own definition of success: a model used to assist a human reviewer should be evaluated differently from one used to trigger an automated alert."
+                ]
+            },
+            {
+                "heading": "Handling Privacy and Usage Rights in Video Collection",
+                "paragraphs": [
+                    "Video can identify people and reveal sensitive information. Before recording or acquiring footage, establish the appropriate permissions and legal basis, including participant consent where required. Techniques such as blurring may reduce some privacy risks, but they do not automatically make footage anonymous and can remove visual features useful to the model—always test the tradeoff for your specific use case."
+                ]
+            }
+        ],
+        "workflow": [
+            "Author Collection Brief (Actions, Camera Angles, FPS, Negative Cases)",
+            "Establish Consent, Privacy Permissions & Recording Protocols",
+            "Draft Timestamp & Occlusion Guidelines + Run Short Labeling Pilot",
+            "Execute Temporal & Keypoint Annotation with Alignment QA Audits",
+            "Partition Leakage-Free Participant Splits (Train / Validation / Test)"
+        ],
+        "deliverables": [
+            "Custom multi-perspective video datasets recorded in representative environments",
+            "Clip-level classifications and frame-accurate temporal start/end timestamps",
+            "Bounding box person tracks and anatomical pose keypoints",
+            "Participant-grouped train/val/test splits with documented consent and usage rights"
+        ],
+        "faqs": [
+            {
+                "q": "What is the difference between action classification and localization?",
+                "a": "Action classification identifies an activity across an entire clip. Temporal localization also identifies exactly when an activity starts and ends within a longer video. Your annotation requirements depend on which output your model needs."
+            },
+            {
+                "q": "How many videos are needed to train a human activity recognition model?",
+                "a": "There is no universal number. It depends on the task, variation in the footage, label quality, and the model and data already available. A pilot and evaluation on held-out footage can help guide further collection."
+            },
+            {
+                "q": "Can an existing video dataset be used commercially?",
+                "a": "Possibly, but check the specific license, participant permissions, and any restrictions on the source footage. Public availability alone does not establish permission for commercial training or redistribution."
+            }
+        ]
+    },
+    {
+        "slug": "training-ml-models-text-data",
+        "aliases": [
+            "multilingual-llm-eval",
+            "multilingual-speech-pipeline"
+        ],
+        "title": "Training Machine Learning Models: Why Text Data Is So Important",
+        "industry": "NLP & Language Models",
+        "category": "AI EVALUATION",
+        "type": "NLP & LLM Case Study",
+        "readTime": "6 min read",
+        "date": "November 2026",
+        "image": "/images/case-studies/text-data-ml.jpg",
+        "imageAlt": "Floating translucent document cards with glowing orange and emerald green named entity recognition and sentiment highlights",
+        "sectionPhotos": {
+            "section1": "",
+            "section2": "",
+            "section3": ""
+        },
+        "sectionPhotoGuides": {
+            "section1": "3D visualization of translucent document cards with glowing orange and emerald entity highlight tags connected by semantic vector lines.",
+            "section2": "Annotated text snippet showing highlighted spans: [ORG: DaQube.ai], [DATE: Q4], [SENTIMENT: Positive (0.98)] on a clean dark UI card.",
+            "section3": "Diagram showing Raw Noisy Text Sources (Reviews, Docs, Chats) → Deduplication & Normalization → Labelled NLP Dataset."
+        },
+        "summary": "How structured text data collection, cleaning, and annotation power Natural Language Processing (NLP), sentiment analysis, named entity recognition, and human-like LLM generation.",
+        "intro": "From chatbots and voice assistants to search engines and automated customer support tools, modern AI depends on machine learning to understand human language and provide useful results. Just as humans learn by reading books and articles, ML models learn from large volumes of well-organized text data—helping them understand words, sentence structures, contextual meaning, and how people naturally communicate.",
+        "note": "DaQube.ai provides custom text data collection, cleaning, entity/sentiment labelling, and dataset preparation tailored to your NLP and LLM requirements.",
+        "challengeTitle": "Turning Raw Unstructured Text into High-Signal Training Fuel",
+        "challenge": "Text data comes from articles, business documents, customer reviews, social media posts, chat conversations, and product descriptions. However, raw text frequently contains duplicate entries, irrelevant noise, spelling issues, and inconsistent formatting. Without structured cleaning, sorting, organization, and task-specific labelling (sentiment, intent, named entities), language models fail to extract accurate insights or generate reliable responses.",
+        "collectedDataTypes": [
+            "Articles, blogs, and online informational content",
+            "Business documents, contracts, and analytical reports",
+            "Customer reviews, survey responses, and product feedback",
+            "Social media posts and public discussion comments",
+            "Chat conversations and customer support ticket messages",
+            "Product descriptions and structured website content"
+        ],
+        "approachTitle": "Four Core Ways Text Data Trains Machine Learning Models",
+        "approach": [
+            "1. Helping AI Understand Human Language (Core NLP): Training models to understand word connections and sentence meaning for sentiment analysis, text classification, named entity recognition, translation, and question answering.",
+            "2. Understanding Customer Opinions & Feedback (Sentiment Analysis): Analysing thousands of reviews, surveys, and support chats to classify whether customers are happy, unhappy, or neutral and surface recurring product insights.",
+            "3. Finding Useful Information in Large Documents (NER & Extraction): Scanning reports and business documents to automatically identify company names, people, places, contact details, dates, and organizational relationships.",
+            "4. Helping AI Generate Human-Like Text: Training chatbots, AI writing tools, content assistants, and automated support agents to respond naturally to user questions and explain complex information."
+        ],
+        "comparisonTable": {
+            "title": "NLP Task & Text Dataset Architecture Matrix",
+            "headers": [
+                "NLP Application",
+                "Primary Text Source",
+                "Annotation & Preparation Required"
+            ],
+            "rows": [
+                [
+                    "Sentiment Analysis",
+                    "Customer reviews, surveys, social posts",
+                    "Positive / Negative / Neutral polarity & aspect labelling"
+                ],
+                [
+                    "Named Entity Recognition (NER)",
+                    "Business documents, reports, articles",
+                    "Span tagging for Names, Organizations, Dates, Locations"
+                ],
+                [
+                    "Conversational AI & Chatbots",
+                    "Support messages, chat logs, Q&A pairs",
+                    "Intent classification, dialogue turn cleaning & response pairing"
+                ],
+                [
+                    "Content Generation & Translation",
+                    "Multilingual articles, summaries, web copy",
+                    "Deduplication, spelling/grammar normalization & parallel alignment"
+                ]
+            ]
+        },
+        "deepDiveSections": [
+            {
+                "heading": "Why Choose DaQube.ai for Text Data Solutions?",
+                "paragraphs": [
+                    "Every AI project has distinct linguistic requirements: some need customer reviews, while others require multi-turn support conversations, financial documents, or domain-specific articles. DaQube.ai supports diverse text formats, performs text classification, sentiment labelling, and entity recognition, and removes duplicates, spelling issues, and formatting inconsistencies.",
+                    "When ready-made datasets do not match your domain, we prepare custom text datasets structured around your exact model objective and expected output format."
+                ]
+            },
+            {
+                "heading": "The Future of Text Data in AI Development",
+                "paragraphs": [
+                    "As chatbots, semantic search engines, and large language models handle increasingly complex conversations, organised and properly labelled text datasets will continue driving advances in AI Chatbots, Automated Customer Support, Business Analytics, Language Translation, and Content Generation."
+                ]
+            }
+        ],
+        "workflow": [
+            "Requirement Discovery (Target NLP Task, Domain Sources & Formats)",
+            "Multi-Source Text Data Collection (Reviews, Docs, Chats, Articles)",
+            "Data Cleaning & Normalization (Deduplication, Spelling & Formatting)",
+            "Text Annotation & Labelling (Sentiment, Classification, Named Entities)",
+            "Custom Dataset Packaging & Delivery for ML / LLM Training"
+        ],
+        "deliverables": [
+            "Cleaned, deduplicated, and normalized text corpora across target domains",
+            "Annotated datasets for sentiment analysis, text classification, and intent detection",
+            "Named Entity Recognition (NER) datasets marking names, places, dates, and organizations",
+            "Conversational Q&A and instruction datasets for chatbots and generative AI models"
+        ],
+        "faqs": [
+            {
+                "q": "What sources are commonly used in text data collection?",
+                "a": "Text data can be collected from articles, blogs, business documents and reports, customer reviews and feedback, social media posts and comments, chat conversations and support messages, and product descriptions."
+            },
+            {
+                "q": "Why is data cleaning necessary before training language models?",
+                "a": "Raw collected text often contains duplicate entries, irrelevant content, spelling issues, or inconsistent formatting. Cleaning and organising the text ensures the model learns accurate language patterns rather than noise."
+            },
+            {
+                "q": "What NLP tasks does DaQube.ai support with text annotation?",
+                "a": "We support sentiment analysis, text classification, named entity recognition (identifying names, places, dates, and organisations), language translation, question answering, and conversational chatbot training."
+            }
+        ]
+    },
+    {
+        "slug": "unlocking-power-of-data-daqube",
+        "aliases": [
+            "adversarial-red-teaming"
+        ],
+        "title": "Unlocking the Power of Data: Improve Your AI Projects with DaQube.ai",
+        "industry": "End-to-End AI Data Solutions",
+        "category": "DATA STRATEGY",
+        "type": "Platform Case Study",
+        "readTime": "7 min read",
+        "date": "November 2026",
+        "image": "/images/case-studies/unlocking-data-daqube.jpg",
+        "imageAlt": "Isometric 3D enterprise AI data pipeline hub converging image, speech, video, and text streams into a glowing orange core",
+        "sectionPhotos": {
+            "section1": "",
+            "section2": "",
+            "section3": ""
+        },
+        "sectionPhotoGuides": {
+            "section1": "Isometric 3D pipeline hub showing 6 distinct data streams (Images, Speech, Video, Text, Annotation, Transcription) converging into the DaQube.ai core.",
+            "section2": "6-panel bento grid illustrating Computer Vision Images, Voice Waveforms, Motion Video Tracks, NLP Documents, Polygon Masks, and Transcripts.",
+            "section3": "Clean workflow graphic: Raw Capture → Cleaning & Sorting → Annotation/Transcription → Quality Checks → Model-Ready Dataset."
+        },
+        "summary": "A complete guide to DaQube.ai's six core data solutions—spanning image, speech, video, and text collection, multi-method visual annotation, and audio transcription.",
+        "intro": "Artificial Intelligence is transforming how businesses operate—from recognising objects in images to understanding human speech. Behind every successful AI model is one essential ingredient: well-organised, accurately labelled, and quality-checked training data. DaQube.ai provides end-to-end AI data collection, annotation, and dataset preparation solutions designed to help businesses, researchers, and developers build reliable machine learning models.",
+        "note": "DaQube.ai supports custom dataset requirements across images, video, audio, speech, text, and documents—from initial collection through annotation and validation.",
+        "challengeTitle": "Solving the End-to-End Data Bottleneck in AI Development",
+        "challenge": "AI models require large volumes of relevant, representative training data to recognize patterns and perform reliably in production. However, sourcing raw data across multiple modalities—and then cleaning, sorting, annotating, and validating it—is time-consuming and complex. Off-the-shelf datasets frequently miss project-specific categories, accents, or environments, requiring a partner capable of managing both custom collection and precision annotation under one roof.",
+        "collectedDataTypes": [
+            "1. Image Data Collection (Products, vehicles, people, animals, buildings, roads, medical images)",
+            "2. Speech Data Collection (Voice recordings, conversations, regional accents, speech samples)",
+            "3. Video Data Collection (Object tracking, action recognition, activity detection, scene understanding)",
+            "4. Text Data Collection (Articles, reviews, messages, product descriptions, documents for NLP)",
+            "5. Image & Video Annotation (Bounding boxes, classification, semantic/instance segmentation, keypoints)",
+            "6. Audio Transcription (Converting speech recordings and interviews into structured text)"
+        ],
+        "approachTitle": "Six Integrated Data Solutions & Five Operational Pillars",
+        "approach": [
+            "Visual & Motion Data (Image & Video Collection + Annotation): Collecting representative image and video datasets and enriching them with object detection boxes, classification, semantic/instance segmentation, keypoints, and frame tracking.",
+            "Audio, Speech & Transcription Solutions: Capturing diverse voice recordings, conversations, and accents, paired with accurate speech-to-text audio transcription for voice assistants, customer support, and speech recognition.",
+            "Text Data Collection for NLP: Gathering and preparing articles, customer reviews, messages, and documents for sentiment analysis, text classification, and named entity recognition.",
+            "Five Quality Pillars at DaQube.ai: (1) Solutions based on your exact requirements, (2) Multi-modality coverage, (3) Strict focus on data quality checks, (4) Custom dataset preparation, and (5) Organised cleaning, sorting, validation, and formatting."
+        ],
+        "comparisonTable": {
+            "title": "DaQube.ai End-to-End Service Portfolio Matrix",
+            "headers": [
+                "Service Pillar",
+                "Core Capabilities",
+                "Target AI Applications"
+            ],
+            "rows": [
+                [
+                    "1. Image Data Collection",
+                    "Products, vehicles, roads, buildings, medical & everyday scenes",
+                    "Object detection, image classification & visual recognition"
+                ],
+                [
+                    "2. Speech Data Collection",
+                    "Voice recordings, natural conversations, diverse accents",
+                    "Virtual assistants, ASR & speech recognition systems"
+                ],
+                [
+                    "3. Video Data Collection",
+                    "Multi-frame movement, interactions & temporal events",
+                    "Object tracking, action recognition & scene understanding"
+                ],
+                [
+                    "4. Text Data Collection",
+                    "Articles, reviews, messages, product copy & documents",
+                    "NLP, sentiment analysis, classification & NER"
+                ],
+                [
+                    "5. Image & Video Annotation",
+                    "Boxes, classification, semantic/instance masks, keypoints",
+                    "Supervised computer vision & autonomous perception"
+                ],
+                [
+                    "6. Audio Transcription",
+                    "Speech-to-text conversion of conversations & interviews",
+                    "Voice assistants, call analytics & multimodal language models"
+                ]
+            ]
+        },
+        "deepDiveSections": [
+            {
+                "heading": "Why Choose DaQube.ai as Your AI Data Partner?",
+                "paragraphs": [
+                    "Choosing the right data partner is a critical step in any AI project. Not every application can rely on a generic ready-made dataset—many require data collected and prepared for a specific purpose and delivery format.",
+                    "At DaQube.ai, we combine requirement-driven collection across images, videos, audio, speech, text, and documents with structured cleaning, sorting, annotation, validation, and formatting so developers can focus on building high-performing models."
+                ]
+            }
+        ],
+        "workflow": [
+            "Project Requirement Discovery (Modalities, Volume & Target Output)",
+            "Custom Data Collection (Images, Video, Speech, Audio & Text)",
+            "Data Cleaning, Sorting & Structural Organisation",
+            "Precision Annotation, Labelling & Audio Transcription",
+            "Quality Validation & Delivery in Model-Ready Formats"
+        ],
+        "deliverables": [
+            "Custom-collected image, video, speech, audio, and text training datasets",
+            "Multi-method visual annotations (bounding boxes, semantic/instance segmentation, keypoints)",
+            "Human-reviewed audio transcriptions and speech-to-text training corpora",
+            "Cleaned, validated, and organized datasets formatted for immediate ML pipeline ingestion"
+        ],
+        "faqs": [
+            {
+                "q": "What are the six core AI data services offered by DaQube.ai?",
+                "a": "DaQube.ai provides (1) Image Data Collection, (2) Speech Data Collection, (3) Video Data Collection, (4) Text Data Collection, (5) Image and Video Annotation (bounding boxes, classification, semantic/instance segmentation, keypoints, video annotation), and (6) Audio Transcription."
+            },
+            {
+                "q": "Can DaQube.ai handle projects that require multiple data types at once?",
+                "a": "Yes. Many modern AI projects require more than one modality. We support combined data requirements across images, videos, audio, speech, text, and documents tailored to your project's expected output."
+            },
+            {
+                "q": "How does DaQube.ai prepare collected data before delivery?",
+                "a": "Collected data goes through structured cleaning, sorting, annotation or transcription, quality validation checks, and formatting so the final dataset is organized and ready for immediate machine learning training."
+            }
+        ]
+    }
+];
+
+export function getCaseStudyBySlug(slug) {
+  if (!slug) return null;
+  const normalized = slug.toLowerCase().trim();
+  return (
+    caseStudies.find(
+      (item) =>
+        item.slug.toLowerCase() === normalized ||
+        (item.aliases && item.aliases.some((a) => a.toLowerCase() === normalized))
+    ) || null
+  );
+}

@@ -1,455 +1,701 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ArrowUpRight,
-  Compass,
-  Layers,
-  UsersRound,
+  BrainCircuit,
+  Workflow,
   Building2,
-  Briefcase,
-  Globe2,
-  Cpu,
-  CheckCircle2,
+  BriefcaseBusiness,
   Sparkles,
   ShieldCheck,
-  Microscope,
-  Scale,
-  Fingerprint,
-  FileCode2,
-  Award,
-  Headphones,
-  Zap,
-  Lock,
-  Database,
-  ChevronDown,
-  Activity,
-  X
+  MessageCircle,
+  Compass,
+  ClipboardCheck,
+  Handshake,
 } from "lucide-react";
-import { SectionHeading } from "../components/section-heading";
-import { ThreeDTiltCard } from "../components/ThreeDVisualizers";
+
 import "./AboutPage.css";
+
+/* =========================================================
+   EDITABLE PAGE CONTENT
+   Update copy, values and image paths here.
+   All image paths below were checked against the uploaded
+   DaQube project archive.
+========================================================= */
+
+const collagePhotos = [
+  {
+    src: "/images/robotics_main.png",
+    alt: "Robotics research and human interaction with intelligent systems",
+  },
+  {
+    src: "/images/services_image_collection.png",
+    alt: "Examples of image data collection across different subjects",
+  },
+  {
+    src: "/images/services_video_collection.png",
+    alt: "Video and motion data collection examples",
+  },
+  {
+    src: "/images/annotation_main.jpg",
+    alt: "Structured image annotation and bounding box example",
+  },
+  {
+    src: "/images/services_annotation.png",
+    alt: "Examples of visual data annotation",
+  },
+  {
+    src: "/images/speech_main.png",
+    alt: "Speech and audio data workflow",
+  },
+  {
+    src: "/images/services_speech_collection.png",
+    alt: "Audio and speech collection examples",
+  },
+  {
+    src: "/images/services_transcription.png",
+    alt: "Transcription and language data workflow examples",
+  },
+  {
+    src: "/images/video_collection_main.jpg",
+    alt: "Video dataset processing and analysis",
+  },
+];
+
+const workflowSteps = [
+  {
+    number: "01",
+    title: "Understand the objective",
+    description:
+      "Define the AI application, data requirements, target coverage and acceptance criteria before work begins.",
+  },
+  {
+    number: "02",
+    title: "Collect with context",
+    description:
+      "Build collection workflows around the required formats, scenarios, languages and project specifications.",
+  },
+  {
+    number: "03",
+    title: "Structure and annotate",
+    description:
+      "Organize, label, transcribe and enrich datasets according to the agreed guidelines and output schema.",
+  },
+  {
+    number: "04",
+    title: "Review and deliver",
+    description:
+      "Check outputs against project requirements and prepare organized deliverables for downstream use.",
+  },
+];
+
+const values = [
+  {
+    slug: "communication",
+    title: "Communication",
+    icon: MessageCircle,
+    description:
+      "We keep briefs, feedback and decisions clear and timely. Open communication helps everyone understand the goal, the standards and the next step.",
+  },
+  {
+    slug: "trust",
+    title: "Trust",
+    icon: ShieldCheck,
+    description:
+      "We build trust through responsible data handling, transparent processes and delivery against the requirements we agree on.",
+  },
+  {
+    slug: "freedom",
+    title: "Freedom",
+    icon: Compass,
+    description:
+      "We make room for initiative, fresh ideas and different ways of solving problems. People should have space to bring their best thinking to the work.",
+  },
+  {
+    slug: "ownership",
+    title: "Ownership",
+    icon: ClipboardCheck,
+    description:
+      "We take responsibility from the first brief to final handover, raise challenges early and follow through on our commitments.",
+  },
+  {
+    slug: "respect",
+    title: "Respect",
+    icon: Handshake,
+    description:
+      "We value the people behind every project, the customers we work with and the communities represented in the data we collect.",
+  },
+];
+
+/* =========================================================
+   WORD REVEAL
+   Each word is its own inline block with an explicit visual
+   gap. This avoids the collapsed/missing spaces in headings.
+========================================================= */
+
+function WordReveal({ text, className = "" }) {
+  const words = text.trim().split(/\s+/);
+
+  return (
+    <span className={className} aria-label={text}>
+      {words.map((word, index) => (
+        <span className="dq-word-wrap" key={`${word}-${index}`}>
+          <span
+            className="dq-word"
+            style={{ "--word-index": index }}
+            aria-hidden="true"
+          >
+            {word}
+          </span>
+        </span>
+      ))}
+    </span>
+  );
+}
+
+/* =========================================================
+   SCROLL REVEAL
+   Uses the browser's IntersectionObserver; no extra package.
+========================================================= */
+
+function ScrollReveal() {
+  useEffect(() => {
+    const elements = document.querySelectorAll(
+      ".dq-about-page [data-dq-reveal]"
+    );
+
+    const reduceMotion = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      elements.forEach((element) => element.classList.add("is-visible"));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            currentObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -45px 0px",
+      }
+    );
+
+    elements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
+
+  return null;
+}
+
+/* =========================================================
+   MAIN ABOUT PAGE
+========================================================= */
 
 export function AboutPage() {
   return (
-    <>
-      {/* 1. HERO SECTION WITH ANIMATED TEXT & TELEMETRY STATS */}
-      <section className="page-hero relative overflow-hidden">
-        <div className="container relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFF3ED] border border-[#EC5E27]/30 mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#EC5E27] animate-ping" />
-            <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#EC5E27]">
-              THE HUMAN INTELLIGENCE LAYER FOR FRONTIER AI
+    <div className="dq-about-page">
+      <ScrollReveal />
+
+      {/* 01 — HERO */}
+      <section className="dq-about-hero">
+        <div className="dq-about-hero-decoration" aria-hidden="true">
+          <span className="dq-hero-orbit dq-orbit-one" />
+          <span className="dq-hero-orbit dq-orbit-two" />
+          <span className="dq-hero-cross">✳</span>
+        </div>
+
+        <div className="dq-about-container dq-about-hero-grid">
+          <div className="dq-hero-copy" data-dq-reveal>
+            <div className="dq-eyebrow dq-eyebrow-orange">
+              <span className="dq-eyebrow-dot" />
+              THE STORY BEHIND DAQUBE
+            </div>
+
+            <h1>
+              <span className="dq-heading-line">
+                <WordReveal text="The data behind" />
+              </span>
+              <span className="dq-heading-line dq-heading-accent">
+                <WordReveal text="intelligence." />
+              </span>
+            </h1>
+
+            <p className="dq-hero-description">
+              Behind every intelligent system is data worth understanding.
+              DaQube brings together real-world data collection, human
+              expertise and structured quality workflows to help AI teams
+              build with greater context and confidence.
+            </p>
+
+            <div className="dq-hero-actions">
+              <Link to="/contact" className="dq-button dq-button-orange">
+                Let&apos;s build together <ArrowUpRight size={18} />
+              </Link>
+              <Link to="/services" className="dq-text-button">
+                Explore what we do <ArrowRight size={17} />
+              </Link>
+            </div>
+
+            <div className="dq-hero-bottom-note">
+              <span className="dq-note-line" />
+              <span>THE DATA BEHIND INTELLIGENCE.</span>
+            </div>
+          </div>
+
+          <div className="dq-hero-visual" data-dq-reveal>
+            <div className="dq-hero-image-frame">
+              <img
+                src="/images/robotics_main.png"
+                alt="Robotics research and human interaction with intelligent systems"
+                fetchPriority="high"
+              />
+            </div>
+
+            <div className="dq-hero-floating-card dq-hero-card-top">
+              <span className="dq-floating-card-icon">
+                <BrainCircuit size={19} />
+              </span>
+              <span>
+                <strong>AI-ready</strong>
+                <small>Built around context</small>
+              </span>
+            </div>
+
+            <div className="dq-hero-floating-card dq-hero-card-bottom">
+              <span className="dq-live-dot" />
+              <span>
+                <strong>Human + technology</strong>
+                <small>Working together</small>
+              </span>
+            </div>
+
+            <span className="dq-hero-image-caption">
+              REAL-WORLD DATA. MEANINGFUL INTELLIGENCE.
             </span>
           </div>
-
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-[#12151A] max-w-4xl leading-[1.12]">
-            Transforming Real-World Nuance{" "}
-            <br className="hidden sm:inline" />
-            <span className="about-animated-gradient-text">
-              Into Ground-Truth AI Intelligence.
-            </span>
-          </h1>
-
-          <p className="max-w-3xl text-base md:text-lg text-[#5F646D] leading-relaxed mt-5 mb-8">
-            As foundation models, multimodal LLMs, and autonomous systems scale past trillions of parameters, synthetic loops and generic web scraping hit diminishing returns. DaQube bridges the gap with 25,000+ verified specialists across 100+ countries, air-gapped cleanroom governance, and statistical consensus engineering.
-          </p>
-
-          <div className="hero-actions flex flex-wrap gap-4 items-center">
-            <Link className="button button-crimson shadow-xl" to="/contact">
-              Discuss Your Pipeline <ArrowUpRight size={17} />
-            </Link>
-            <Link className="text-link font-semibold text-[#12151A] hover:text-[#EC5E27] flex items-center gap-1" to="/about/company">
-              Explore Our Physical Labs & Cleanrooms <ArrowRight size={16} />
-            </Link>
-          </div>
-
-          {/* Real-time Global Metrics Showcase (Synthesized from GTS, LXT & Alanxa) */}
-          <div className="about-stats-grid">
-            <div className="about-stat-card">
-              <div className="about-stat-value">25,000+</div>
-              <div className="about-stat-label">Vetted Human Contributors</div>
-              <div className="about-stat-sub">Across 100+ Countries</div>
-            </div>
-
-            <div className="about-stat-card">
-              <div className="about-stat-value">1,000+</div>
-              <div className="about-stat-label">Language & Dialect Locales</div>
-              <div className="about-stat-sub">Global Cultural Nuance</div>
-            </div>
-
-            <div className="about-stat-card">
-              <div className="about-stat-value">99.8%</div>
-              <div className="about-stat-label">First-Pass Acceptance SLA</div>
-              <div className="about-stat-sub">Statistical Consensus</div>
-            </div>
-
-            <div className="about-stat-card">
-              <div className="about-stat-value">10M+</div>
-              <div className="about-stat-label">Calibrated Annotation Units</div>
-              <div className="about-stat-sub">Delivered into Production</div>
-            </div>
-
-            <div className="about-stat-card">
-              <div className="about-stat-value">&lt; 5 Days</div>
-              <div className="about-stat-label">Rapid Calibrated Pilot</div>
-              <div className="about-stat-sub">Protocol Co-Design</div>
-            </div>
-          </div>
         </div>
-        <div className="page-hero-glow" />
-      </section>
 
-      {/* 2. SUBPAGE QUICK LINKS (3D TILT CARDS) */}
-      <section className="section section-white !py-12">
-        <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ThreeDTiltCard maxTilt={6}>
-              <Link
-                to="/about/company"
-                className="p-8 rounded-2xl bg-[#F8FAFC] border border-[#E9ECEF] hover:border-[#EC5E27] block transition-all h-full shadow-sm hover:shadow-xl group"
-              >
-                <div className="w-12 h-12 rounded-xl bg-[#FFF3ED] text-[#EC5E27] flex items-center justify-center mb-4 group-hover:bg-[#EC5E27] group-hover:text-white transition-all">
-                  <Building2 size={24} />
-                </div>
-                <span className="text-xs font-mono font-bold text-[#EC5E27] uppercase tracking-wider block mb-1">
-                  SUBPAGE 01 / INFRASTRUCTURE & FACILITIES
-                </span>
-                <h3 className="text-xl font-bold text-[#12151A] mb-2 group-hover:text-[#EC5E27] transition-colors">
-                  Company, Leadership & Physical Labs
-                </h3>
-                <p className="text-sm text-[#5F646D] leading-relaxed mb-4">
-                  Meet our machine learning systems engineers, acoustic speech phoneticians, and tour our physical sound-isolated whisper chambers and biometric cleanroom testing studios.
-                </p>
-                <span className="text-xs font-bold text-[#EC5E27] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                  Explore Infrastructure & Leadership <ArrowRight size={14} />
-                </span>
-              </Link>
-            </ThreeDTiltCard>
-
-            <ThreeDTiltCard maxTilt={6}>
-              <Link
-                to="/about/careers"
-                className="p-8 rounded-2xl bg-[#F8FAFC] border border-[#E9ECEF] hover:border-[#EC5E27] block transition-all h-full shadow-sm hover:shadow-xl group"
-              >
-                <div className="w-12 h-12 rounded-xl bg-[#FFF3ED] text-[#EC5E27] flex items-center justify-center mb-4 group-hover:bg-[#EC5E27] group-hover:text-white transition-all">
-                  <Briefcase size={24} />
-                </div>
-                <span className="text-xs font-mono font-bold text-[#EC5E27] uppercase tracking-wider block mb-1">
-                  SUBPAGE 02 / WORKFORCE STANDARDS & ETHICS
-                </span>
-                <h3 className="text-xl font-bold text-[#12151A] mb-2 group-hover:text-[#EC5E27] transition-colors">
-                  Ethical Labor Standards & Global Network
-                </h3>
-                <p className="text-sm text-[#5F646D] leading-relaxed mb-4">
-                  Learn how we uphold living-wage benchmarks, reject predatory task clawbacks, and empower certified domain specialists with continuous skill development.
-                </p>
-                <span className="text-xs font-bold text-[#EC5E27] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                  Read Workforce & Ethics Standards <ArrowRight size={14} />
-                </span>
-              </Link>
-            </ThreeDTiltCard>
-          </div>
+        <div className="dq-hero-scroll" aria-hidden="true">
+          <span /> SCROLL TO EXPLORE
         </div>
       </section>
 
-      {/* 3. THE GROUND-TRUTH BOTTLENECK: SYNTHETIC VS. HUMAN GROUND TRUTH */}
-      <section className="section section-tint">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-5">
-              <span className="eyebrow">THE FOUNDATION MODEL BOTTLENECK</span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#12151A] tracking-tight mt-2 mb-4 leading-tight">
-                Models don't hallucinate in math. <br />
-                <span className="text-[#EC5E27]">They hallucinate in nuance.</span>
-              </h2>
-              <p className="text-sm md:text-base text-[#5F646D] leading-relaxed mb-4">
-                Public internet datasets are exhausted. Training subsequent model generations on AI-generated synthetic data triggers model collapse and amplifies societal biases.
-              </p>
-              <p className="text-sm md:text-base text-[#5F646D] leading-relaxed">
-                DaQube was founded on a singular conviction: <strong className="text-[#12151A]">the quality ceiling of artificial intelligence is fundamentally bound to the caliber of human judgment used to train and calibrate it.</strong>
-              </p>
-            </div>
-
-            <div className="lg:col-span-7">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-6 rounded-2xl bg-white border border-[#E9ECEF] shadow-sm">
-                  <div className="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-bold text-xs mb-3">
-                    <X size={15} />
-                  </div>
-                  <h4 className="font-bold text-sm text-[#12151A] mb-2">Uncalibrated Web Scraping & Synthetic Data</h4>
-                  <ul className="text-xs text-[#5F646D] space-y-2">
-                    <li className="flex items-start gap-1.5">
-                      <span className="text-red-400 font-bold">•</span>
-                      <span>Degraded accuracy on long-tail corner cases</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="text-red-400 font-bold">•</span>
-                      <span>Recursive synthetic model collapse</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="text-red-400 font-bold">•</span>
-                      <span>Severe cultural & demographic blindspots</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="text-red-400 font-bold">•</span>
-                      <span>Regulatory exposure under EU AI Act & HIPAA</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="p-6 rounded-2xl bg-gradient-to-br from-[#FFF8F5] to-white border border-[#EC5E27]/40 shadow-md relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#EC5E27]/10 rounded-full blur-xl pointer-events-none" />
-                  <div className="w-8 h-8 rounded-lg bg-[#EC5E27] text-white flex items-center justify-center font-bold text-xs mb-3 shadow-md">
-                    <CheckCircle2 size={15} />
-                  </div>
-                  <h4 className="font-bold text-sm text-[#12151A] mb-2">DaQube Calibrated Human Ground Truth</h4>
-                  <ul className="text-xs text-[#5F646D] space-y-2">
-                    <li className="flex items-start gap-1.5">
-                      <CheckCircle2 size={13} className="text-[#EC5E27] mt-0.5 flex-shrink-0" />
-                      <span className="font-medium text-[#12151A]">Targeted in-field edge-case capture</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <CheckCircle2 size={13} className="text-[#EC5E27] mt-0.5 flex-shrink-0" />
-                      <span className="font-medium text-[#12151A]">Krippendorff's α ≥ 0.88 multi-tier consensus</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <CheckCircle2 size={13} className="text-[#EC5E27] mt-0.5 flex-shrink-0" />
-                      <span className="font-medium text-[#12151A]">Native dialect & cultural demographic balance</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <CheckCircle2 size={13} className="text-[#EC5E27] mt-0.5 flex-shrink-0" />
-                      <span className="font-medium text-[#12151A]">Air-gapped cleanroom audit trails & zero PII</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+      {/* 02 — WHY WE EXIST */}
+      <section className="dq-brand-statement">
+        <div className="dq-about-container dq-brand-statement-inner">
+          <div className="dq-section-label" data-dq-reveal>
+            <span>01 / WHY WE EXIST</span>
+            <span className="dq-label-rule" />
           </div>
-        </div>
-      </section>
 
-      {/* 4. FOUR CORE ARCHITECTURAL PILLARS (GTS + LXT + OMNYSYS + ALANXA SYNTHESIS) */}
-      <section className="section section-white">
-        <div className="container">
-          <SectionHeading
-            eyebrow="CORE ARCHITECTURAL PILLARS"
-            title="Engineered for Precision. Built for Planetary Scale."
-            description="Our end-to-end ground-truth architecture incorporates the best methodologies across systems engineering, acoustic linguistics, and air-gapped security governance."
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-            {/* Pillar 1 */}
-            <div className="about-pillar-card">
-              <div className="about-pillar-icon">
-                <Globe2 size={26} />
-              </div>
-              <span className="text-[10px] font-mono uppercase tracking-wider text-[#EC5E27] font-bold block mb-1">
-                PILLAR 01 · MULTIMODAL BREADTH
-              </span>
-              <h3 className="text-lg font-bold text-[#12151A] mb-2">
-                Planetary In-Field Data Capture
-              </h3>
-              <p className="text-xs text-[#5F646D] leading-relaxed mb-4 flex-grow">
-                Spanning 100+ countries and 1,000+ locales, our contributors collect in-field photographic datasets, 4K multi-angle video, conversational acoustic speech, and sensor telemetry under diverse environmental conditions.
-              </p>
-              <div className="text-[11px] font-semibold text-[#12151A] pt-3 border-t border-[#F1F3F5] flex items-center gap-1.5">
-                <CheckCircle2 size={13} className="text-[#EC5E27]" />
-                <span>120+ Dialects & Cultural Nuances</span>
-              </div>
-            </div>
-
-            {/* Pillar 2 */}
-            <div className="about-pillar-card">
-              <div className="about-pillar-icon">
-                <Microscope size={26} />
-              </div>
-              <span className="text-[10px] font-mono uppercase tracking-wider text-[#EC5E27] font-bold block mb-1">
-                PILLAR 02 · VERIFIED EXPERTS
-              </span>
-              <h3 className="text-lg font-bold text-[#12151A] mb-2">
-                Credentialed Specialist Network
-              </h3>
-              <p className="text-xs text-[#5F646D] leading-relaxed mb-4 flex-grow">
-                For high-stakes tasks like clinical healthcare, legal reasoning, financial audits, and multi-step code synthesis, we deploy pre-vetted specialists—including MDs, PhD researchers, and Staff Software Engineers.
-              </p>
-              <div className="text-[11px] font-semibold text-[#12151A] pt-3 border-t border-[#F1F3F5] flex items-center gap-1.5">
-                <CheckCircle2 size={13} className="text-[#EC5E27]" />
-                <span>Top 2% Subject Matter Specialists</span>
-              </div>
-            </div>
-
-            {/* Pillar 3 */}
-            <div className="about-pillar-card">
-              <div className="about-pillar-icon">
-                <Cpu size={26} />
-              </div>
-              <span className="text-[10px] font-mono uppercase tracking-wider text-[#EC5E27] font-bold block mb-1">
-                PILLAR 03 · STATISTICAL RIGOR
-              </span>
-              <h3 className="text-lg font-bold text-[#12151A] mb-2">
-                Deterministic Consensus Pipeline
-              </h3>
-              <p className="text-xs text-[#5F646D] leading-relaxed mb-4 flex-grow">
-                Every unit passes through multi-tier blind annotation, Krippendorff's alpha (α ≥ 0.88) statistical agreement scoring, and automated schema validation formatted directly for COCO, Parquet, and KITTI.
-              </p>
-              <div className="text-[11px] font-semibold text-[#12151A] pt-3 border-t border-[#F1F3F5] flex items-center gap-1.5">
-                <CheckCircle2 size={13} className="text-[#EC5E27]" />
-                <span>Continuous Calibration Telemetry</span>
-              </div>
-            </div>
-
-            {/* Pillar 4 */}
-            <div className="about-pillar-card">
-              <div className="about-pillar-icon">
-                <ShieldCheck size={26} />
-              </div>
-              <span className="text-[10px] font-mono uppercase tracking-wider text-[#EC5E27] font-bold block mb-1">
-                PILLAR 04 · ENTERPRISE TRUST
-              </span>
-              <h3 className="text-lg font-bold text-[#12151A] mb-2">
-                Air-Gapped Cleanroom Topology
-              </h3>
-              <p className="text-xs text-[#5F646D] leading-relaxed mb-4 flex-grow">
-                Sensitive biometric data and confidential weights are handled within zero-trust virtual desktop environments with disabled clipboard, blocked USB ports, zero external internet egress, and complete PII redaction.
-              </p>
-              <div className="text-[11px] font-semibold text-[#12151A] pt-3 border-t border-[#F1F3F5] flex items-center gap-1.5">
-                <CheckCircle2 size={13} className="text-[#EC5E27]" />
-                <span>ISO 27001 Certified & HIPAA BAA</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. THE 3-PHASE EXECUTION LIFECYCLE (ALANXA + GTS RAPID DEPLOYMENT) */}
-      <section className="section section-tint">
-        <div className="container">
-          <SectionHeading
-            eyebrow="RAPID DEPLOYMENT LIFECYCLE"
-            title="From Protocol Co-Design to Production Delivery in Days"
-            description="We eliminate bureaucratic overhead with an agile, engineering-driven workflow designed to integrate seamlessly into your ML training loop."
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-            <div className="about-evolution-step">
-              <span className="about-step-number">PHASE 01 · 5-DAY CALIBRATED PILOT</span>
-              <h4 className="text-base font-bold text-[#12151A] mb-2">Protocol Co-Design & Calibration</h4>
-              <p className="text-xs text-[#5F646D] leading-relaxed mb-4">
-                Our ML engineers work directly with your team to formulate task schemas, edge-case taxomies, and gold-standard benchmark datasets. A 500-unit pilot is delivered in under 5 business days for immediate alignment.
-              </p>
-              <div className="flex items-center gap-2 text-xs font-semibold text-[#EC5E27]">
-                <Zap size={14} /> Rapid Iteration Loop
-              </div>
-            </div>
-
-            <div className="about-evolution-step">
-              <span className="about-step-number">PHASE 02 · HIGH-THROUGHPUT EXECUTION</span>
-              <h4 className="text-base font-bold text-[#12151A] mb-2">Targeted Collection & Blind Consensus</h4>
-              <p className="text-xs text-[#5F646D] leading-relaxed mb-4">
-                We activate matched contributor cohorts across our global network. Data flows through dual-blind annotation tiers with automated inter-annotator disagreement flagging and senior specialist adjudication.
-              </p>
-              <div className="flex items-center gap-2 text-xs font-semibold text-[#EC5E27]">
-                <Activity size={14} /> Real-Time Telemetry Tracking
-              </div>
-            </div>
-
-            <div className="about-evolution-step">
-              <span className="about-step-number">PHASE 03 · CONTINUOUS PIPELINE DELIVERY</span>
-              <h4 className="text-base font-bold text-[#12151A] mb-2">Automated Ingestion & Schema Delivery</h4>
-              <p className="text-xs text-[#5F646D] leading-relaxed mb-4">
-                Cleaned, validated data is packaged into native ML schemas (Parquet, COCO JSON, KITTI format, Praat TextGrids) and pushed directly into your cloud storage bucket (AWS S3, GCP Cloud Storage, Azure Blob).
-              </p>
-              <div className="flex items-center gap-2 text-xs font-semibold text-[#EC5E27]">
-                <Database size={14} /> Direct Bucket Ingestion
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. EXPANDED ENTERPRISE FAQ SECTION (ACCORDION) */}
-      <section className="section section-white">
-        <div className="container max-w-4xl">
-          <div className="text-center mb-10">
-            <span className="eyebrow">ENTERPRISE FAQ</span>
-            <h2 className="font-display text-2xl md:text-3xl font-extrabold text-[#12151A] tracking-tight mt-1">
-              Frequently Asked Questions About DaQube
+          <div className="dq-brand-statement-copy">
+            <h2 data-dq-reveal>
+              <WordReveal text="AI is only as useful as the data that teaches it." />
             </h2>
-            <p className="text-sm text-[#5F646D] mt-2 max-w-xl mx-auto">
-              Everything engineering leaders and AI procurement teams need to know about our global operations and data standards.
+
+            <div className="dq-brand-statement-side" data-dq-reveal>
+              <p>
+                Models learn from examples of the world. Those examples need
+                to carry the right context, represent meaningful variation
+                and follow a clear specification.
+              </p>
+              <p>
+                That is the work DaQube focuses on: helping organizations
+                source, structure, annotate and evaluate the information
+                their AI systems depend on.
+              </p>
+              <Link to="/about/company" className="dq-inline-link">
+                More about our company <ArrowUpRight size={16} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 03 — WHO WE ARE (replaces the six service cards) */}
+      <section className="dq-who-section">
+        <div className="dq-about-container">
+          <div className="dq-who-layout">
+            <div className="dq-who-intro" data-dq-reveal>
+              <div className="dq-eyebrow">
+                <span className="dq-eyebrow-dot" />
+                WHO WE ARE
+              </div>
+
+              <h2>
+                A founder-led team <span>for the NewWorld.</span>
+              </h2>
+
+              <div className="dq-who-meta">
+                <span>FOUNDED 2026</span>
+                <span>FOUNDER-LED</span>
+              </div>
+            </div>
+
+            <div className="dq-who-copy" data-dq-reveal>
+              <p>
+                Founded in 2026 in India, DaQube is a founder-led AI
+                data company helping organizations build stronger
+                foundations for intelligent systems. We bring together
+                real-world data collection, human expertise and structured
+                workflows to support projects from initial requirements
+                through collection, preparation and delivery.
+              </p>
+
+              <p>
+                Our capabilities span image, video, audio and text data,
+                alongside annotation, transcription, quality assurance and
+                AI evaluation. We shape each engagement around the intended
+                application, the required context and the specifications
+                that make a dataset useful to the teams working with it.
+              </p>
+
+              <p>
+                Think of DaQube as your AI-powered data partner: turning
+                requirements into a clear workflow, raw information into
+                structured datasets, and project goals into outcomes that
+                matter.
+              </p>
+
+              <Link to="/about/company" className="dq-inline-link">
+                More about our company <ArrowUpRight size={16} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 04 — FROM REAL-WORLD DATA TO DELIVERY */}
+      <section className="dq-impact-section">
+        <div className="dq-about-container">
+          <div className="dq-impact-heading">
+            <div data-dq-reveal>
+              <div className="dq-eyebrow dq-eyebrow-light">
+                <span className="dq-eyebrow-dot" />
+                FROM REQUIREMENT TO DELIVERY
+              </div>
+
+              <h2>
+                <WordReveal text="From real-world signals" />
+                <br />
+                <span className="dq-impact-heading-accent">
+                  <WordReveal text="to AI-ready data." />
+                </span>
+              </h2>
+            </div>
+
+            <p data-dq-reveal>
+              A useful dataset is more than a collection of files. It is the
+              result of a clearly defined objective, a structured process
+              and consistent attention to detail.
             </p>
           </div>
 
-          <div className="space-y-4">
-            <details className="bg-white p-5 rounded-2xl border border-[#E9ECEF] cursor-pointer group shadow-xs hover:border-[#EC5E27]/50 transition-all">
-              <summary className="font-bold text-[#12151A] text-sm md:text-base list-none flex items-center justify-between">
-                <span>Where are DaQube's operations and physical facilities located?</span>
-                <span className="text-[#EC5E27] font-bold text-lg group-open:rotate-45 transition-transform flex-shrink-0 ml-4">+</span>
-              </summary>
-              <p className="text-xs md:text-sm text-[#5F646D] leading-relaxed mt-3 pt-3 border-t border-[#F8F9FA]">
-                DaQube operates physical high-throughput data engineering and acoustic labs in North America, Europe, and Asia-Pacific, with distributed contributor hubs covering 100+ countries. We maintain physical sound-isolated whisper chambers (&lt; -60 dBFS noise floors) for studio-grade speech recording and dedicated air-gapped cleanrooms with disabled external ingress for confidential model evaluation.
-              </p>
-            </details>
+          <div className="dq-workflow">
+            {workflowSteps.map((step, index) => (
+              <article
+                className="dq-workflow-step"
+                key={step.number}
+                data-dq-reveal
+                style={{ "--reveal-delay": `${index * 100}ms` }}
+              >
+                <div className="dq-workflow-step-top">
+                  <span>{step.number}</span>
+                  {index < workflowSteps.length - 1 && (
+                    <span className="dq-workflow-connector">
+                      <ArrowRight size={18} />
+                    </span>
+                  )}
+                </div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </article>
+            ))}
+          </div>
 
-            <details className="bg-white p-5 rounded-2xl border border-[#E9ECEF] cursor-pointer group shadow-xs hover:border-[#EC5E27]/50 transition-all">
-              <summary className="font-bold text-[#12151A] text-sm md:text-base list-none flex items-center justify-between">
-                <span>How does DaQube differ from traditional crowdsourcing platforms?</span>
-                <span className="text-[#EC5E27] font-bold text-lg group-open:rotate-45 transition-transform flex-shrink-0 ml-4">+</span>
-              </summary>
-              <p className="text-xs md:text-sm text-[#5F646D] leading-relaxed mt-3 pt-3 border-t border-[#F8F9FA]">
-                Unlike open-crowd marketplaces that rely on unverified anonymous workers, DaQube operates a curated, credential-verified network of over 25,000 contributors and domain specialists (MDs, PhDs, certified linguists, senior coders). We enforce blind multi-tier agreement protocols, deliver custom data collection from scratch, and maintain guaranteed SLAs on first-pass model acceptance.
-              </p>
-            </details>
-
-            <details className="bg-white p-5 rounded-2xl border border-[#E9ECEF] cursor-pointer group shadow-xs hover:border-[#EC5E27]/50 transition-all">
-              <summary className="font-bold text-[#12151A] text-sm md:text-base list-none flex items-center justify-between">
-                <span>How do you handle data privacy, consent, and regulatory compliance?</span>
-                <span className="text-[#EC5E27] font-bold text-lg group-open:rotate-45 transition-transform flex-shrink-0 ml-4">+</span>
-              </summary>
-              <p className="text-xs md:text-sm text-[#5F646D] leading-relaxed mt-3 pt-3 border-t border-[#F8F9FA]">
-                All human participants provide explicit, legally vetted informed consent specifically authorizing machine learning model training. All visual and biometric data undergoes automated multi-pass PII redaction (face blurring, license plate masking, identifier scrubbing). Our infrastructure is fully ISO 27001 Certified, GDPR compliant, and ready for HIPAA Business Associate Agreements (BAA).
-              </p>
-            </details>
-
-            <details className="bg-white p-5 rounded-2xl border border-[#E9ECEF] cursor-pointer group shadow-xs hover:border-[#EC5E27]/50 transition-all">
-              <summary className="font-bold text-[#12151A] text-sm md:text-base list-none flex items-center justify-between">
-                <span>What is the typical timeline for scoping and launching a custom project?</span>
-                <span className="text-[#EC5E27] font-bold text-lg group-open:rotate-45 transition-transform flex-shrink-0 ml-4">+</span>
-              </summary>
-              <p className="text-xs md:text-sm text-[#5F646D] leading-relaxed mt-3 pt-3 border-t border-[#F8F9FA]">
-                We can initiate protocol co-design and deploy a calibrated 500-unit pilot within 5 business days. Once your engineering team verifies the pilot benchmark, full-scale collection and multi-tier annotation ramps up immediately across our global contributor network.
-              </p>
-            </details>
-
-            <details className="bg-white p-5 rounded-2xl border border-[#E9ECEF] cursor-pointer group shadow-xs hover:border-[#EC5E27]/50 transition-all">
-              <summary className="font-bold text-[#12151A] text-sm md:text-base list-none flex items-center justify-between">
-                <span>How does DaQube ensure ethical contributor compensation?</span>
-                <span className="text-[#EC5E27] font-bold text-lg group-open:rotate-45 transition-transform flex-shrink-0 ml-4">+</span>
-              </summary>
-              <p className="text-xs md:text-sm text-[#5F646D] leading-relaxed mt-3 pt-3 border-t border-[#F8F9FA]">
-                We are committed to ethical AI labor standards. We enforce fair, transparent compensation benchmarks tied to verified credentials and project difficulty, completely rejecting deceptive qualification churn, unpaid test batches, and predatory task clawbacks.
-              </p>
-            </details>
+          <div className="dq-impact-bottom" data-dq-reveal>
+            <span className="dq-impact-bottom-icon">
+              <Workflow size={20} />
+            </span>
+            <p>
+              Every stage connects to the next, helping keep the original
+              project requirements visible throughout the workflow.
+            </p>
+            <Link to="/quality" className="dq-impact-link">
+              Discover our quality approach <ArrowUpRight size={16} />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* 7. CTA BANNER */}
-      <section className="section section-tint">
-        <div className="container cta-panel">
-          <div className="cta-symbol"><Sparkles size={26} /></div>
-          <div className="cta-copy">
-            <span className="eyebrow">BUILD WITH DAQUBE</span>
-            <h2>Let's start with your ML problem.</h2>
-            <p>Tell us what your AI system needs to learn, perceive, or evaluate—we'll deliver the ground truth.</p>
+      {/* 05 — EXPANDED PHOTO COLLAGE */}
+      <section className="dq-visual-story-section">
+        <div className="dq-about-container">
+          <div className="dq-collage-heading" data-dq-reveal>
+            <div className="dq-eyebrow">
+              <span className="dq-eyebrow-dot" />
+              A CLOSER LOOK AT THE WORK
+            </div>
+            <p>
+              Different forms of information. One thoughtful approach to
+              making data useful for AI.
+            </p>
           </div>
-          <Link className="button button-crimson" to="/contact">
-            Scope a Pilot Project <ArrowRight size={17} />
-          </Link>
-          <span className="cta-watermark">DQ</span>
+
+          <div className="dq-photo-collage dq-photo-collage--expanded">
+            {collagePhotos.map((photo, index) => (
+              <figure
+                className={`dq-photo dq-photo--${index + 1}`}
+                key={photo.src}
+                data-dq-reveal
+                style={{ "--reveal-delay": `${(index % 4) * 65}ms` }}
+              >
+                <img src={photo.src} alt={photo.alt} loading="lazy" />
+              </figure>
+            ))}
+
+            <div className="dq-collage-center" aria-label="DaQube">
+              <span className="dq-collage-ring">
+                <img src="/images/logos/daqube-logo.svg" alt="DaQube" />
+              </span>
+            </div>
+          </div>
         </div>
       </section>
-    </>
+
+      {/* 06 — WHERE WE STAND */}
+      <section className="dq-belief-section">
+        <div className="dq-about-container dq-belief-grid">
+          <div className="dq-belief-symbol" data-dq-reveal>
+            <div className="dq-belief-symbol-ring">
+              <ShieldCheck size={76} strokeWidth={1} />
+              <span>DQ</span>
+            </div>
+            <span className="dq-belief-orbit" />
+          </div>
+
+          <div className="dq-belief-copy" data-dq-reveal>
+            <div className="dq-eyebrow dq-eyebrow-light">
+              <span className="dq-eyebrow-dot" />
+              WHERE WE STAND
+            </div>
+
+            <div className="dq-belief-quote-icon">
+              <span aria-hidden="true">“</span>
+            </div>
+
+            <h2>
+              Data quality is not just about getting more data. It is about
+              getting the <span>right data, with the right context.</span>
+            </h2>
+
+            <p>
+              We believe useful AI development calls for thoughtful
+              collection, clear expectations, responsible handling and
+              quality checks that reflect the purpose of each project.
+            </p>
+
+            <Link to="/quality" className="dq-belief-link">
+              Explore Quality &amp; Trust <ArrowUpRight size={17} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 07 — HOW WE APPROACH THE WORK: FIVE VALUES */}
+      <section className="dq-values-section">
+        <div className="dq-about-container">
+          <div className="dq-values-heading" data-dq-reveal>
+            <div>
+              <div className="dq-eyebrow">
+                <span className="dq-eyebrow-dot" />
+                OUR VALUES
+              </div>
+              <h2>HOW WE APPROACH THE WORK</h2>
+            </div>
+
+            <p>
+              The way we work matters. These principles guide our
+              communication, collaboration and accountability throughout
+              every engagement.
+            </p>
+          </div>
+
+          <div className="dq-values-grid">
+            <div
+              className="dq-values-shape dq-values-shape--top"
+              aria-hidden="true"
+            />
+
+            {values.map((value, index) => {
+              const Icon = value.icon;
+
+              return (
+                <article
+                  key={value.slug}
+                  className={`dq-value-card dq-value-card--${value.slug}`}
+                  data-dq-reveal
+                  style={{ "--reveal-delay": `${index * 80}ms` }}
+                >
+                  <div className="dq-value-icon">
+                    <Icon size={25} strokeWidth={1.6} />
+                  </div>
+                  <div className="dq-value-content">
+                    <h3>{value.title}</h3>
+                    <p>{value.description}</p>
+                  </div>
+                </article>
+              );
+            })}
+
+            <div className="dq-values-note">
+              <span>DAQUBE / OUR APPROACH</span>
+              <p>
+                Good work is built through clear expectations, responsible
+                decisions and shared ownership.
+              </p>
+            </div>
+
+            <div
+              className="dq-values-shape dq-values-shape--bottom"
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 08 — COMPANY AT A GLANCE */}
+      <section className="dq-company-section">
+        <div className="dq-about-container">
+          <div className="dq-company-heading" data-dq-reveal>
+            <div>
+              <div className="dq-eyebrow">
+                <span className="dq-eyebrow-dot" />
+                A CLOSER LOOK
+              </div>
+              <h2>
+                <WordReveal text="DaQube at a glance." />
+              </h2>
+            </div>
+
+            <p>
+              A quick introduction to what we do, who we work with and how
+              we approach AI data projects.
+            </p>
+          </div>
+
+          <div className="dq-company-table" data-dq-reveal>
+            <div className="dq-company-row">
+              <span>Company</span>
+              <strong>DaQube</strong>
+            </div>
+            <div className="dq-company-row">
+              <span>Founded</span>
+              <strong>2026, India</strong>
+            </div>
+            <div className="dq-company-row">
+              <span>Tagline</span>
+              <strong>The Data Behind Intelligence.</strong>
+            </div>
+            <div className="dq-company-row">
+              <span>Focus</span>
+              <strong>
+                AI data collection, preparation, annotation and evaluation
+              </strong>
+            </div>
+            <div className="dq-company-row">
+              <span>Capabilities</span>
+              <strong>
+                Image, video, audio, speech, text, transcription, annotation
+                and quality assurance
+              </strong>
+            </div>
+            <div className="dq-company-row">
+              <span>Market</span>
+              <strong>Global</strong>
+            </div>
+            <div className="dq-company-row">
+              <span>Engagement</span>
+              <strong>Client projects and tailored data workflows</strong>
+            </div>
+          </div>
+
+          <div className="dq-company-links" data-dq-reveal>
+            <Link to="/about/company">
+              <Building2 size={19} />
+              <span>
+                <strong>Company &amp; Leadership</strong>
+                <small>Explore our organization</small>
+              </span>
+              <ArrowUpRight size={19} />
+            </Link>
+
+            <Link to="/about/careers">
+              <BriefcaseBusiness size={19} />
+              <span>
+                <strong>Workforce &amp; Culture</strong>
+                <small>Explore our working standards</small>
+              </span>
+              <ArrowUpRight size={19} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 09 — FINAL CTA */}
+      <section className="dq-about-cta-section">
+        <div className="dq-about-container">
+          <div className="dq-about-cta" data-dq-reveal>
+            <div className="dq-cta-decoration" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </div>
+
+            <div className="dq-cta-content">
+              <div className="dq-eyebrow dq-eyebrow-light">
+                <Sparkles size={15} />
+                THE NEXT STEP STARTS HERE
+              </div>
+
+              <h2>
+                Have a data challenge?
+                <br />
+                <span>Let&apos;s make it work.</span>
+              </h2>
+
+              <p>
+                Tell us what your AI system needs to see, hear, understand
+                or evaluate. Let&apos;s explore the right approach together.
+              </p>
+
+              <div className="dq-cta-actions">
+                <Link to="/contact" className="dq-button dq-button-white">
+                  Discuss your project <ArrowUpRight size={18} />
+                </Link>
+                <Link to="/services" className="dq-cta-text-link">
+                  Explore capabilities <ArrowRight size={17} />
+                </Link>
+              </div>
+            </div>
+
+            <div className="dq-cta-watermark" aria-hidden="true">
+              DQ
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
 

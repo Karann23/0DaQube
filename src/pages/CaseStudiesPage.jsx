@@ -1,24 +1,49 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, FlaskConical, CheckCircle2, Filter, Layers, ShieldCheck, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  FlaskConical,
+  Filter,
+  Sparkles,
+  Search,
+  Clock3,
+  Layers,
+  Camera
+} from "lucide-react";
 import { caseStudies } from "../lib/content";
 import { ThreeDTiltCard } from "../components/ThreeDVisualizers";
 
 const filterCategories = [
-  "All Workflows",
-  "Autonomous Vehicles & Robotics",
-  "Generative AI & Foundation Models",
-  "Healthcare & Biomedical NLP",
-  "Speech & Acoustic Intelligence",
-  "AI Safety & Offensive Security"
+  "All Case Studies",
+  "Autonomous Vehicles & ADAS",
+  "Computer Vision & Annotation",
+  "Multimodal AI & Foundation Models",
+  "Healthcare & Medical AI",
+  "Video & Motion AI",
+  "NLP & Language Models",
+  "End-to-End AI Data Solutions"
 ];
 
 export function CaseStudiesPage() {
-  const [activeFilter, setActiveFilter] = useState("All Workflows");
+  const [activeFilter, setActiveFilter] = useState("All Case Studies");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredStudies = activeFilter === "All Workflows"
-    ? caseStudies
-    : caseStudies.filter((item) => item.industry === activeFilter || item.industry.includes(activeFilter.split(" ")[0]));
+  const filteredStudies = caseStudies.filter((item) => {
+    const matchesCategory =
+      activeFilter === "All Case Studies" ||
+      item.industry === activeFilter ||
+      item.industry.toLowerCase().includes(activeFilter.split(" ")[0].toLowerCase());
+
+    const q = searchQuery.trim().toLowerCase();
+    const matchesSearch =
+      !q ||
+      item.title.toLowerCase().includes(q) ||
+      item.summary.toLowerCase().includes(q) ||
+      item.industry.toLowerCase().includes(q);
+
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <>
@@ -26,22 +51,22 @@ export function CaseStudiesPage() {
       <section className="page-hero page-hero-dark">
         <div className="container">
           <span className="eyebrow eyebrow-light">
-             ENTERPRISE ENGINEERING BENCHMARKS
+            ENTERPRISE AI DATA CASE STUDIES & TECHNICAL GUIDES
           </span>
           <h1>
             From High-Dimensional Chaos<br />
             <span>to Calibrated Ground Truth.</span>
           </h1>
           <p className="max-w-2xl text-base md:text-lg text-[#CBD5E1] leading-relaxed mt-4 mb-8">
-            Explore verified data pipeline architectures deployed across frontier foundation laboratories, Level-4 autonomous fleets, hospital networks, and multilingual speech systems.
+            Explore interactive case studies and technical blueprints covering ADAS sensor collection, multimodal AI datasets, human vs. automated annotation, medical imaging, human activity video, and NLP training pipelines.
           </p>
 
           <div className="hero-actions">
             <Link className="button button-crimson" to="/contact">
-              Scope Custom Case Study <ArrowUpRight size={17} />
+              Scope Custom Dataset <ArrowUpRight size={17} />
             </Link>
             <a className="text-link text-link-light" href="#case-grid">
-              Browse Production Pipelines <ArrowRight size={16} />
+              Browse All {caseStudies.length} Case Studies <ArrowRight size={16} />
             </a>
           </div>
         </div>
@@ -55,18 +80,34 @@ export function CaseStudiesPage() {
           <div className="case-note">
             <FlaskConical size={20} className="shrink-0 text-[#EC5E27]" />
             <div>
-              <strong className="block text-sm text-[#12151A] mb-0.5">Engineering Architecture Standards:</strong>
+              <strong className="block text-sm text-[#12151A] mb-0.5">
+                Unified Interactive Case Study Architecture:
+              </strong>
               <p className="text-xs text-[#5F646D] leading-relaxed">
-                The workflows below reflect actual operational frameworks, rubric designs, and delivery specifications engineered by DaQube. Specific client identifiers and proprietary model weights are sanitized under non-disclosure obligations.
+                Every case study features an interactive 3D perception or modality visualizer, structured comparison matrix, 5-stage pipeline workflow, recommended photo blueprint, and technical FAQs in a consistent DaQube design system.
               </p>
+            </div>
+          </div>
+
+          {/* Search & Filter Controls */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+            <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#8E939D]">
+              <Filter size={14} className="text-[#EC5E27]" /> FILTER BY DOMAIN ({filteredStudies.length} OF {caseStudies.length}):
+            </div>
+            <div className="relative w-full md:w-80">
+              <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#8E939D]" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search ADAS, medical, multimodal, NLP..."
+                className="w-full pl-9 pr-4 py-2 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] text-xs text-[#12151A] focus:outline-none focus:border-[#EC5E27]"
+              />
             </div>
           </div>
 
           {/* Filter Pills */}
           <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-[#F1F3F5]">
-            <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#8E939D] mr-2">
-              <Filter size={14} /> FILTER BY DOMAIN:
-            </div>
             {filterCategories.map((cat) => (
               <button
                 key={cat}
@@ -89,64 +130,37 @@ export function CaseStudiesPage() {
               <ThreeDTiltCard key={item.slug} className="h-full" maxTilt={8}>
                 <Link className="case-card" to={`/case-studies/${item.slug}`}>
                   <div className="case-image">
-                    <img src={item.image} alt={item.imageAlt} loading="lazy" />
+                    <img
+                      src={item.image}
+                      alt={item.imageAlt}
+                      loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
                     <span>{item.type}</span>
                   </div>
                   <div className="case-copy">
-                    <span className="eyebrow">{item.industry}</span>
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className="eyebrow !mb-0">{item.industry}</span>
+                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#8E939D]">
+                        <Clock3 size={12} /> {item.readTime}
+                      </span>
+                    </div>
                     <h2>{item.title}</h2>
                     <p>{item.summary}</p>
-                    <span className="text-link">
-                      Explore Technical Architecture <ArrowRight size={16} />
-                    </span>
+                    <div className="flex items-center justify-between pt-3 border-t border-[#F1F3F5] mt-auto">
+                      <span className="text-link !mt-0">
+                        Explore Interactive Case Study <ArrowRight size={16} />
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-[11px] font-mono text-[#8E939D]">
+                        <Layers size={12} className="text-[#EC5E27]" /> 5 Phases
+                      </span>
+                    </div>
                   </div>
                 </Link>
               </ThreeDTiltCard>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Technical FAQ for SEO */}
-      <section className="section section-tint">
-        <div className="container max-w-4xl">
-          <div className="text-center mb-12">
-            <span className="eyebrow"> CLIENT ENGAGEMENT FAQ</span>
-            <h2 className="font-display text-2xl md:text-3xl font-extrabold text-[#12151A] tracking-tight mt-1">
-              Frequently Asked Technical Questions
-            </h2>
-          </div>
-
-          <div className="space-y-4">
-            <details className="bg-white p-5 rounded-2xl border border-[#E9ECEF] cursor-pointer group">
-              <summary className="font-bold text-[#12151A] text-sm md:text-base list-none flex items-center justify-between">
-                <span>How do you guarantee zero training data leakage into public evaluation sets?</span>
-                <span className="text-[#EC5E27] font-bold text-lg group-open:rotate-45 transition-transform">+</span>
-              </summary>
-              <p className="text-sm text-[#5F646D] leading-relaxed mt-3 pt-3 border-t border-[#F8F9FA]">
-                All benchmarking datasets and gold-standard evaluation prompts are generated in air-gapped cleanroom environments without using web scrapers. We verify synthetic sets with n-gram containment filters against public pre-training scrapes (Common Crawl, The Pile, GitHub) to ensure strict out-of-distribution evaluation integrity.
-              </p>
-            </details>
-
-            <details className="bg-white p-5 rounded-2xl border border-[#E9ECEF] cursor-pointer group">
-              <summary className="font-bold text-[#12151A] text-sm md:text-base list-none flex items-center justify-between">
-                <span>What are your standard turnaround SLAs for high-throughput sensor fusion pipelines?</span>
-                <span className="text-[#EC5E27] font-bold text-lg group-open:rotate-45 transition-transform">+</span>
-              </summary>
-              <p className="text-sm text-[#5F646D] leading-relaxed mt-3 pt-3 border-t border-[#F8F9FA]">
-                For 3D LiDAR point clouds and synchronized multi-camera temporal tracking, our dedicated production pods deliver up to 50,000 fully annotated frames per week with continuous QA gates enforcing sub-5cm bounding box IoU tolerances. Feasibility pilots and calibration runs are completed within 5 business days.
-              </p>
-            </details>
-
-            <details className="bg-white p-5 rounded-2xl border border-[#E9ECEF] cursor-pointer group">
-              <summary className="font-bold text-[#12151A] text-sm md:text-base list-none flex items-center justify-between">
-                <span>Can DaQube ingest proprietary custom schemas (ROSbag, Parquet, Darwin, COCO)?</span>
-                <span className="text-[#EC5E27] font-bold text-lg group-open:rotate-45 transition-transform">+</span>
-              </summary>
-              <p className="text-sm text-[#5F646D] leading-relaxed mt-3 pt-3 border-t border-[#F8F9FA]">
-                Yes. Our data ingestion framework natively parses raw ROSbag sensor dumps, KITTI/nuScenes formats, Praat TextGrid acoustics, and custom JSON schemas. We deliver production-ready outputs directly into your internal cloud storage enclaves (AWS S3, GCP, Azure Blob) with verified cryptographic checksums.
-              </p>
-            </details>
           </div>
         </div>
       </section>
@@ -156,12 +170,12 @@ export function CaseStudiesPage() {
         <div className="container cta-panel">
           <div className="cta-symbol"><Sparkles size={26} /></div>
           <div className="cta-copy">
-            <span className="eyebrow">CUSTOM BENCHMARK SCOPING</span>
-            <h2>Need a tailored workflow for your proprietary architecture?</h2>
-            <p>Our solutions architects can design a calibrated data sprint matching your exact sensor rig or model loss function.</p>
+            <span className="eyebrow">CUSTOM DATASET & ANNOTATION SCOPING</span>
+            <h2>Need a tailored data workflow for your AI project?</h2>
+            <p>Share your modality, target use case, annotation requirements, and timeline with DaQube.ai to scope a custom dataset pilot.</p>
           </div>
           <Link to="/contact" className="button button-crimson">
-            Schedule Technical Discovery <ArrowRight size={17} />
+            Request Custom Quotation <ArrowRight size={17} />
           </Link>
           <span className="cta-watermark">DQ</span>
         </div>
