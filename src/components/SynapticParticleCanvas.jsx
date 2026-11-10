@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
  * Generates floating synaptic nodes with pulsing axons and smooth cursor gravity.
  * 60/120fps locked, zero external dependencies, battery friendly.
  */
-export function SynapticParticleCanvas({ className = "", particleCount = 45, connectionDistance = 120 }) {
+export function SynapticParticleCanvas({ className = "", particleCount = 55, connectionDistance = 140 }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -33,16 +33,18 @@ export function SynapticParticleCanvas({ className = "", particleCount = 45, con
     };
     window.addEventListener("resize", handleResize);
 
-    // Particle nodes
+    // Particle nodes: vibrant crimson-orange (#EC5E27) and electric cyan-blue (#0EA5E9)
     const particles = [];
     for (let i = 0; i < particleCount; i++) {
+      const isBlue = Math.random() < 0.45;
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
-        radius: Math.random() * 1.8 + 1,
-        color: Math.random() > 0.35 ? "#EC5E27" : "#38BDF8",
+        vx: (Math.random() - 0.5) * 0.55,
+        vy: (Math.random() - 0.5) * 0.55,
+        radius: Math.random() * 2.2 + 1.2,
+        isBlue,
+        color: isBlue ? "#0EA5E9" : "#EC5E27",
         pulse: Math.random() * Math.PI,
       });
     }
@@ -70,7 +72,7 @@ export function SynapticParticleCanvas({ className = "", particleCount = 45, con
         const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
-        p.pulse += 0.02;
+        p.pulse += 0.025;
 
         // Bounce boundaries
         if (p.x < 0 || p.x > width) p.vx *= -1;
@@ -81,18 +83,18 @@ export function SynapticParticleCanvas({ className = "", particleCount = 45, con
           const dx = mouse.x - p.x;
           const dy = mouse.y - p.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            p.x += dx * 0.012;
-            p.y += dy * 0.012;
+          if (dist < 160) {
+            p.x += dx * 0.015;
+            p.y += dy * 0.015;
           }
         }
 
         // Draw node
-        const dynamicRadius = p.radius + Math.sin(p.pulse) * 0.4;
+        const dynamicRadius = p.radius + Math.sin(p.pulse) * 0.5;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, Math.max(0.5, dynamicRadius), 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, Math.max(0.6, dynamicRadius), 0, Math.PI * 2);
         ctx.fillStyle = p.color;
-        ctx.shadowBlur = 8;
+        ctx.shadowBlur = 10;
         ctx.shadowColor = p.color;
         ctx.fill();
 
@@ -107,9 +109,11 @@ export function SynapticParticleCanvas({ className = "", particleCount = 45, con
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            const alpha = (1 - dist / connectionDistance) * 0.22;
-            ctx.strokeStyle = `rgba(236, 94, 39, ${alpha})`;
-            ctx.lineWidth = 0.8;
+            const alpha = (1 - dist / connectionDistance) * 0.35;
+            ctx.strokeStyle = p.isBlue
+              ? `rgba(14, 165, 233, ${alpha})`
+              : `rgba(236, 94, 39, ${alpha})`;
+            ctx.lineWidth = 1.0;
             ctx.shadowBlur = 0;
             ctx.stroke();
           }
@@ -132,7 +136,7 @@ export function SynapticParticleCanvas({ className = "", particleCount = 45, con
   return (
     <canvas
       ref={canvasRef}
-      className={`pointer-events-none absolute inset-0 z-0 w-full h-full ${className}`}
+      className={`pointer-events-none absolute inset-0 z-[6] w-full h-full ${className}`}
       aria-hidden="true"
     />
   );

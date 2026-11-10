@@ -830,7 +830,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Multilingual Audio Transcription",
       icon: Users2,
       summary: "Audio transcription and synchronized translation across 100+ global languages, regional dialects, and accents.",
-      photoUrl: "/images/Solutions/Speech Transcription/",
+      photoUrl: "/images/Solutions/Speech Transcription/Multilingual Audio Transcription_card.jpg",
       photoLabel: "Global Multilingual Audio Console",
       useCases: [
         "International broadcast subtitle translation",
@@ -845,7 +845,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Medical & Clinical Transcription",
       icon: HeartPulse,
       summary: "Specialized clinical transcription converting physician dictation and patient consults into formatted medical records.",
-      photoUrl: "/images/Solutions/Speech Transcription/",
+      photoUrl: "/images/Solutions/Speech Transcription/Medical & Clinical Transcription_card.avif",
       photoLabel: "Clinical Patient Record Dictation",
       useCases: [
         "Electronic health record (EHR) chart notes",
@@ -860,7 +860,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Legal & Courtroom Transcription",
       icon: Shield,
       summary: "Strict, verbatim legal transcription of witness depositions, court hearings, arbitrations, and recorded evidence.",
-      photoUrl: "/images/Solutions/Speech Transcription/",
+      photoUrl: "/images/Solutions/Speech Transcription/Legal & Courtroom Transcription_card.jpg",
       photoLabel: "Official Legal Court Proceeding Record",
       useCases: [
         "Sworn deposition transcripts with page-line stamps",
@@ -875,7 +875,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Media Subtitling & Closed Captions",
       icon: Sparkles,
       summary: "Time-aligned broadcast closed captions and multilingual subtitles formatted for streaming platforms in SRT, VTT, and SCC.",
-      photoUrl: "/images/Solutions/Speech Transcription/",
+      photoUrl: "/images/Solutions/Speech Transcription/Media Subtitling & Closed Captions_card.jpg",
       photoLabel: "Broadcast Subtitle & Closed Caption Suite",
       useCases: [
         "Streaming entertainment and film subtitling",
@@ -890,7 +890,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Call Center Quality Transcription",
       icon: Headphones,
       summary: "Customer support call transcripts tagged for agent compliance, resolution status, customer sentiment, and intent.",
-      photoUrl: "/images/Solutions/Speech Transcription/",
+      photoUrl: "/images/Solutions/Speech Transcription/Call Center Quality Transcription_card.jpg",
       photoLabel: "Customer Support Audio QA Dashboard",
       useCases: [
         "100% automated call QA scoring and audit",
@@ -899,21 +899,6 @@ export const SERVICE_DOMAINS_MAP = {
         "Agent training and coaching feedback loops"
       ]
     },
-    {
-      id: "phonetic-alignment",
-      badge: "Phonetic Alignment",
-      title: "Phonetic & Pronunciation Alignment",
-      icon: Bot,
-      summary: "Sub-10 millisecond phonetic phone-level and word-level alignments designed to train speech synthesizer models.",
-      photoUrl: "/images/Solutions/Speech Transcription/",
-      photoLabel: "Phonetic Praat TextGrid Alignment",
-      useCases: [
-        "Acoustic speech recognition model training",
-        "Neural text-to-speech phoneme duration models",
-        "Pronunciation evaluation in language learning",
-        "Automated karaoke and vocal lyric tracking"
-      ]
-    }
   ],
 
   // 7. ADAS & LIDAR DATA ANNOTATION (7 Categories Ranked by Market Demand)

@@ -6,8 +6,10 @@ import { SynapticParticleCanvas } from "./SynapticParticleCanvas";
 /**
  * SynapticHero with Authentic 4K Robot Video
  * - EXACT same text, fonts, buttons, proof points, and bottom bar from moving hands version
- * - Replacing previous animation with the user's high-definition robot video
- * - Starts below navigation bar
+ * - Cleaned dot-matrix background
+ * - Hero extends seamlessly to top under floating header with zero gap
+ * - Full robot head visible and never cut off (object-position: center top)
+ * - Blue and orange synaptic animation brought ON TOP of video
  * - Responsive 3D parallax on mouse move + guaranteed autoplay on mobile & Safari
  */
 export function SynapticHero() {
@@ -49,9 +51,8 @@ export function SynapticHero() {
       {/* Background Grid & Ambient Glow */}
       <div className="hero-grid" aria-hidden="true" />
       <div className="hero-ambient-glow" aria-hidden="true" />
-      <SynapticParticleCanvas />
 
-      {/* Layer 1: 3D Robot Video Motion Layer in Background (Starts below navigation bar) */}
+      {/* Layer 1: 3D Robot Video Motion Layer in Background (Flows seamlessly from top, full head in view) */}
       <div
         className="hero-robot-video-layer"
         style={{
@@ -80,7 +81,10 @@ export function SynapticHero() {
         </div>
       </div>
 
-      {/* Layer 2: Central Content Layer (Overlaid clearly in front of video) */}
+      {/* Layer 2: Blue & Orange Synaptic Animation brought ON TOP of the video */}
+      <SynapticParticleCanvas />
+
+      {/* Layer 3: Central Content Layer (Overlaid clearly in front of video) */}
       <div className="container hero-content-layer">
         <div
           className="hero-text-box"
