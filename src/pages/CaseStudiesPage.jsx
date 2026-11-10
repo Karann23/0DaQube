@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -28,6 +28,13 @@ const filterCategories = [
 export function CaseStudiesPage() {
   const [activeFilter, setActiveFilter] = useState("All Case Studies");
   const [searchQuery, setSearchQuery] = useState("");
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
 
   const filteredStudies = caseStudies.filter((item) => {
     const matchesCategory =
@@ -47,9 +54,40 @@ export function CaseStudiesPage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="page-hero page-hero-dark">
-        <div className="container">
+      {/* Hero Section with Cinematic Background Video */}
+      <section className="relative overflow-hidden page-hero page-hero-dark min-h-[480px] md:min-h-[520px] flex items-center">
+        {/* Background Video */}
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          webkit-playsinline="true"
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover object-[75%_center] md:object-[center_right] pointer-events-none opacity-90 z-0"
+        >
+          <source src="/videos/case-study.mp4" type="video/mp4" />
+        </video>
+
+        {/* Soft Contrast Gradient Overlay ensuring text legibility while letting 3D visual shine */}
+        <div
+          className="absolute inset-0 pointer-events-none z-[1]"
+          style={{
+            background:
+              "linear-gradient(95deg, rgba(253, 253, 241, 0.97) 0%, rgba(253, 253, 241, 0.90) 38%, rgba(253, 253, 241, 0.55) 68%, rgba(253, 253, 241, 0.20) 100%)",
+          }}
+        />
+
+        {/* Subtle bottom fade into content */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none z-[1]"
+          style={{
+            background: "linear-gradient(to bottom, transparent, rgba(253, 253, 241, 0.8) 70%, #FFFFFF 100%)",
+          }}
+        />
+
+        <div className="container relative z-10 w-full">
           <span className="eyebrow eyebrow-light">
             ENTERPRISE AI DATA CASE STUDIES & TECHNICAL GUIDES
           </span>
@@ -57,20 +95,19 @@ export function CaseStudiesPage() {
             From High-Dimensional Chaos<br />
             <span>to Calibrated Ground Truth.</span>
           </h1>
-          <p className="max-w-2xl text-base md:text-lg text-[#CBD5E1] leading-relaxed mt-4 mb-8">
+          <p className="max-w-2xl text-base md:text-lg text-[#5F646D] leading-relaxed mt-4 mb-8">
             Explore interactive case studies and technical blueprints covering ADAS sensor collection, multimodal AI datasets, human vs. automated annotation, medical imaging, human activity video, and NLP training pipelines.
           </p>
 
           <div className="hero-actions">
-            <Link className="button button-crimson" to="/contact">
+            <Link className="button button-crimson shadow-lg" to="/contact">
               Scope Custom Dataset <ArrowUpRight size={17} />
             </Link>
             <a className="text-link text-link-light" href="#case-grid">
-              Browse All {caseStudies.length} Case Studies <ArrowRight size={16} />
+              Browse All Case Studies <ArrowRight size={16} />
             </a>
           </div>
         </div>
-        <div className="page-hero-glow" />
       </section>
 
       {/* Main Content & Grid */}
