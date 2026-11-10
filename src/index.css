@@ -339,11 +339,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   overflow: hidden;
   background: var(--obsidian);
   color: var(--silver);
-  min-height: calc(100vh - 78px);
+  margin-top: -96px; /* Pulls hero flush to the very top edge of the website, behind the frosted glass header */
+  padding-top: calc(96px + 44px); /* Preserves perfect vertical rhythm and prevents header overlap */
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 40px;
 }
 
 .hero-grid {
@@ -444,25 +446,119 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   color: var(--crimson);
 }
 
-/* Layer 2: 3D Hands Motion Layer (z-index: 5) — Seamless dark screen blending */
-.hero-hands-overlap-layer {
+/* ==========================================================================
+   Layer 2: Interactive 3D Cursor-Tracking Robot Layer
+   - Extends from the very top of the website behind the glass header
+   - 3D perspective, responsive tracking, and mobile-safe fallbacks
+   ========================================================================== */
+.hero-top-full-bleed-bg {
   position: absolute;
-  inset: 0;
-  z-index: 5;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 2;
   overflow: hidden;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hero-hands-video {
+.hero-robot-scene-bg {
+  position: absolute;
+  inset: -20px;
+  background-image: 
+    radial-gradient(ellipse at 70% 30%, rgba(236, 94, 39, 0.2) 0%, rgba(253, 253, 241, 0) 65%),
+    url('/images/robot-hero-bg.jpg');
+  background-size: cover;
+  background-position: top right;
+  background-repeat: no-repeat;
+  opacity: 0.85;
+  filter: saturate(1.08) contrast(1.02);
+  mask-image: radial-gradient(ellipse at 65% 45%, black 45%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at 65% 45%, black 45%, transparent 85%);
+  will-change: transform;
+}
+
+.hero-robot-overlap-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-robot-3d-stage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 1450px;
+  margin: 0 auto;
+  pointer-events: none;
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
+}
+
+.hero-robot-avatar-wrapper {
+  position: absolute;
+  top: 0; /* Starts directly from the very top edge of the website */
+  right: 2%;
+  width: min(540px, 46vw);
+  height: 94%;
+  max-height: 860px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  transform-origin: 50% 32%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+  transition: opacity 0.4s ease-out;
+}
+
+.hero-robot-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  mix-blend-mode: multiply;
-  opacity: 1;
+  object-fit: contain;
+  object-position: top center;
+  filter: 
+    drop-shadow(0 25px 40px rgba(236, 94, 39, 0.22))
+    drop-shadow(0 12px 20px rgba(18, 21, 26, 0.14));
+  pointer-events: none;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.hero-robot-core-glow {
+  position: absolute;
+  top: 26%;
+  left: 48%;
+  width: 190px;
+  height: 190px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(236, 94, 39, 0.5) 0%, rgba(236, 94, 39, 0) 70%);
+  filter: blur(24px);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: robot-core-pulse 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes robot-core-pulse {
+  0% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  100% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
 }
 
 .hero-floating-caption {
@@ -2070,15 +2166,25 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
     gap: 16px;
     font-size: 11px;
   }
-  .hero-hands-overlap-layer {
-    opacity: 0.95;
+  .hero-robot-overlap-layer {
     z-index: 5;
     pointer-events: none;
+    opacity: 0.95;
   }
-  .hero-hands-video {
-    object-fit: contain;
-    mix-blend-mode: multiply;
-    transform: scale(1.15) translateY(-2%);
+  .hero-robot-avatar-wrapper {
+    right: 50%;
+    transform: translateX(50%);
+    width: min(85vw, 380px);
+    height: 70vh;
+    opacity: 0.28;
+    filter: drop-shadow(0 15px 25px rgba(236, 94, 39, 0.15));
+  }
+  .hero-robot-scene-bg {
+    opacity: 0.55;
+    inset: 0;
+  }
+  .hero-text-box {
+    text-shadow: 0 1px 3px rgba(253, 253, 241, 0.9), 0 0 24px rgba(253, 253, 241, 0.95);
   }
   .hero-floating-caption {
     bottom: 50px;

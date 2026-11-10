@@ -443,7 +443,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Spontaneous Conversational Speech",
       icon: MessageSquare,
       summary: "Natural, unscripted discussions between multiple native speakers with realistic interruptions and colloquial expressions.",
-      photoUrl: "/images/Solutions/video collection/",
+      photoUrl: "/images/Solutions/Audio Collection/Spontaneous Conversational Speech_card.webp",
       photoLabel: "Multi-Speaker Conversational Acoustic Room",
       useCases: [
         "Virtual assistant dialogue handling",
@@ -458,7 +458,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Multilingual & Multi-Dialect Speech",
       icon: Users2,
       summary: "Voice recordings from native speakers covering hundreds of languages, accents, and underrepresented regional dialects.",
-      photoUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Audio Collection/Multilingual & Multi-Dialect Speech.webp",
       photoLabel: "Global Linguistic Field Recording Array",
       useCases: [
         "Global voice recognition deployment",
@@ -473,7 +473,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Call Center & Telephony Audio",
       icon: Headphones,
       summary: "Dual-channel 8kHz and 16kHz voice recordings captured from actual telephony lines with authentic background room noise.",
-      photoUrl: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Audio Collection/Call Center & Telephony Audio_card.jpg",
       photoLabel: "Telephony Acoustic & Audio Desk",
       useCases: [
         "Automated customer service phone routing",
@@ -488,7 +488,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Scripted & Prompted Voice Commands",
       icon: Mic,
       summary: "Standardized voice commands recorded in quiet and noisy environments to train wake-word triggers and short utterances.",
-      photoUrl: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Audio Collection/Scripted & Prompted Voice Commands_card.jpg",
       photoLabel: "Acoustic Studio Wake-Word Calibration",
       useCases: [
         "Smart speaker wake-word detection",
@@ -503,7 +503,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Noise-Resistant Far-Field Audio",
       icon: Bot,
       summary: "Voice audio captured across distances using multi-microphone hardware arrays in reverberant and noisy rooms.",
-      photoUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Audio Collection/Noise-Resistant Far-Field Audio_card.webp",
       photoLabel: "Multi-Microphone Array Test Chamber",
       useCases: [
         "Living room voice commands across background TV noise",
@@ -518,7 +518,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Expressive Neural TTS Voice Sets",
       icon: Sparkles,
       summary: "Studio-grade 48kHz audio recorded by professional voice talent conveying varied emotions, paces, and speaking styles.",
-      photoUrl: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Audio Collection/Expressive Neural TTS Voice Sets_card.jpg",
       photoLabel: "Studio 48kHz Phonetic Recording Booth",
       useCases: [
         "Realistic synthetic brand voice agents",
@@ -533,7 +533,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Children & Elderly Voice Corpora",
       icon: Users2,
       summary: "Acoustic voice recordings capturing younger children and older adults to overcome pitch and articulation variance.",
-      photoUrl: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Audio Collection/Children & Elderly Voice Corpora_card.webp",
       photoLabel: "Multi-Generational Acoustic Manifest",
       useCases: [
         "Kids voice games and reading assistants",
@@ -548,7 +548,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Medical & Clinical Dictation Audio",
       icon: HeartPulse,
       summary: "Doctor dictation and clinical consultations recorded under strict privacy standards with complex medical vocabulary.",
-      photoUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Audio Collection/Medical & Clinical Dictation Audio_card.webp",
       photoLabel: "Clinical Medical Dictation Suite",
       useCases: [
         "Automated clinical EHR chart transcription",
@@ -567,7 +567,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Document Dataset Collection & OCR",
       icon: FileText,
       summary: "Scanned and digital receipts, bills, invoices, and bank records with ground-truth text and table boundaries.",
-      photoUrl: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Text Collection/Document Dataset Collection & OCR_card.jpg",
       photoLabel: "Scanned Commercial Invoice Corpus",
       useCases: [
         "Automated accounts payable data entry",
@@ -582,7 +582,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Multilingual NLP Corpora",
       icon: Users2,
       summary: "Diverse text collections spanning dozens of languages and regional dialects for natural language processing.",
-      photoUrl: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Text Collection/Multilingual NLP Corpora_card.jpg",
       photoLabel: "Multilingual Parallel Text Corpus",
       useCases: [
         "Machine translation model training",
@@ -597,7 +597,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Conversational AI & Chatbot Logs",
       icon: MessageSquare,
       summary: "Curated multi-turn customer dialogues and support chat logs labeled for user intent, sentiment, and resolution.",
-      photoUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Text Collection/Conversational AI & Chatbot Logs_card.jpg",
       photoLabel: "Multi-Turn Customer Interaction Transcript",
       useCases: [
         "AI customer support chatbot fine-tuning",
@@ -612,7 +612,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Domain-Specific Technical Corpora",
       icon: Boxes,
       summary: "Specialized text corpora covering finance, law, engineering, and medical literature for high-accuracy domain AI models.",
-      photoUrl: "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Text Collection/Domain-Specific Technical Corpora_card.jpg",
       photoLabel: "Legal & Regulatory Text Archive",
       useCases: [
         "Legal contract analysis and clause extraction",
@@ -627,7 +627,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "OCR & Handwritten Text Datasets",
       icon: FileText,
       summary: "High-variation handwritten notes, doctor prescriptions, historical manuscripts, and forms with character ground truth.",
-      photoUrl: "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Text Collection/OCR & Handwritten Text Datasets_card.avif",
       photoLabel: "Handwritten Form & Manuscript Capture",
       useCases: [
         "Doctor prescription digitizing",
@@ -642,7 +642,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Social Media & Sentiment Datasets",
       icon: Sparkles,
       summary: "User reviews, social comments, and forums tagged for positive/negative sentiment, toxic language, and brand affinity.",
-      photoUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Text Collection/Social Media & Sentiment Datasets_card.jpg",
       photoLabel: "Product Review & Sentiment Feed",
       useCases: [
         "E-commerce product sentiment analysis",
@@ -657,7 +657,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Code & Programming Language Corpora",
       icon: Bot,
       summary: "Curated open-source and synthetic code repositories with syntax annotations, unit tests, and problem descriptions.",
-      photoUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Text Collection/Code & Programming Language Corpora_card.jpg",
       photoLabel: "Multi-Language Source Code Manifest",
       useCases: [
         "AI code completion and copilot training",
@@ -666,24 +666,9 @@ export const SERVICE_DOMAINS_MAP = {
         "API documentation extraction"
       ]
     },
-    {
-      id: "rlhf-instruction-pairs",
-      badge: "RLHF & Preference",
-      title: "Question-Answering & Instruction Tuning",
-      icon: Layers,
-      summary: "Human-crafted instruction prompts, ranking pairs, and verified factual responses for Large Language Model alignment.",
-      photoUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85",
-      photoLabel: "Human Feedback & Preference Dataset",
-      useCases: [
-        "LLM instruction following and reasoning alignment",
-        "RLHF human preference reward modeling",
-        "Hallucination reduction in generative outputs",
-        "Safety guardrail fine-tuning"
-      ]
-    }
   ],
 
-  // 5. IMAGE & VIDEO ANNOTATION (8 Categories Ranked by Market Demand)
+  // 5. IMAGE & VIDEO ANNOTATION
   "annotation": [
     {
       id: "bounding-boxes-polygons",
@@ -691,7 +676,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "2D & 3D Bounding Boxes",
       icon: Crosshair,
       summary: "Precise rectangular and oriented bounding boxes around target objects across retail, automotive, and industrial imagery.",
-      photoUrl: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Annotation/",
       photoLabel: "Multi-Class Bounding Box Coordinates",
       useCases: [
         "Autonomous driving vehicle and pedestrian detection",

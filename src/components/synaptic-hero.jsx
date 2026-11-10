@@ -3,49 +3,209 @@ import { Link } from "react-router-dom";
 import { ArrowDownRight, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { SynapticParticleCanvas } from "./SynapticParticleCanvas";
 
+/**
+ * SynapticHero with Interactive 3D Cursor-Tracking Robot
+ * - Extends to the very top edge of the website behind the frosted glass navigation bar
+ * - 3D head/body tracking follows cursor movements across all browsers
+ * - Full cross-browser support: Chrome, Firefox, Edge, Safari (macOS & iOS), Mobile Android
+ * - Touch & gyroscope (device orientation) tilt tracking for mobile devices
+ * - Ambient lifelike idle breathing cycle when mouse/touch is idle
+ */
 export function SynapticHero() {
-    const [parallax, setParallax] = useState({ x: 0, y: 0 });
-    const containerRef = useRef(null);
-    const videoRef = useRef(null);
+  const containerRef = useRef(null);
+  const robotRef = useRef(null);
+  const bgRef = useRef(null);
 
-    // Guarantee cross-browser video autoplay (Safari iOS, Chrome Android, Edge, desktop)
-    useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.play().catch(() => {
-                // Autoplay may be restricted in low-power battery saving modes; fallback poster handles visual
-            });
-        }
-    }, []);
+  // Targets and current interpolated physics values
+  const coords = useRef({
+    targetX: 0,
+    targetY: 0,
+    currentX: 0,
+    currentY: 0,
+    isInteracting: false,
+    lastInteractionTime: 0,
+  });
 
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  useEffect(() => {
+    setHasLoaded(true);
+    let animationFrameId;
+
+    // Smooth physics loop (lerp damping for 60/120fps fluid motion)
+    const updatePhysics = (time) => {
+      const c = coords.current;
+
+      // If idle for more than 1.5s, add a gentle ambient breathing & glancing motion
+      const idleTime = time - c.lastInteractionTime;
+      let idleOffsetX = 0;
+      let idleOffsetY = 0;
+
+      if (!c.isInteracting || idleTime > 1500) {
+        // Natural lifelike sinusoidal breathing and micro glances
+        idleOffsetX = Math.sin(time * 0.0012) * 0.18 + Math.sin(time * 0.0023) * 0.08;
+        idleOffsetY = Math.cos(time * 0.0016) * 0.12;
+      }
+
+      // Smooth interpolation toward target
+      const effectiveTargetX = c.isInteracting ? c.targetX : idleOffsetX;
+      const effectiveTargetY = c.isInteracting ? c.targetY : idleOffsetY;
+
+      // Smooth lerp easing factor (0.075 provides buttery-smooth weight without lag)
+      c.currentX += (effectiveTargetX - c.currentX) * 0.075;
+      c.currentY += (effectiveTargetY - c.currentY) * 0.075;
+
+      const x = c.currentX; // range approx -1 to 1
+      const y = c.currentY;
+
+      // 3D rotations for the robot (looking right when cursor is right, left when cursor is left)
+      const rotateY = x * 18;          // degrees around vertical axis
+      const rotateX = -y * 12;         // degrees around horizontal axis
+      const rotateZ = x * 2.5;         // subtle organic head roll
+      const translateX = x * 22;       // px horizontal parallax
+      const translateY = y * 14;       // px vertical parallax
+
+      if (robotRef.current) {
+        const transformString = `perspective(1000px) translate3d(${translateX}px, ${translateY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+        robotRef.current.style.transform = transformString;
+        robotRef.current.style.webkitTransform = transformString;
+      }
+
+      // Ambient background subtle inverse parallax
+      if (bgRef.current) {
+        const bgTransform = `translate3d(${x * -12}px, ${y * -8}px, 0) scale(1.04)`;
+        bgRef.current.style.transform = bgTransform;
+        bgRef.current.style.webkitTransform = bgTransform;
+      }
+
+      animationFrameId = requestAnimationFrame(updatePhysics);
+    };
+
+    animationFrameId = requestAnimationFrame(updatePhysics);
+
+    // Mouse Tracking across entire window
     const handleMouseMove = (e) => {
-        if (!containerRef.current) return;
-        // Don't apply mouse parallax on touch/mobile devices
-        if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
+      const c = coords.current;
+      c.isInteracting = true;
+      c.lastInteractionTime = performance.now();
 
-        const rect = containerRef.current.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2; // -1 to 1
-        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-        setParallax({ x, y });
+      // Normalize coordinates -1 (far left / top) to +1 (far right / bottom)
+      const normX = (e.clientX / window.innerWidth - 0.5) * 2;
+      const normY = (e.clientY / window.innerHeight - 0.5) * 2;
+
+      c.targetX = Math.max(-1.2, Math.min(1.2, normX));
+      c.targetY = Math.max(-1.2, Math.min(1.2, normY));
     };
 
     const handleMouseLeave = () => {
-        setParallax({ x: 0, y: 0 });
+      coords.current.isInteracting = false;
+      coords.current.targetX = 0;
+      coords.current.targetY = 0;
     };
 
-    return (<section ref={containerRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="hero synaptic-dark-hero" aria-label="DaQube Human-Centered AI Data Hero">
-      {/* Background High-Tech Grid & Ambient Accent Glow */}
-      <div className="hero-grid" aria-hidden="true"/>
-      <div className="hero-ambient-glow" aria-hidden="true"/>
-      <SynapticParticleCanvas />
+    // Touch Tracking for iOS / Safari / Mobile
+    const handleTouchMove = (e) => {
+      if (!e.touches || e.touches.length === 0) return;
+      const touch = e.touches[0];
+      const c = coords.current;
+      c.isInteracting = true;
+      c.lastInteractionTime = performance.now();
 
-      {/* Layer 1: Central Content Layer (Z-Index: 10) */}
+      const normX = (touch.clientX / window.innerWidth - 0.5) * 2;
+      const normY = (touch.clientY / window.innerHeight - 0.5) * 2;
+      c.targetX = Math.max(-1.2, Math.min(1.2, normX));
+      c.targetY = Math.max(-1.2, Math.min(1.2, normY));
+    };
+
+    const handleTouchEnd = () => {
+      coords.current.isInteracting = false;
+      coords.current.targetX = 0;
+      coords.current.targetY = 0;
+    };
+
+    // Gyroscope / Device Orientation for Mobile tilt
+    const handleOrientation = (e) => {
+      if (e.gamma === null || e.beta === null) return;
+      const c = coords.current;
+      // Gamma: left to right (-45 to 45 deg)
+      // Beta: front to back tilt (-30 to 60 deg)
+      const tiltX = Math.max(-1, Math.min(1, e.gamma / 35));
+      const tiltY = Math.max(-1, Math.min(1, (e.beta - 35) / 35));
+
+      c.targetX = tiltX;
+      c.targetY = tiltY;
+      c.isInteracting = true;
+      c.lastInteractionTime = performance.now();
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener("deviceorientation", handleOrientation, { passive: true });
+    }
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
+      if (window.DeviceOrientationEvent) {
+        window.removeEventListener("deviceorientation", handleOrientation);
+      }
+    };
+  }, []);
+
+  return (
+    <section
+      ref={containerRef}
+      className="hero synaptic-dark-hero synaptic-robot-hero"
+      aria-label="DaQube Human-Centered AI Data Hero"
+    >
+      {/* Background Layer extending behind the top navigation bar */}
+      <div className="hero-top-full-bleed-bg" aria-hidden="true">
+        {/* Soft Ambient Scene Graphic & Grid */}
+        <div ref={bgRef} className="hero-robot-scene-bg" />
+        <div className="hero-grid" />
+        <div className="hero-ambient-glow" />
+        <SynapticParticleCanvas />
+      </div>
+
+      {/* Layer 2: Interactive 3D Cursor-Tracking Robot (Extends from top of the website) */}
+      <div className="hero-robot-overlap-layer" aria-hidden="true">
+        <div className="hero-robot-3d-stage">
+          <div
+            ref={robotRef}
+            className={`hero-robot-avatar-wrapper ${hasLoaded ? "hero-robot-loaded" : ""}`}
+          >
+            {/* The transparent cutout robot image */}
+            <img
+              src="/images/robot-hero-cutout.png"
+              alt="Autonomous Intelligent Perception Robot"
+              className="hero-robot-image"
+              loading="eager"
+              decoding="async"
+            />
+            {/* Ambient Eye and Core Glow Highlight */}
+            <div className="hero-robot-core-glow" />
+          </div>
+
+          {/* Floating Capsule Caption */}
+          <div className="hero-floating-caption">
+            AUTONOMOUS PERCEPTION <span>&rarr;</span> MODEL INTELLIGENCE
+          </div>
+        </div>
+      </div>
+
+      {/* Layer 1: Central Text Content Layer */}
       <div className="container hero-content-layer">
-        <div className="hero-text-box" style={{
-            transform: `translate(${parallax.x * -6}px, ${parallax.y * -4}px)`
-        }}>
+        <div className="hero-text-box">
           {/* Kicker */}
           <div className="hero-kicker">
-             HUMAN-CENTERED AI DATA
+            HUMAN-CENTERED AI DATA
           </div>
 
           {/* Headline */}
@@ -61,59 +221,34 @@ export function SynapticHero() {
           {/* CTAs */}
           <div className="hero-actions">
             <Link className="button button-crimson" to="/contact">
-              Discuss your project <ArrowUpRight size={17}/>
+              Discuss your project <ArrowUpRight size={17} />
             </Link>
             <a className="text-link text-link-silver" href="#services-section">
-              Explore our services <ArrowRight size={17}/>
+              Explore our services <ArrowRight size={17} />
             </a>
           </div>
 
           {/* Proof Points */}
           <div className="hero-proof">
             <span>
-              <Check size={15}/> Project-specific workflows
+              <Check size={15} /> Project-specific workflows
             </span>
             <span>
-              <Check size={15}/> Human-led quality review
+              <Check size={15} /> Human-led quality review
             </span>
           </div>
-        </div>
-      </div>
-
-      {/* Layer 2: 3D Hands Motion Layer (Z-Index: 20) — High Performance Transparent Alpha */}
-      <div className="hero-hands-overlap-layer" style={{
-            transform: `perspective(1200px) rotateX(${parallax.y * -2.5}deg) rotateY(${parallax.x * 3.5}deg) translateZ(0)`,
-            WebkitPerspective: "1200px"
-        }} aria-hidden="true">
-        <video 
-          ref={videoRef} 
-          className="hero-hands-video" 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          webkit-playsinline="true"
-          preload="auto" 
-          poster="/images/synaptic-hands-alpha-poster.png"
-        >
-          {/* Universal ivory-blended MP4 for Safari, iOS, and seamless light theme blending */}
-          <source src="/videos/synaptic-hands.mp4" type="video/mp4"/>
-          {/* WebM with VP9 Alpha fallback */}
-          <source src="/videos/synaptic-hands-alpha.webm" type="video/webm"/>
-        </video>
-
-        {/* Floating Capsule Caption */}
-        <div className="hero-floating-caption">
-          HUMAN INPUT <span>&rarr;</span> MODEL INTELLIGENCE
         </div>
       </div>
 
       {/* Bottom Status Banner */}
       <div className="container hero-bottom-bar">
         <span>BUILT AROUND YOUR MODEL'S NEEDS</span>
-        <div className="hero-bottom-line"/>
+        <div className="hero-bottom-line" />
         <span>SCOPED. REVIEWED. READY.</span>
-        <ArrowDownRight size={18}/>
+        <ArrowDownRight size={18} />
       </div>
-    </section>);
+    </section>
+  );
 }
+
+export default SynapticHero;
