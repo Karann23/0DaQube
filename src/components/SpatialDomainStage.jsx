@@ -676,7 +676,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "2D & 3D Bounding Boxes",
       icon: Crosshair,
       summary: "Precise rectangular and oriented bounding boxes around target objects across retail, automotive, and industrial imagery.",
-      photoUrl: "/images/Solutions/Annotation/",
+      photoUrl: "/images/Solutions/Annotation/2D & 3D Bounding Boxes_card.jpg",
       photoLabel: "Multi-Class Bounding Box Coordinates",
       useCases: [
         "Autonomous driving vehicle and pedestrian detection",
@@ -691,7 +691,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Polygonal & Semantic Segmentation",
       icon: Layers,
       summary: "Pixel-accurate polygonal masks tracing complex natural contours of roads, buildings, medical lesions, and vegetation.",
-      photoUrl: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Annotation/Polygonal & Semantic Segmentation_card.jpg",
       photoLabel: "Pixel-Level Polygonal Semantic Mask",
       useCases: [
         "Autonomous vehicle drivable road space detection",
@@ -706,7 +706,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Video Tracking & Multi-Object IDs",
       icon: Activity,
       summary: "Persistent tracking IDs assigned to moving pedestrians, vehicles, and objects across continuous video sequences.",
-      photoUrl: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Annotation/Video Tracking & Multi-Object IDs_card.webp",
       photoLabel: "Continuous Temporal Object Trajectory",
       useCases: [
         "Highway vehicle speed and trajectory analysis",
@@ -721,7 +721,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Keypoint & Skeletal Pose Estimation",
       icon: Users2,
       summary: "Anatomical landmark coordinates marking eyes, noses, limb joints, and fingers for human motion and fitness models.",
-      photoUrl: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Annotation/Keypoint & Skeletal Pose Estimation_card.jpg",
       photoLabel: "33-Point Skeletal Keypoint Mapping",
       useCases: [
         "Fitness app exercise repetition and form counting",
@@ -736,7 +736,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Polyline & Spline Annotation",
       icon: Car,
       summary: "Accurate polyline vectors tracing highway lane dividers, road curbs, painted lines, and overhead utility cables.",
-      photoUrl: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Annotation/Polyline & Spline Annotation_card.jpg",
       photoLabel: "Highway Lane Divider Polyline Vectors",
       useCases: [
         "ADAS lane departure warning systems",
@@ -751,7 +751,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Panoptic Scene Segmentation",
       icon: Boxes,
       summary: "Unified labeling that simultaneously assigns unique instance IDs to distinct objects and category labels to backgrounds.",
-      photoUrl: "https://images.unsplash.com/photo-1477959858617-67f30bc75b82?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Annotation/Panoptic Scene Segmentation_caard.jpg",
       photoLabel: "Unified Panoptic Scene Ground Truth",
       useCases: [
         "Comprehensive city scene understanding",
@@ -766,7 +766,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "3D Cuboid & Spatial Bounding",
       icon: Crosshair,
       summary: "3D bounding boxes with depth, orientation, yaw, pitch, and roll coordinates annotated on 2D images and sensor feeds.",
-      photoUrl: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Annotation/3D Cuboid & Spatial Bounding_card.jpg",
       photoLabel: "Oriented 3D Spatial Cuboids",
       useCases: [
         "Vehicle distance and orientation estimation",
@@ -781,7 +781,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "OCR & Document Text Annotation",
       icon: FileText,
       summary: "Tight word-level and line-level bounding polygons paired with character-accurate transcriptions of text in images.",
-      photoUrl: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Annotation/OCR & Document Text Annotation_card.jpg",
       photoLabel: "Word Bounding Polygons & OCR Ground Truth",
       useCases: [
         "Street sign and storefront name reading",
@@ -800,7 +800,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Clean Verbatim & Strict Verbatim",
       icon: Headphones,
       summary: "Accurate written transcripts of informal spoken discussions, podcasts, and meetings across varied speaking styles.",
-      photoUrl: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Annotation/",
       photoLabel: "Audio Waveform & Transcription Deck",
       useCases: [
         "Executive meeting summary and action items",

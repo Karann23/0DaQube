@@ -466,14 +466,19 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   overflow: hidden;
 }
 
-/* Ambient Clean Curves (Without any duplicate robot) */
-.hero-ambient-curves {
+/* Ambient Graphic Backdrop (Curves & Tech Dots from user photo, clean without duplicate robot) */
+.hero-clean-scene-bg {
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 50% 28%, rgba(236, 94, 39, 0.22) 0%, rgba(253, 253, 241, 0) 65%),
-    radial-gradient(circle at 75% 45%, rgba(236, 94, 39, 0.14) 0%, transparent 55%),
-    radial-gradient(circle at 25% 55%, rgba(236, 94, 39, 0.1) 0%, transparent 50%);
+  inset: -20px;
+  background-image: 
+    radial-gradient(ellipse at 50% 32%, rgba(236, 94, 39, 0.16) 0%, rgba(253, 253, 241, 0) 70%),
+    url('/images/robot-clean-backdrop.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  opacity: 0.95;
+  filter: saturate(1.05) contrast(1.02);
+  will-change: transform;
   pointer-events: none;
 }
 
@@ -483,49 +488,65 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 4;
+  z-index: 3;
   pointer-events: none;
   overflow: hidden;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
+  align-items: flex-start;
 }
 
 .hero-single-robot-stage {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   width: 100%;
-  max-width: 1450px;
   height: 100%;
   pointer-events: none;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  perspective: 1100px;
-  -webkit-perspective: 1100px;
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
 }
 
-.hero-robot-neck-rig {
+/* Master Dead-Centered Positioner Container */
+.hero-robot-positioner {
   position: absolute;
-  top: -12px; /* Reaches the very top edge of the browser viewport */
+  top: -20px; /* Comes from the very top of the website behind the navigation bar */
   left: 50%;
   transform: translateX(-50%);
-  width: min(720px, 85vw);
-  height: 96%;
-  max-height: 890px;
+  width: min(680px, 88vw);
+  height: 94%;
+  max-height: 870px;
+  pointer-events: none;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
-  /* KINEMATIC PIVOT AT BASE OF NECK (Exact Mainframe.co style neck mechanics) */
-  transform-origin: 51% 65%;
+  align-items: flex-start;
+}
+
+/* Kinematic Robot Rig - Animated via JS while positioner guarantees centering */
+.hero-robot-rig {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  /* Kinematic pivot at mid-chest/cervical base for natural head and neck leaning */
+  transform-origin: 50% 74%;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   will-change: transform;
-  transition: opacity 0.4s ease-out;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.hero-robot-rig.hero-robot-ready {
+  opacity: 1;
 }
 
 .hero-single-robot-image {
@@ -533,21 +554,20 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   height: 100%;
   object-fit: contain;
   object-position: top center;
-  opacity: 0.9;
-  filter: 
-    drop-shadow(0 25px 45px rgba(236, 94, 39, 0.22))
-    drop-shadow(0 15px 30px rgba(18, 21, 26, 0.12));
   pointer-events: none;
-  -webkit-user-drag: none;
   user-select: none;
+  -webkit-user-drag: none;
+  filter: 
+    drop-shadow(0 25px 50px rgba(236, 94, 39, 0.22))
+    drop-shadow(0 15px 30px rgba(18, 21, 26, 0.1));
 }
 
 .hero-robot-neck-glow {
   position: absolute;
-  top: 36%;
-  left: 51%;
-  width: 180px;
-  height: 180px;
+  top: 42%;
+  left: 50%;
+  width: 170px;
+  height: 170px;
   transform: translate(-50%, -50%);
   background: radial-gradient(circle, rgba(236, 94, 39, 0.55) 0%, rgba(236, 94, 39, 0) 70%);
   filter: blur(24px);
@@ -2173,18 +2193,20 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
     font-size: 11px;
   }
   .hero-single-robot-backdrop-layer {
-    z-index: 4;
+    z-index: 3;
     pointer-events: none;
     opacity: 0.95;
   }
-  .hero-robot-neck-rig {
+  .hero-robot-positioner {
     left: 50%;
     transform: translateX(-50%);
-    width: min(92vw, 440px);
+    width: min(94vw, 480px);
     height: 75vh;
-    opacity: 0.45;
   }
-  .hero-ambient-curves {
+  .hero-robot-rig {
+    opacity: 0;
+  }
+  .hero-robot-rig.hero-robot-ready {
     opacity: 0.65;
   }
   .hero-text-box {
