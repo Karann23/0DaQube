@@ -445,142 +445,29 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 /* ==========================================================================
-   Layer 2: The SINGLE 3D Cursor-Tracking Robot (Centered Background)
-   - Extends from the very top edge of the website, behind the frosted glass header
-   - Mainframe.co inspired cervical neck & head kinematics
-   - Anchored at shoulders/torso, with head & neck stretching, bending and turning to follow cursor
-   - Exactly ONE robot — zero duplicate robot images
+   Layer 2: 3D Robot Video Motion Layer (Z-Index: 2 - in background behind text)
+   - Starts below navigation bar
+   - Plays the user's high-definition robot animation video
+   - Seamlessly blends over obsidian/cream theme with 3D parallax
    ========================================================================== */
-.hero-top-full-bleed-bg {
+.hero-robot-video-layer {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
+  inset: 0;
   z-index: 2;
-  overflow: hidden;
-}
-
-/* Ambient Graphic Backdrop (Curves & Tech Dots from user photo, clean without duplicate robot) */
-.hero-clean-scene-bg {
-  position: absolute;
-  inset: -20px;
-  background-image: 
-    radial-gradient(ellipse at 50% 32%, rgba(236, 94, 39, 0.16) 0%, rgba(253, 253, 241, 0) 70%),
-    url('/images/robot-clean-backdrop.jpg');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  opacity: 0.95;
-  filter: saturate(1.05) contrast(1.02);
-  will-change: transform;
   pointer-events: none;
-}
-
-.hero-single-robot-backdrop-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 3;
-  pointer-events: none;
-  overflow: hidden;
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hero-single-robot-stage {
-  position: absolute;
-  top: 0;
-  left: 0;
+.hero-robot-video {
   width: 100%;
   height: 100%;
-  pointer-events: none;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  perspective: 1200px;
-  -webkit-perspective: 1200px;
-}
-
-/* Master Dead-Centered Positioner Container - Starts cleanly below the navigation bar */
-.hero-robot-positioner {
-  position: absolute;
-  top: 15px; /* Starts cleanly below the navigation bar */
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(680px, 88vw);
-  height: 90%;
-  max-height: 840px;
-  pointer-events: none;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-/* Kinematic Robot Rig - Animated via JS while positioner guarantees centering */
-.hero-robot-rig {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-  /* Kinematic pivot at mid-chest/cervical base for natural head and neck leaning */
-  transform-origin: 50% 74%;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  will-change: transform;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.hero-robot-rig.hero-robot-ready {
+  object-fit: cover;
+  mix-blend-mode: multiply;
   opacity: 1;
-}
-
-.hero-single-robot-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: top center;
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  filter: 
-    drop-shadow(0 25px 50px rgba(236, 94, 39, 0.22))
-    drop-shadow(0 15px 30px rgba(18, 21, 26, 0.1));
-}
-
-.hero-robot-neck-glow {
-  position: absolute;
-  top: 42%;
-  left: 50%;
-  width: 170px;
-  height: 170px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(236, 94, 39, 0.55) 0%, rgba(236, 94, 39, 0) 70%);
-  filter: blur(24px);
-  pointer-events: none;
-  mix-blend-mode: screen;
-  animation: robot-neck-glow-breathe 3.2s ease-in-out infinite alternate;
-}
-
-@keyframes robot-neck-glow-breathe {
-  0% {
-    opacity: 0.5;
-    transform: translate(-50%, -50%) scale(0.9);
-  }
-  100% {
-    opacity: 0.95;
-    transform: translate(-50%, -50%) scale(1.15);
-  }
 }
 
 .hero-floating-caption {
@@ -2188,22 +2075,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
     gap: 16px;
     font-size: 11px;
   }
-  .hero-single-robot-backdrop-layer {
-    z-index: 3;
-    pointer-events: none;
+  .hero-robot-video-layer {
     opacity: 0.95;
+    z-index: 5;
+    pointer-events: none;
   }
-  .hero-robot-positioner {
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(94vw, 480px);
-    height: 75vh;
-  }
-  .hero-robot-rig {
-    opacity: 0;
-  }
-  .hero-robot-rig.hero-robot-ready {
-    opacity: 0.65;
+  .hero-robot-video {
+    object-fit: cover;
+    mix-blend-mode: multiply;
   }
   .hero-floating-caption {
     bottom: 50px;

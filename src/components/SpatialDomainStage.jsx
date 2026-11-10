@@ -800,7 +800,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Clean Verbatim & Strict Verbatim",
       icon: Headphones,
       summary: "Accurate written transcripts of informal spoken discussions, podcasts, and meetings across varied speaking styles.",
-      photoUrl: "/images/Solutions/Annotation/",
+      photoUrl: "/images/Solutions/Speech Transcription/Clean Verbatim & Strict Verbatim_card.webp",
       photoLabel: "Audio Waveform & Transcription Deck",
       useCases: [
         "Executive meeting summary and action items",
@@ -815,7 +815,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Speaker Diarization & Word Timestamps",
       icon: Mic,
       summary: "Transcripts labeled with exact word-level timecodes and unique speaker identifiers throughout multi-person recordings.",
-      photoUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Speech Transcription/Speaker Diarization & Word Timestamps_card.jpg",
       photoLabel: "Speaker Diarization Timeline",
       useCases: [
         "Conference call speaker attribution",
@@ -830,7 +830,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Multilingual Audio Transcription",
       icon: Users2,
       summary: "Audio transcription and synchronized translation across 100+ global languages, regional dialects, and accents.",
-      photoUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Speech Transcription/",
       photoLabel: "Global Multilingual Audio Console",
       useCases: [
         "International broadcast subtitle translation",
@@ -845,7 +845,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Medical & Clinical Transcription",
       icon: HeartPulse,
       summary: "Specialized clinical transcription converting physician dictation and patient consults into formatted medical records.",
-      photoUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Speech Transcription/",
       photoLabel: "Clinical Patient Record Dictation",
       useCases: [
         "Electronic health record (EHR) chart notes",
@@ -860,7 +860,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Legal & Courtroom Transcription",
       icon: Shield,
       summary: "Strict, verbatim legal transcription of witness depositions, court hearings, arbitrations, and recorded evidence.",
-      photoUrl: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Speech Transcription/",
       photoLabel: "Official Legal Court Proceeding Record",
       useCases: [
         "Sworn deposition transcripts with page-line stamps",
@@ -875,7 +875,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Media Subtitling & Closed Captions",
       icon: Sparkles,
       summary: "Time-aligned broadcast closed captions and multilingual subtitles formatted for streaming platforms in SRT, VTT, and SCC.",
-      photoUrl: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Speech Transcription/",
       photoLabel: "Broadcast Subtitle & Closed Caption Suite",
       useCases: [
         "Streaming entertainment and film subtitling",
@@ -890,7 +890,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Call Center Quality Transcription",
       icon: Headphones,
       summary: "Customer support call transcripts tagged for agent compliance, resolution status, customer sentiment, and intent.",
-      photoUrl: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Speech Transcription/",
       photoLabel: "Customer Support Audio QA Dashboard",
       useCases: [
         "100% automated call QA scoring and audit",
@@ -905,7 +905,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Phonetic & Pronunciation Alignment",
       icon: Bot,
       summary: "Sub-10 millisecond phonetic phone-level and word-level alignments designed to train speech synthesizer models.",
-      photoUrl: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Speech Transcription/",
       photoLabel: "Phonetic Praat TextGrid Alignment",
       useCases: [
         "Acoustic speech recognition model training",
@@ -924,7 +924,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "3D LiDAR Point Cloud Cuboids",
       icon: Crosshair,
       summary: "3D bounding boxes enclosing vehicles, pedestrians, cyclists, and obstacles with 9 degrees-of-freedom orientation.",
-      photoUrl: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/Speech Transcription/",
       photoLabel: "3D LiDAR Point Cloud Cuboid Array",
       useCases: [
         "Autonomous driving vehicle and pedestrian detection",
