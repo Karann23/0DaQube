@@ -883,9 +883,9 @@ export const caseStudies = [
         "image": "/images/case-studies/adas-data-collection.jpg",
         "imageAlt": "Autonomous vehicle capturing road images, 3D LiDAR point clouds, and multi-sensor ADAS data",
         "sectionPhotos": {
-            "section1": "",
-            "section2": "",
-            "section3": ""
+            "section1": "/images/case-studies/Beyond the Steering Wheel How ADAS Data Collection Is Shaping the Future of AI/1.png",
+            "section2": "/images/case-studies/Beyond the Steering Wheel How ADAS Data Collection Is Shaping the Future of AI/2.png",
+            "section3": "/images/case-studies/Beyond the Steering Wheel How ADAS Data Collection Is Shaping the Future of AI/3.png"
         },
         "sectionPhotoGuides": {
             "section1": "Forward-facing urban driving scene at dusk/rain showing glowing 3D bounding cuboids around vehicles, pedestrians, and lane lines.",
@@ -1000,9 +1000,9 @@ export const caseStudies = [
         "image": "/images/case-studies/multimodal-datasets.jpg",
         "imageAlt": "3D visualization of multimodal AI combining text, image, audio, video, and sensor datasets",
         "sectionPhotos": {
-            "section1": "",
-            "section2": "",
-            "section3": ""
+            "section1": "/images/case-studies/The Role of Multimodal Datasets in AI Development/1.png",
+            "section2": "/images/case-studies/The Role of Multimodal Datasets in AI Development/2.png",
+            "section3": "/images/case-studies/The Role of Multimodal Datasets in AI Development/3.png"
         },
         "sectionPhotoGuides": {
             "section1": "3D visualization of converging data layers: acoustic waveforms, visual frames, text cards, and sensor nodes flowing into a unified AI core.",
@@ -1113,9 +1113,9 @@ export const caseStudies = [
         "image": "/images/case-studies/human-vs-self-adas.jpg",
         "imageAlt": "Dual-monitor workstation comparing raw rainy street footage with human-verified 3D ADAS annotations",
         "sectionPhotos": {
-            "section1": "",
-            "section2": "",
-            "section3": ""
+            "section1": "/images/case-studies/Human-Annotated vs. Self-Annotated ADAS Data What's the Difference/1.png",
+            "section2": "/images/case-studies/Human-Annotated vs. Self-Annotated ADAS Data What's the Difference/2.png",
+            "section3": "/images/case-studies/Human-Annotated vs. Self-Annotated ADAS Data What's the Difference/3.png"
         },
         "sectionPhotoGuides": {
             "section1": "Dual-monitor workstation showing raw rainy night driving footage on the left screen and crisp 3D bounding cuboids/lane masks on the right screen.",
@@ -1237,9 +1237,9 @@ export const caseStudies = [
         "image": "/images/case-studies/image-video-annotation.jpg",
         "imageAlt": "Computer vision interface displaying object bounding boxes, semantic segmentation, instance masks, and keypoints",
         "sectionPhotos": {
-            "section1": "",
-            "section2": "",
-            "section3": ""
+            "section1": "/images/case-studies/Image and Video Annotation Services Building Reliable Computer Vision/1.png",
+            "section2": "/images/case-studies/Image and Video Annotation Services Building Reliable Computer Vision/2.png",
+            "section3": "/images/case-studies/Image and Video Annotation Services Building Reliable Computer Vision/3.png"
         },
         "sectionPhotoGuides": {
             "section1": "Composite visual showing an urban street and retail store with glowing bounding boxes, colored instance segmentation masks, and tracking paths.",
@@ -1352,9 +1352,9 @@ export const caseStudies = [
         "image": "/images/case-studies/medical-images-ai.jpg",
         "imageAlt": "Clinical workstation displaying 3D brain MRI scan with segmented regions in orange and emerald green",
         "sectionPhotos": {
-            "section1": "",
-            "section2": "",
-            "section3": ""
+            "section1": "/images/case-studies/Where Can I Get Annotated Medical Images for AI Training/1.png",
+            "section2": "/images/case-studies/Where Can I Get Annotated Medical Images for AI Training/2.png",
+            "section3": "/images/case-studies/Where Can I Get Annotated Medical Images for AI Training/3.png"
         },
         "sectionPhotoGuides": {
             "section1": "Radiology workstation displaying a 3D MRI or CT scan with multi-region segmentation contours in high-contrast orange and emerald green.",
