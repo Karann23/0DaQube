@@ -23,6 +23,7 @@ import {
   HeartHandshake
 } from "lucide-react";
 import { SectionHeading } from "../components/section-heading";
+import { Interactive360Globe } from "../components/Interactive360Globe";
 
 const REGIONAL_HUBS = [
   {
@@ -294,14 +295,36 @@ export function NetworkPage() {
         </div>
       </section>
 
-      {/* Geographic Coverage Tabs */}
+      {/* Geographic Coverage Tabs & 360 Interactive Globe */}
       <section className="section section-tint">
         <div className="container">
-          <SectionHeading
-            eyebrow="GEOGRAPHIC FOOTPRINT"
-            title="Global reach, local nuance."
-            description="AI models deployed worldwide must understand accents, dialects, cultural contexts, and localized environments. Explore our regional hubs."
-          />
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-10 mb-10">
+            <div className="max-w-xl">
+              <span className="inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[1.8px] text-[#8E939D]">
+                <span className="h-[7px] w-[7px] rounded-full bg-[#EC5E27] shadow-[0_0_10px_#EC5E27]" />
+                GEOGRAPHIC FOOTPRINT
+              </span>
+              <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight tracking-[-1.5px] text-[#12151A] md:text-5xl">
+                Global reach, <span className="text-[#EC5E27]">local nuance.</span>
+              </h2>
+              <p className="mt-4 text-base leading-8 text-[#5F646D]">
+                AI models deployed worldwide must understand accents, dialects, cultural contexts, and localized environments. Explore our regional hubs.
+              </p>
+              
+              <div className="mt-6 flex flex-wrap items-center gap-3 text-xs font-mono text-[#5F646D]">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#E9ECEF] shadow-xs">
+                  <Globe2 size={13} className="text-[#EC5E27]" /> 100+ Global Locales
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#E9ECEF] shadow-xs">
+                  <Users size={13} className="text-[#EC5E27]" /> 25,000+ Native Contributors
+                </span>
+              </div>
+            </div>
+
+            <div className="flex justify-center lg:justify-end shrink-0 w-full lg:w-auto">
+              <Interactive360Globe videoSrc="/videos/global-network.mp4" size={380} />
+            </div>
+          </div>
 
           <div className="mt-8 bg-white rounded-3xl p-6 md:p-8 border border-[rgba(20,23,26,0.08)] shadow-sm">
             {/* Tab navigation */}
