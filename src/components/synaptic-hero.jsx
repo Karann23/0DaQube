@@ -4,20 +4,18 @@ import { ArrowDownRight, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { SynapticParticleCanvas } from "./SynapticParticleCanvas";
 
 /**
- * SynapticHero with Interactive 3D Cursor-Tracking Robot
- * - Extends to the very top edge of the website behind the frosted glass navigation bar
- * - 3D head/body tracking follows cursor movements across all browsers
- * - Full cross-browser support: Chrome, Firefox, Edge, Safari (macOS & iOS), Mobile Android
- * - Touch & gyroscope (device orientation) tilt tracking for mobile devices
- * - Ambient lifelike idle breathing cycle when mouse/touch is idle
+ * SynapticHero with Single 3D Cursor-Tracking Robot
+ * - EXACTLY ONE ROBOT positioned in the background coming from the top of the website
+ * - Mainframe.co style neck & head kinematics: pivots at the neck base, bending,
+ *   stretching and turning in 3D perspective to track the cursor wherever it moves
+ * - Cross-browser & mobile: iOS, Safari, Chrome, Firefox, Edge, Android touch & orientation
  */
 export function SynapticHero() {
   const containerRef = useRef(null);
   const robotRef = useRef(null);
-  const bgRef = useRef(null);
 
-  // Targets and current interpolated physics values
-  const coords = useRef({
+  // Physics state for smooth 60/120fps interpolated neck motion
+  const kinematics = useRef({
     targetX: 0,
     targetY: 0,
     currentX: 0,
@@ -32,110 +30,124 @@ export function SynapticHero() {
     setHasLoaded(true);
     let animationFrameId;
 
-    // Smooth physics loop (lerp damping for 60/120fps fluid motion)
-    const updatePhysics = (time) => {
-      const c = coords.current;
+    const updateKinematics = (time) => {
+      const k = kinematics.current;
 
-      // If idle for more than 1.5s, add a gentle ambient breathing & glancing motion
-      const idleTime = time - c.lastInteractionTime;
-      let idleOffsetX = 0;
-      let idleOffsetY = 0;
+      // When idle, inject a subtle, organic breathing & micro-glance cycle
+      const idleTime = time - k.lastInteractionTime;
+      let idleX = 0;
+      let idleY = 0;
 
-      if (!c.isInteracting || idleTime > 1500) {
-        // Natural lifelike sinusoidal breathing and micro glances
-        idleOffsetX = Math.sin(time * 0.0012) * 0.18 + Math.sin(time * 0.0023) * 0.08;
-        idleOffsetY = Math.cos(time * 0.0016) * 0.12;
+      if (!k.isInteracting || idleTime > 1200) {
+        // Natural human/robot resting glance and breathing rhythm
+        idleX = Math.sin(time * 0.0011) * 0.16 + Math.sin(time * 0.0022) * 0.06;
+        idleY = Math.cos(time * 0.0014) * 0.1;
       }
 
-      // Smooth interpolation toward target
-      const effectiveTargetX = c.isInteracting ? c.targetX : idleOffsetX;
-      const effectiveTargetY = c.isInteracting ? c.targetY : idleOffsetY;
+      const targetX = k.isInteracting ? k.targetX : idleX;
+      const targetY = k.isInteracting ? k.targetY : idleY;
 
-      // Smooth lerp easing factor (0.075 provides buttery-smooth weight without lag)
-      c.currentX += (effectiveTargetX - c.currentX) * 0.075;
-      c.currentY += (effectiveTargetY - c.currentY) * 0.075;
+      // Spring-like lerp easing (0.08 produces lifelike neck flexibility without lag)
+      k.currentX += (targetX - k.currentX) * 0.08;
+      k.currentY += (targetY - k.currentY) * 0.08;
 
-      const x = c.currentX; // range approx -1 to 1
-      const y = c.currentY;
+      const x = k.currentX; // normalized -1 to +1
+      const y = k.currentY;
 
-      // 3D rotations for the robot (looking right when cursor is right, left when cursor is left)
-      const rotateY = x * 18;          // degrees around vertical axis
-      const rotateX = -y * 12;         // degrees around horizontal axis
-      const rotateZ = x * 2.5;         // subtle organic head roll
-      const translateX = x * 22;       // px horizontal parallax
-      const translateY = y * 14;       // px vertical parallax
+      // Mainframe.co style neck & head kinematics calculations:
+      // 1. Neck Tilt & Bend: The neck leans sideways toward cursor
+      const neckTiltAngle = x * 15;        // up to 15 deg lateral neck bend
+      // 2. 3D Face Turn: The head turns around vertical Y-axis to look at cursor
+      const faceTurnY = x * 22;            // up to 22 deg 3D face turn
+      // 3. 3D Nod / Lift: Chin lifts when cursor is up, drops when cursor is down
+      const nodX = -y * 14;                // up to 14 deg looking up/down
+      // 4. Subtle Neck Stretch / Compression:
+      const stretchY = -y * 10;            // stretches up when looking high
+      const shiftX = x * 18;               // natural neck lateral shift
+      // 5. Organic Neck Skew: Mimics muscle/cervical flex
+      const neckSkew = x * 3;
 
       if (robotRef.current) {
-        const transformString = `perspective(1000px) translate3d(${translateX}px, ${translateY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
-        robotRef.current.style.transform = transformString;
-        robotRef.current.style.webkitTransform = transformString;
+        const transform = `perspective(1100px) translate3d(${shiftX}px, ${stretchY}px, 0) rotate(${neckTiltAngle}deg) rotateY(${faceTurnY}deg) rotateX(${nodX}deg) skewX(${neckSkew}deg)`;
+        robotRef.current.style.transform = transform;
+        robotRef.current.style.webkitTransform = transform;
       }
 
-      // Ambient background subtle inverse parallax
-      if (bgRef.current) {
-        const bgTransform = `translate3d(${x * -12}px, ${y * -8}px, 0) scale(1.04)`;
-        bgRef.current.style.transform = bgTransform;
-        bgRef.current.style.webkitTransform = bgTransform;
-      }
-
-      animationFrameId = requestAnimationFrame(updatePhysics);
+      animationFrameId = requestAnimationFrame(updateKinematics);
     };
 
-    animationFrameId = requestAnimationFrame(updatePhysics);
+    animationFrameId = requestAnimationFrame(updateKinematics);
 
-    // Mouse Tracking across entire window
+    // Mouse Tracking: Calculate angle & distance from the robot's neck base to cursor
     const handleMouseMove = (e) => {
-      const c = coords.current;
-      c.isInteracting = true;
-      c.lastInteractionTime = performance.now();
+      const k = kinematics.current;
+      k.isInteracting = true;
+      k.lastInteractionTime = performance.now();
 
-      // Normalize coordinates -1 (far left / top) to +1 (far right / bottom)
-      const normX = (e.clientX / window.innerWidth - 0.5) * 2;
-      const normY = (e.clientY / window.innerHeight - 0.5) * 2;
+      // Find the screen position of the robot's neck center
+      let neckScreenX = window.innerWidth * 0.5;
+      let neckScreenY = window.innerHeight * 0.38;
 
-      c.targetX = Math.max(-1.2, Math.min(1.2, normX));
-      c.targetY = Math.max(-1.2, Math.min(1.2, normY));
+      if (robotRef.current) {
+        const rect = robotRef.current.getBoundingClientRect();
+        neckScreenX = rect.left + rect.width * 0.51;
+        neckScreenY = rect.top + rect.height * 0.58;
+      }
+
+      const dx = (e.clientX - neckScreenX) / (window.innerWidth * 0.5);
+      const dy = (e.clientY - neckScreenY) / (window.innerHeight * 0.5);
+
+      k.targetX = Math.max(-1.25, Math.min(1.25, dx));
+      k.targetY = Math.max(-1.25, Math.min(1.25, dy));
     };
 
     const handleMouseLeave = () => {
-      coords.current.isInteracting = false;
-      coords.current.targetX = 0;
-      coords.current.targetY = 0;
+      kinematics.current.isInteracting = false;
+      kinematics.current.targetX = 0;
+      kinematics.current.targetY = 0;
     };
 
-    // Touch Tracking for iOS / Safari / Mobile
+    // Mobile Touch Tracking (iOS, Safari, Android)
     const handleTouchMove = (e) => {
       if (!e.touches || e.touches.length === 0) return;
       const touch = e.touches[0];
-      const c = coords.current;
-      c.isInteracting = true;
-      c.lastInteractionTime = performance.now();
+      const k = kinematics.current;
+      k.isInteracting = true;
+      k.lastInteractionTime = performance.now();
 
-      const normX = (touch.clientX / window.innerWidth - 0.5) * 2;
-      const normY = (touch.clientY / window.innerHeight - 0.5) * 2;
-      c.targetX = Math.max(-1.2, Math.min(1.2, normX));
-      c.targetY = Math.max(-1.2, Math.min(1.2, normY));
+      let neckScreenX = window.innerWidth * 0.5;
+      let neckScreenY = window.innerHeight * 0.38;
+
+      if (robotRef.current) {
+        const rect = robotRef.current.getBoundingClientRect();
+        neckScreenX = rect.left + rect.width * 0.51;
+        neckScreenY = rect.top + rect.height * 0.58;
+      }
+
+      const dx = (touch.clientX - neckScreenX) / (window.innerWidth * 0.5);
+      const dy = (touch.clientY - neckScreenY) / (window.innerHeight * 0.5);
+
+      k.targetX = Math.max(-1.25, Math.min(1.25, dx));
+      k.targetY = Math.max(-1.25, Math.min(1.25, dy));
     };
 
     const handleTouchEnd = () => {
-      coords.current.isInteracting = false;
-      coords.current.targetX = 0;
-      coords.current.targetY = 0;
+      kinematics.current.isInteracting = false;
+      kinematics.current.targetX = 0;
+      kinematics.current.targetY = 0;
     };
 
-    // Gyroscope / Device Orientation for Mobile tilt
+    // Gyroscope / DeviceOrientation tilt support for mobile
     const handleOrientation = (e) => {
       if (e.gamma === null || e.beta === null) return;
-      const c = coords.current;
-      // Gamma: left to right (-45 to 45 deg)
-      // Beta: front to back tilt (-30 to 60 deg)
-      const tiltX = Math.max(-1, Math.min(1, e.gamma / 35));
-      const tiltY = Math.max(-1, Math.min(1, (e.beta - 35) / 35));
+      const k = kinematics.current;
+      const tiltX = Math.max(-1.1, Math.min(1.1, e.gamma / 32));
+      const tiltY = Math.max(-1.1, Math.min(1.1, (e.beta - 35) / 32));
 
-      c.targetX = tiltX;
-      c.targetY = tiltY;
-      c.isInteracting = true;
-      c.lastInteractionTime = performance.now();
+      k.targetX = tiltX;
+      k.targetY = tiltY;
+      k.isInteracting = true;
+      k.lastInteractionTime = performance.now();
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
@@ -165,32 +177,31 @@ export function SynapticHero() {
       className="hero synaptic-dark-hero synaptic-robot-hero"
       aria-label="DaQube Human-Centered AI Data Hero"
     >
-      {/* Background Layer extending behind the top navigation bar */}
+      {/* Layer 1: Ambient Clean Tech Background (Grid + Glow + Particles, NO duplicate robot!) */}
       <div className="hero-top-full-bleed-bg" aria-hidden="true">
-        {/* Soft Ambient Scene Graphic & Grid */}
-        <div ref={bgRef} className="hero-robot-scene-bg" />
+        <div className="hero-ambient-curves" />
         <div className="hero-grid" />
         <div className="hero-ambient-glow" />
         <SynapticParticleCanvas />
       </div>
 
-      {/* Layer 2: Interactive 3D Cursor-Tracking Robot (Extends from top of the website) */}
-      <div className="hero-robot-overlap-layer" aria-hidden="true">
-        <div className="hero-robot-3d-stage">
+      {/* Layer 2: The ONLY Robot in the background coming from the top of the website */}
+      <div className="hero-single-robot-backdrop-layer" aria-hidden="true">
+        <div className="hero-single-robot-stage">
           <div
             ref={robotRef}
-            className={`hero-robot-avatar-wrapper ${hasLoaded ? "hero-robot-loaded" : ""}`}
+            className={`hero-robot-neck-rig ${hasLoaded ? "hero-robot-ready" : ""}`}
           >
-            {/* The transparent cutout robot image */}
+            {/* The single authentic robot avatar */}
             <img
               src="/images/robot-hero-cutout.png"
               alt="Autonomous Intelligent Perception Robot"
-              className="hero-robot-image"
+              className="hero-single-robot-image"
               loading="eager"
               decoding="async"
             />
-            {/* Ambient Eye and Core Glow Highlight */}
-            <div className="hero-robot-core-glow" />
+            {/* Glowing cervical neck servos */}
+            <div className="hero-robot-neck-glow" />
           </div>
 
           {/* Floating Capsule Caption */}
@@ -200,7 +211,7 @@ export function SynapticHero() {
         </div>
       </div>
 
-      {/* Layer 1: Central Text Content Layer */}
+      {/* Layer 3: Central Text Content Layer (Overlaid clearly in front of the background robot) */}
       <div className="container hero-content-layer">
         <div className="hero-text-box">
           {/* Kicker */}
