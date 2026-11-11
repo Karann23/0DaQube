@@ -4,12 +4,12 @@ import { useEffect, useRef } from "react";
  * SynapticParticleCanvas
  * Lightweight, hardware-accelerated HTML5 2D canvas particle constellation.
  * Generates floating electric cyan-blue (#0EA5E9) and crimson-orange (#EC5E27) nodes,
- * pulsing axons, and active mouse gravity lines across the website.
+ * pulsing axons, and active mouse gravity lines in the page background.
  */
 export function SynapticParticleCanvas({
   className = "",
   particleCount,
-  connectionDistance = 155,
+  connectionDistance = 145,
   global = false,
 }) {
   const canvasRef = useRef(null);
@@ -20,7 +20,8 @@ export function SynapticParticleCanvas({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const count = particleCount ?? (global ? 64 : 55);
+    // Keep global background constellation light and uncluttered
+    const count = particleCount ?? (global ? 24 : 55);
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
     let width = global ? window.innerWidth : canvas.offsetWidth;
     let height = global ? window.innerHeight : canvas.offsetHeight;
@@ -45,9 +46,9 @@ export function SynapticParticleCanvas({
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.55,
-        vy: (Math.random() - 0.5) * 0.55,
-        radius: Math.random() * 2.0 + 1.35,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        radius: global ? Math.random() * 1.4 + 1.0 : Math.random() * 2.0 + 1.35,
         isBlue,
         color: isBlue ? "#0EA5E9" : "#EC5E27",
         pulse: Math.random() * Math.PI * 2,
@@ -79,7 +80,7 @@ export function SynapticParticleCanvas({
     }
 
     let animationFrameId;
-    const mouseGravityRadius = 185;
+    const mouseGravityRadius = 175;
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
@@ -88,7 +89,7 @@ export function SynapticParticleCanvas({
         const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
-        p.pulse += 0.032;
+        p.pulse += 0.028;
 
         // Bounce softly off viewport / container edges
         if (p.x < 0) {
@@ -112,17 +113,17 @@ export function SynapticParticleCanvas({
           const dy = mouse.y - p.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < mouseGravityRadius && dist > 1) {
-            p.x += dx * 0.012;
-            p.y += dy * 0.012;
+            p.x += dx * 0.01;
+            p.y += dy * 0.01;
 
-            const tetherAlpha = (1 - dist / mouseGravityRadius) * 0.42;
+            const tetherAlpha = (1 - dist / mouseGravityRadius) * (global ? 0.28 : 0.42);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(mouse.x, mouse.y);
             ctx.strokeStyle = p.isBlue
               ? `rgba(14, 165, 233, ${tetherAlpha.toFixed(3)})`
               : `rgba(236, 94, 39, ${tetherAlpha.toFixed(3)})`;
-            ctx.lineWidth = 1.05;
+            ctx.lineWidth = 0.9;
             ctx.shadowBlur = 0;
             ctx.stroke();
           }
@@ -130,12 +131,12 @@ export function SynapticParticleCanvas({
 
         // Pulsing node circle
         const pulseWave = Math.sin(p.pulse);
-        const dynamicRadius = p.radius + pulseWave * 0.55;
+        const dynamicRadius = p.radius + pulseWave * 0.4;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, Math.max(0.75, dynamicRadius), 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, Math.max(0.7, dynamicRadius), 0, Math.PI * 2);
         ctx.fillStyle = p.color;
-        ctx.globalAlpha = global ? 0.62 + pulseWave * 0.14 : 0.92;
-        ctx.shadowBlur = 10;
+        ctx.globalAlpha = global ? 0.48 + pulseWave * 0.1 : 0.92;
+        ctx.shadowBlur = global ? 6 : 10;
         ctx.shadowColor = p.color;
         ctx.fill();
         ctx.globalAlpha = 1;
@@ -149,14 +150,14 @@ export function SynapticParticleCanvas({
 
           if (dist < connectionDistance) {
             const axonPulse = 0.72 + 0.28 * Math.sin((p.pulse + p2.pulse) * 0.5);
-            const alpha = (1 - dist / connectionDistance) * (global ? 0.24 : 0.36) * axonPulse;
+            const alpha = (1 - dist / connectionDistance) * (global ? 0.16 : 0.36) * axonPulse;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = p.isBlue
               ? `rgba(14, 165, 233, ${alpha.toFixed(3)})`
               : `rgba(236, 94, 39, ${alpha.toFixed(3)})`;
-            ctx.lineWidth = 1.0;
+            ctx.lineWidth = 0.85;
             ctx.shadowBlur = 0;
             ctx.stroke();
           }
@@ -182,7 +183,7 @@ export function SynapticParticleCanvas({
   }, [particleCount, connectionDistance, global]);
 
   const baseClass = global
-    ? "pointer-events-none fixed inset-0 z-[25] w-screen h-screen"
+    ? "pointer-events-none fixed inset-0 z-[2] w-screen h-screen"
     : "pointer-events-none absolute inset-0 z-[6] w-full h-full";
 
   return (

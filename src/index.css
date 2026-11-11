@@ -4723,3 +4723,21 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* Keep page containers, cards, images, and typography in front of the background SynapticParticleCanvas (z-index: 2) */
+#main-content .container,
+#main-content .container-wide,
+#main-content .dq-about-container,
+#main-content .article-hero-inner,
+#main-content .article-cover,
+#main-content .dw-container,
+#main-content .workflow-cards-container,
+#main-content .journal-header,
+#main-content .journal-stage,
+#main-content .hero-marquee-content,
+#main-content .case-study-container,
+#main-content .case-detail-grid,
+.site-footer > .container {
+  position: relative;
+  z-index: 10;
+}
