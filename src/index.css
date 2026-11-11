@@ -1,4 +1,67 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+/* Samsung Typography (@font-face local woff assets for instant rendering) */
+@font-face {
+  font-family: "SamsungOne";
+  src: url("/fonts/SamsungOne-400.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SamsungOne";
+  src: url("/fonts/SamsungOne-400.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SamsungOne";
+  src: url("/fonts/SamsungOne-700.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SamsungOne";
+  src: url("/fonts/SamsungOne-700.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Samsung Sharp Sans";
+  src: url("/fonts/SamsungSharpSans-400.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Samsung Sharp Sans";
+  src: url("/fonts/SamsungSharpSans-500.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Samsung Sharp Sans";
+  src: url("/fonts/SamsungSharpSans-700.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Samsung Sharp Sans";
+  src: url("/fonts/SamsungSharpSans-700.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Samsung Sharp Sans";
+  src: url("/fonts/SamsungSharpSans-700.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* Tailwind CSS layers: utility-first styling for shared UI and new sections. */
 @tailwind base;
@@ -55,6 +118,14 @@
 }
 
 /* Global Heading Typography Line Spacing */
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: "Samsung Sharp Sans", "SamsungOne", Arial, sans-serif;
+}
+
+.font-mono, code, pre {
+  font-family: "SamsungOne", Arial, sans-serif !important;
+}
+
 h1, .hero-headline, .page-hero-dark h1, .detail-hero-copy h1, .contact-copy h1, .article-hero-inner h1 {
   line-height: var(--lh-h1, 1.08) !important;
   letter-spacing: -0.03em;
@@ -86,7 +157,7 @@ body {
   margin: 0;
   color: var(--silver);
   background: var(--obsidian);
-  font-family: "DM Sans", Arial, sans-serif;
+  font-family: "SamsungOne", Arial, sans-serif;
   font-size: 15px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -147,7 +218,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: 24px;
   font-weight: 800;
   letter-spacing: -1.2px;
@@ -402,7 +473,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .hero-headline {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: clamp(48px, 6.4vw, 84px);
   font-weight: 800;
   line-height: 1.05;
@@ -573,7 +644,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .verkos-section-title {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: clamp(36px, 4.5vw, 56px);
   font-weight: 800;
   letter-spacing: -2px;
@@ -697,7 +768,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .verkos-card-title {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: clamp(26px, 2.8vw, 36px);
   font-weight: 800;
   letter-spacing: -1.2px;
@@ -985,7 +1056,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .section-heading h2, .split-copy h2, .cta-copy h2, .cta-inline h2, .quality-callout h2, .about-story h2 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: clamp(30px, 3.6vw, 43px);
   line-height: 1.18;
   letter-spacing: -1.7px;
@@ -1053,7 +1124,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .modality-card h3 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: 23px;
   letter-spacing: -0.8px;
   line-height: 1.2;
@@ -1095,7 +1166,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .video-showcase-copy h2 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: clamp(34px, 4vw, 49px);
   line-height: 1.12;
   letter-spacing: -1.8px;
@@ -1329,7 +1400,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .process-step h3 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: 15px;
   margin: 0 0 8px;
   color: var(--silver-bright);
@@ -1363,7 +1434,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .industries-band h2 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: 43px;
   letter-spacing: -1.7px;
   line-height: 1.2;
@@ -1466,7 +1537,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .home-editorial-card h3 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: 18px;
   line-height: 1.4;
   margin: 12px 0;
@@ -1586,86 +1657,265 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   }
 }
 
-/* Site Footer */
+/* Site Footer — DaQube Rounded Arch Signature Footer */
 .site-footer {
-  background: var(--obsidian);
-  color: var(--silver);
-  padding: 68px 0 24px;
-  border-top: 1px solid var(--silver-border);
+  background: #080A0F;
+  padding: clamp(14px, 2vw, 24px);
+  position: relative;
+  z-index: 12;
 }
 
-.footer-top {
+.daqube-footer-arch {
+  max-width: 1420px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #BA3202 0%, #D9460C 48%, #EC5E27 100%);
+  color: #FFFFFF;
+  border-top-left-radius: 340px;
+  border-bottom-left-radius: 340px;
+  border-top-right-radius: 28px;
+  border-bottom-right-radius: 28px;
+  padding: 58px 56px 26px clamp(130px, 14vw, 230px);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.daqube-footer-top {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 55px;
-  padding-bottom: 46px;
+  grid-template-columns: 1.35fr 0.78fr 0.88fr 1.25fr;
+  gap: 36px;
+  align-items: start;
 }
 
-.footer-brand-block p {
-  font-size: 12px;
-  color: var(--silver-muted);
-  line-height: 1.9;
-  margin: 18px 0;
+.daqube-footer-headline {
+  font-family: "Samsung Sharp Sans", "SamsungOne", Arial, sans-serif;
+  font-size: clamp(1.35rem, 2.1vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.22 !important;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  margin: 0 0 14px;
+  max-width: 310px;
 }
 
-.footer-email {
+.daqube-footer-meta {
+  font-family: "SamsungOne", Arial, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 14px;
+  max-width: 300px;
+}
+
+.daqube-footer-email {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  color: var(--silver);
-  font-size: 12px;
-  transition: color 0.2s;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.footer-email:hover {
-  color: var(--crimson);
+.daqube-footer-email:hover {
+  background: rgba(255, 255, 255, 0.24);
+  transform: translateY(-1px);
 }
 
-.footer-column {
+.daqube-footer-col {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 9px;
 }
 
-.footer-column h4 {
+.daqube-footer-col h4 {
+  font-family: "Samsung Sharp Sans", "SamsungOne", Arial, sans-serif;
   font-size: 11px;
-  color: var(--silver-muted);
-  letter-spacing: 1px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin: 8px 0;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0 0 8px;
 }
 
-.footer-column a {
-  font-size: 12px;
-  color: var(--silver);
+.daqube-footer-col a {
+  font-family: "SamsungOne", Arial, sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.94);
+  text-decoration: none;
+  transition: color 0.18s ease, transform 0.18s ease;
+  width: fit-content;
+}
+
+.daqube-footer-col a:hover {
+  color: #FFFFFF;
+  transform: translateX(3px);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.daqube-footer-newsletter-title {
+  font-family: "Samsung Sharp Sans", "SamsungOne", Arial, sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin: 0 0 12px;
+}
+
+.daqube-footer-form {
   display: flex;
   align-items: center;
-  gap: 5px;
-  transition: color 0.2s;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  border-radius: 9999px;
+  padding: 4px 4px 4px 18px;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
-.footer-column a:hover {
-  color: var(--crimson);
+.daqube-footer-form:focus-within {
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.14);
 }
 
-.footer-bottom {
+.daqube-footer-form input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #FFFFFF;
+  font-family: "SamsungOne", Arial, sans-serif;
+  font-size: 13.5px;
+}
+
+.daqube-footer-form input::placeholder {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.daqube-footer-form button {
+  flex-shrink: 0;
+  background: #FFFFFF;
+  color: #12151A;
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 22px;
+  font-family: "Samsung Sharp Sans", "SamsungOne", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.18s ease;
+}
+
+.daqube-footer-form button:hover {
+  background: #FDFDF1;
+  transform: scale(1.02);
+}
+
+.daqube-footer-socials {
   display: flex;
   align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.daqube-footer-social-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.daqube-footer-social-btn:hover {
+  background: #FFFFFF;
+  color: #C93A06;
+  transform: translateY(-2px);
+}
+
+.daqube-footer-wordmark-row {
+  margin-top: 38px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: 20px;
-  border-top: 1px solid var(--silver-border);
-  padding-top: 19px;
-  color: var(--silver-muted);
-  font-size: 10px;
+  gap: 24px;
 }
 
-.footer-bottom div {
+.daqube-footer-legal-links {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 18px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  padding-bottom: 8px;
 }
 
-.footer-note {
-  color: var(--silver-dark);
+.daqube-footer-legal-links a {
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+}
+
+.daqube-footer-legal-links a:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+.daqube-footer-giant-logo {
+  width: clamp(240px, 44vw, 600px);
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.14));
+  user-select: none;
+}
+
+@media (max-width: 1120px) {
+  .daqube-footer-arch {
+    border-top-left-radius: 180px;
+    border-bottom-left-radius: 180px;
+    padding: 50px 36px 24px 96px;
+  }
+  .daqube-footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 767px) {
+  .daqube-footer-arch {
+    border-radius: 32px;
+    padding: 36px 24px 22px;
+  }
+  .daqube-footer-top {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .daqube-footer-wordmark-row {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    margin-top: 28px;
+  }
+  .daqube-footer-giant-logo {
+    width: 82%;
+    margin-left: 0;
+  }
 }
 
 /* Additional Inner Pages (Services, Industries, Case Studies, Quality, Contact) */
@@ -1679,7 +1929,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .page-hero-dark h1, .detail-hero-copy h1 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: clamp(32px, 4.8vw, 56px);
   line-height: var(--lh-h1, 1.08) !important;
   letter-spacing: -0.03em;
@@ -1762,7 +2012,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .use-case-card h3, .quality-card h3, .industry-card h2, .service-catalog-copy h2, .related-service-card h3 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: 17px;
   letter-spacing: -0.4px;
   margin: 16px 0 8px;
@@ -1876,7 +2126,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .form-intro h2 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: 27px;
   letter-spacing: -1px;
   margin: 8px 0;
@@ -2312,7 +2562,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .metric-number {
-  font-family: "Manrope", "DM Sans", -apple-system, sans-serif;
+  font-family: "Samsung Sharp Sans", "SamsungOne", -apple-system, sans-serif;
   font-size: 42px;
   font-weight: 800;
   color: #F4F2FA; /* White / light lavender */
@@ -2322,7 +2572,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .metric-suffix {
-  font-family: "Manrope", "DM Sans", sans-serif;
+  font-family: "Samsung Sharp Sans", "SamsungOne", sans-serif;
   font-size: 34px;
   font-weight: 800;
   color: #FF7A1A; /* Warm orange accent */
@@ -2331,7 +2581,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .metric-label {
-  font-family: "DM Sans", -apple-system, sans-serif;
+  font-family: "SamsungOne", -apple-system, sans-serif;
   font-size: 13.5px;
   font-weight: 500;
   color: #A6A4B5; /* Clean minimal silver/lavender label */
@@ -2455,7 +2705,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: "DM Sans", sans-serif;
+  font-family: "SamsungOne", sans-serif;
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -2469,7 +2719,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .why-choose-title {
-  font-family: "Manrope", "DM Sans", sans-serif;
+  font-family: "Samsung Sharp Sans", "SamsungOne", sans-serif;
   font-size: 40px;
   font-weight: 800;
   line-height: 1.22;
@@ -2486,7 +2736,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .why-choose-subtitle {
-  font-family: "DM Sans", sans-serif;
+  font-family: "SamsungOne", sans-serif;
   font-size: 17px;
   line-height: 1.6;
   color: #8F8E8D;
@@ -2540,7 +2790,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 
 /* Pillar Card Title */
 .why-choose-card-title {
-  font-family: "Manrope", "DM Sans", sans-serif;
+  font-family: "Samsung Sharp Sans", "SamsungOne", sans-serif;
   font-size: 20px;
   font-weight: 700;
   line-height: 1.35;
@@ -2564,7 +2814,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-family: "DM Sans", sans-serif;
+  font-family: "SamsungOne", sans-serif;
   font-size: 13.5px;
   line-height: 1.55;
   color: #B3B1BE;
@@ -3498,7 +3748,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .trust-title {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: 12.5px;
   font-weight: 700;
   color: #12151A;
@@ -3608,7 +3858,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .metric-val {
-  font-family: "Manrope", sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: 15px;
   font-weight: 800;
   color: #12151A;
@@ -3770,7 +4020,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .case-copy h2 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: 20px;
   font-weight: 800;
   color: #12151A;
@@ -3858,7 +4108,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .article-hero-inner h1 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: clamp(32px, 4.5vw, 48px);
   font-weight: 800;
   color: #FFFFFF;
@@ -3905,7 +4155,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .case-detail-section h2 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: 26px;
   font-weight: 800;
   color: #12151A;
@@ -3937,7 +4187,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .case-approach-list > div > span {
-  font-family: monospace;
+  font-family: "SamsungOne", monospace;
   font-size: 13px;
   font-weight: 800;
   color: #EC5E27;
@@ -3976,7 +4226,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .case-workflow-grid > div > span {
-  font-family: monospace;
+  font-family: "SamsungOne", monospace;
   font-size: 10px;
   font-weight: 700;
   color: #8E939D;
@@ -4240,7 +4490,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .insight-card-copy h2 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: 20px;
   font-weight: 800;
   color: #12151A;
@@ -4272,7 +4522,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   max-width: 800px;
   margin: 0 auto;
   padding: 48px 24px 80px;
-  font-family: 'Inter', sans-serif;
+  font-family: "SamsungOne", sans-serif;
 }
 
 .article-intro {
@@ -4290,7 +4540,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .article-body h2 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: 24px;
   font-weight: 800;
   color: #12151A;
@@ -4388,7 +4638,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .related-article-card h3 {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: 16px;
   font-weight: 700;
   color: #12151A;

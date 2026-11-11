@@ -111,7 +111,7 @@
 
 /* Headline */
 .network-hero-headline {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Samsung Sharp Sans", sans-serif;
   font-size: clamp(36px, 5.2vw, 62px);
   font-weight: 800;
   line-height: 1.08;

@@ -35,10 +35,9 @@
     <!-- Preload critical hero assets for instant first paint -->
     <link rel="preload" as="image" href="/images/robot-hero-poster.jpg" fetchpriority="high" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+    <!-- Samsung Brand Fonts (Preloaded locally for instant zero-FOIT paint) -->
+    <link rel="preload" as="font" type="font/woff" href="/fonts/SamsungOne-400.woff" crossorigin />
+    <link rel="preload" as="font" type="font/woff" href="/fonts/SamsungSharpSans-700.woff" crossorigin />
   </head>
   <body>
     <div id="root"></div>

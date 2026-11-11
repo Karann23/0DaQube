@@ -27,8 +27,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['DM Sans', 'Arial', 'sans-serif'],
-        display: ['Manrope', 'DM Sans', 'sans-serif'],
+        sans: ['"SamsungOne"', 'Arial', 'sans-serif'],
+        display: ['"Samsung Sharp Sans"', '"SamsungOne"', 'Arial', 'sans-serif'],
       },
       maxWidth: {
         content: '1160px',
