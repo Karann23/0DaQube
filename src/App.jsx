@@ -34,7 +34,6 @@ const WARMUP_ASSETS = [
   "/images/speech_main.webp",
   "/images/text_annotation.webp",
   "/images/network_globe.jpg",
-  "/images/cleanroom-security.webp",
   "/images/case-studies/adas-data-collection.jpg",
   "/images/case-studies/multimodal-datasets.jpg",
   "/images/case-studies/human-vs-self-adas.jpg",

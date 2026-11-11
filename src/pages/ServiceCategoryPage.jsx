@@ -1,5 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, CheckCircle2, ChevronRight, Layers, Sparkles, Shield, Cpu, FileCheck2, HelpCircle } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react";
 import { getServiceCategory, SERVICE_CATEGORIES } from "../lib/services-taxonomy";
 import { ServiceDetailPage } from "./ServiceDetailPage";
 import { services } from "../lib/content";
@@ -70,67 +70,6 @@ export function ServiceCategoryPage() {
 
       {/* Case Studies Section with 3D Animation for this Service */}
       <ServiceCaseStudiesSection serviceSlug={category.slug} serviceTitle={category.title} />
-
-      {/* Enterprise Capabilities & Sourcing Standards */}
-      <section className="section section-white">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="eyebrow">PRECISION ENGINEERING</span>
-              <h2 className="font-display text-2xl md:text-4xl font-extrabold text-[#12151A] tracking-tight mt-1 mb-4">
-                Built to eliminate the gap between lab models and real-world deployment.
-              </h2>
-              <p className="text-sm md:text-base text-[#5F646D] leading-relaxed mb-6">
-                Most machine learning pipelines fail not because of model architecture, but because training data lacks the nuance, edge-case coverage, and empirical consistency of deployment environments.
-              </p>
-              <div className="space-y-3.5 text-sm">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 size={18} className="text-[#EC5E27] shrink-0 mt-0.5" />
-                  <div>
-                    <span className="font-bold text-[#12151A]">Multi-Pass Consensus & Adjudication: </span>
-                    <span className="text-[#5F646D]">Blind multi-annotator passes with automated Cohen's Kappa tracking and senior lead arbitration.</span>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 size={18} className="text-[#EC5E27] shrink-0 mt-0.5" />
-                  <div>
-                    <span className="font-bold text-[#12151A]">Air-Gapped Cleanroom Options: </span>
-                    <span className="text-[#5F646D]">Secure virtual cleanrooms with disabled local clipboards, zero-data-retention, and ISO 27001 controls.</span>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 size={18} className="text-[#EC5E27] shrink-0 mt-0.5" />
-                  <div>
-                    <span className="font-bold text-[#12151A]">Zero IP Leakage & Verified Provenance: </span>
-                    <span className="text-[#5F646D]">100% auditable contributor chain-of-custody with explicit commercial model training clearance.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[#E9ECEF] bg-[#0B0E14] shadow-lg">
-                <img
-                  src="/images/cleanroom-security.webp"
-                  alt="Air-Gapped Security & Data Cleanroom Virtual Desktop Infrastructure"
-                  className="h-full w-full object-cover object-center"
-                  loading="eager"
-                  decoding="async"
-                />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#080A0F]/90 via-[#080A0F]/45 to-transparent px-5 py-4 flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2 text-xs font-semibold text-white">
-                    <Shield size={14} className="text-[#EC5E27] shrink-0" />
-                    <span>Air-Gapped Cleanroom · VDI &amp; DLP Monitored</span>
-                  </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#CBD5E1] shrink-0">
-                    ISO/IEC 27001 · HIPAA BAA
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* SEO Technical FAQ */}
       <section className="section section-tint">
