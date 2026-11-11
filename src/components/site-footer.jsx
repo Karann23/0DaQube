@@ -41,19 +41,15 @@ export function SiteFooter() {
           {/* Column 2: Network & Trust */}
           <div className="footer-column">
             <h4>Network & Trust</h4>
-            <Link to="/network/contributors">Global Workforce (1,000+ Locales)</Link>
-            <Link to="/network/domain-experts">Tier-4 Domain Specialists</Link>
-            <Link to="/network/ethics-compliance">Ethical Labor Standards</Link>
-            <Link to="/quality/security-compliance">Enterprise Security & VDI</Link>
-            <Link to="/quality/calibration-framework">Calibration & Gold QA</Link>
+            <Link to="/network">Global Contributor Network</Link>
+            <Link to="/quality">Quality & Trust Assurance</Link>
             <Link to="/case-studies">Enterprise Case Studies</Link>
           </div>
 
           {/* Column 3: Company & Direct Engagement */}
           <div className="footer-column">
             <h4>Company</h4>
-            <Link to="/about/company">Company & Leadership</Link>
-            <Link to="/about/careers">Workforce & Culture</Link>
+            <Link to="/about">About DaQube</Link>
             <Link to="/industries">Industries</Link>
             <Link to="/insights">Insights & Research</Link>
             <Link to="/contact" className="font-semibold text-[#EC5E27] mt-2 inline-flex items-center gap-1">

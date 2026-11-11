@@ -314,9 +314,6 @@ export function AboutPage() {
                 source, structure, annotate and evaluate the information
                 their AI systems depend on.
               </p>
-              <Link to="/about/company" className="dq-inline-link">
-                More about our company <ArrowUpRight size={16} />
-              </Link>
             </div>
           </div>
         </div>
@@ -366,10 +363,6 @@ export function AboutPage() {
                 structured datasets, and project goals into outcomes that
                 matter.
               </p>
-
-              <Link to="/about/company" className="dq-inline-link">
-                More about our company <ArrowUpRight size={16} />
-              </Link>
             </div>
           </div>
         </div>
@@ -628,26 +621,6 @@ export function AboutPage() {
               <span>Engagement</span>
               <strong>Client projects and tailored data workflows</strong>
             </div>
-          </div>
-
-          <div className="dq-company-links" data-dq-reveal>
-            <Link to="/about/company">
-              <Building2 size={19} />
-              <span>
-                <strong>Company &amp; Leadership</strong>
-                <small>Explore our organization</small>
-              </span>
-              <ArrowUpRight size={19} />
-            </Link>
-
-            <Link to="/about/careers">
-              <BriefcaseBusiness size={19} />
-              <span>
-                <strong>Workforce &amp; Culture</strong>
-                <small>Explore our working standards</small>
-              </span>
-              <ArrowUpRight size={19} />
-            </Link>
           </div>
         </div>
       </section>

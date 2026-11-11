@@ -454,9 +454,6 @@ export function NetworkPage() {
                   <Link to="/contact" className="button button-crimson">
                     Deploy Global Network <ArrowUpRight size={16} />
                   </Link>
-                  <Link to="/network/contributors" className="text-link text-link-light text-xs font-semibold">
-                    Explore Contributor Operations <ArrowRight size={14} />
-                  </Link>
                 </div>
               </div>
 

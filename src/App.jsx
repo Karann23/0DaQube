@@ -4,21 +4,14 @@ import { SiteFooter } from "./components/site-footer";
 import { ScrollToTop } from "./components/scroll-to-top";
 import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
-import { AboutCompanyPage } from "./pages/AboutCompanyPage";
-import { AboutCareersPage } from "./pages/AboutCareersPage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { ServiceCategoryPage } from "./pages/ServiceCategoryPage";
 import { ServiceSubSubPage } from "./pages/ServiceSubSubPage";
 import { NetworkPage } from "./pages/NetworkPage";
-import { NetworkContributorsPage } from "./pages/NetworkContributorsPage";
-import { NetworkDomainExpertsPage } from "./pages/NetworkDomainExpertsPage";
-import { NetworkEthicsPage } from "./pages/NetworkEthicsPage";
 import { IndustriesPage } from "./pages/IndustriesPage";
 import { CaseStudiesPage } from "./pages/CaseStudiesPage";
 import { CaseStudyDetailPage } from "./pages/CaseStudyDetailPage";
 import { QualityPage } from "./pages/QualityPage";
-import { QualitySecurityPage } from "./pages/QualitySecurityPage";
-import { QualityCalibrationPage } from "./pages/QualityCalibrationPage";
 import { InsightsPage } from "./pages/InsightsPage";
 import { InsightDetailPage } from "./pages/InsightDetailPage";
 import { ContactPage } from "./pages/ContactPage";
@@ -42,10 +35,8 @@ export function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           
-          {/* About & Subpages */}
+          {/* About */}
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/about/company" element={<AboutCompanyPage />} />
-          <Route path="/about/careers" element={<AboutCareersPage />} />
 
           {/* Solutions & Services Taxonomy */}
           <Route path="/solutions" element={<ServicesPage />} />
@@ -55,16 +46,11 @@ export function App() {
           <Route path="/services/:categorySlug" element={<ServiceCategoryPage />} />
           <Route path="/services/:categorySlug/:subSlug" element={<ServiceSubSubPage />} />
 
-          {/* Network & Subpages */}
+          {/* Network */}
           <Route path="/network" element={<NetworkPage />} />
-          <Route path="/network/contributors" element={<NetworkContributorsPage />} />
-          <Route path="/network/domain-experts" element={<NetworkDomainExpertsPage />} />
-          <Route path="/network/ethics-compliance" element={<NetworkEthicsPage />} />
 
-          {/* Quality & Trust Subpages */}
+          {/* Quality & Trust */}
           <Route path="/quality" element={<QualityPage />} />
-          <Route path="/quality/security-compliance" element={<QualitySecurityPage />} />
-          <Route path="/quality/calibration-framework" element={<QualityCalibrationPage />} />
 
           {/* Case Studies, Industries, Insights & Legal */}
           <Route path="/industries" element={<IndustriesPage />} />
