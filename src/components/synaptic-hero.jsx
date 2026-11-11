@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowDownRight, ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { SynapticParticleCanvas } from "./SynapticParticleCanvas";
 
 /**
  * SynapticHero with Authentic 4K Robot Video
@@ -80,7 +81,10 @@ export function SynapticHero() {
         </div>
       </div>
 
-      {/* Layer 2: Central Content Layer (Overlaid clearly in front of video) */}
+      {/* Layer 2: Original Bright 55-Node Blue & Orange Synaptic Animation on Hero Video */}
+      <SynapticParticleCanvas particleCount={55} connectionDistance={140} />
+
+      {/* Layer 3: Central Content Layer (Overlaid clearly in front of video) */}
       <div className="container hero-content-layer">
         <div
           className="hero-text-box"
