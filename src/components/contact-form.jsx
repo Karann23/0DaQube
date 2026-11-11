@@ -5,39 +5,26 @@ import {
   CheckCircle2,
   LoaderCircle,
   Shield,
-  FileText,
-  Lock,
   Sparkles,
-  Camera,
-  Video,
-  Mic,
-  Headphones,
-  Crosshair,
-  Layers,
-  Boxes,
-  Zap,
-  Clock,
-  Building2,
-  FileCheck2,
-  ShieldCheck
+  ChevronDown
 } from "lucide-react";
 
 const CAPABILITIES = [
-  { id: "image-collection", label: "Image Data Collection", icon: Camera, short: "Visual perception & defect capture" },
-  { id: "video-collection", label: "Video Data Collection", icon: Video, short: "60/120 FPS action & egocentric AR" },
-  { id: "speech-collection", label: "Speech Data Collection", icon: Mic, short: "120+ languages, 1,000+ locales, multi-mic ASR & TTS" },
-  { id: "text-collection", label: "Text Data & Labeling", icon: FileText, short: "Multilingual corpora, table OCR & NLP" },
-  { id: "annotation", label: "Image & Video Annotation", icon: Layers, short: "Sub-pixel polygon masks & 3D cuboids" },
-  { id: "transcription", label: "Audio Transcription", icon: Headphones, short: "Verbatim speech-to-text & Praat tiers" },
-  { id: "adas-lidar", label: "ADAS & LiDAR Annotation", icon: Crosshair, short: "128-beam 3D cuboids & sensor fusion" },
-  { id: "off-the-shelf", label: "Off-the-Shelf AI Datasets", icon: Boxes, short: "Pre-collected commercial training sets" }
+  { id: "image-collection", label: "Image Data Collection" },
+  { id: "video-collection", label: "Video Data Collection" },
+  { id: "speech-collection", label: "Speech Data Collection" },
+  { id: "text-collection", label: "Text Data & Labeling" },
+  { id: "annotation", label: "Image & Video Annotation" },
+  { id: "transcription", label: "Audio Transcription" },
+  { id: "adas-lidar", label: "ADAS & LiDAR Annotation" },
+  { id: "off-the-shelf", label: "Off-the-Shelf AI Datasets" }
 ];
 
 const SCOPE_TIERS = [
-  { id: "pilot", label: "Pilot Feasibility", desc: "Under 10k items / 50 hrs", badge: "Trial Benchmark" },
-  { id: "production", label: "Production Scale", desc: "10k – 100k items / 50–500 hrs", badge: "Most Popular" },
-  { id: "enterprise", label: "Enterprise Tier", desc: "100k+ items / 500+ hrs", badge: "Dedicated Squad" },
-  { id: "custom", label: "Custom Pipeline", desc: "Multi-modal ongoing retainer", badge: "Continuous" }
+  { id: "pilot", label: "Pilot Feasibility" },
+  { id: "production", label: "Production Scale" },
+  { id: "enterprise", label: "Enterprise Tier" },
+  { id: "custom", label: "Custom Pipeline" }
 ];
 
 const TIMELINE_OPTIONS = [
@@ -50,13 +37,9 @@ export function ContactForm() {
   const [searchParams] = useSearchParams();
   const [selectedService, setSelectedService] = useState("image-collection");
   const [selectedScope, setSelectedScope] = useState("production");
+  const [volumeCount, setVolumeCount] = useState("");
+  const [volumeUnit, setVolumeUnit] = useState("items");
   const [selectedTimeline, setSelectedTimeline] = useState("standard");
-  const [securityAddons, setSecurityAddons] = useState({
-    nda: true,
-    airgap: false,
-    soc2: true,
-    hipaa: false
-  });
 
   const [form, setForm] = useState({
     name: "",
@@ -81,6 +64,11 @@ export function ContactForm() {
       if (match) setSelectedService(match.id);
     }
 
+    if (volumeParam) {
+      const numericVolume = volumeParam.replace(/[^\d.]/g, "");
+      if (numericVolume) setVolumeCount(numericVolume);
+    }
+
     if (detailsParam) {
       setForm((prev) => ({
         ...prev,
@@ -89,10 +77,6 @@ export function ContactForm() {
     }
   }, [searchParams]);
 
-  const toggleSecurity = (key) => {
-    setSecurityAddons((prev) => ({ ...prev, [key]: !prev[key] }));
-  };
-
   const handleInputChange = (key, value) => {
     setForm((prev) => ({ ...prev, [key]: value }));
   };
@@ -100,6 +84,15 @@ export function ContactForm() {
   const activeCapability = CAPABILITIES.find((c) => c.id === selectedService) || CAPABILITIES[0];
   const activeScopeObj = SCOPE_TIERS.find((s) => s.id === selectedScope) || SCOPE_TIERS[1];
   const activeTimelineObj = TIMELINE_OPTIONS.find((t) => t.id === selectedTimeline) || TIMELINE_OPTIONS[1];
+
+  const parsedCount = Number(volumeCount);
+  const formattedVolume =
+    volumeCount.trim() !== "" && !Number.isNaN(parsedCount) && parsedCount > 0
+      ? `${parsedCount.toLocaleString()} ${volumeUnit}`
+      : "";
+  const volumeSummary = formattedVolume
+    ? `${activeScopeObj.label} · ${formattedVolume}`
+    : activeScopeObj.label;
 
   async function submit(e) {
     e.preventDefault();
@@ -110,7 +103,7 @@ export function ContactForm() {
     setTimeout(() => {
       setStatus("success");
       setMessage(
-        `Thank you, ${form.name || "Colleague"}! Your project specification for ${activeCapability.label} has been registered. An AI Solutions Architect and Data Workflow Lead will review your acceptance criteria and reach out within 24 hours.`
+        `Thank you, ${form.name || "Colleague"}! Your project specification for ${activeCapability.label} (${volumeSummary}) has been registered. An AI Solutions Architect and Data Workflow Lead will review your acceptance criteria and reach out within 24 hours.`
       );
     }, 900);
   }
@@ -129,23 +122,17 @@ export function ContactForm() {
         </p>
 
         <div className="p-4 rounded-2xl bg-[#F8FAFC] border border-[rgba(20,23,26,0.06)] max-w-md mx-auto text-left mb-6 text-xs space-y-1.5">
-          <div className="flex justify-between">
+          <div className="flex justify-between gap-4">
             <span className="text-[#5F646D]">Configured Capability:</span>
-            <span className="font-bold text-[#12151A]">{activeCapability.label}</span>
+            <span className="font-bold text-[#12151A] text-right">{activeCapability.label}</span>
           </div>
-          <div className="flex justify-between">
-            <span className="text-[#5F646D]">Target Scale:</span>
-            <span className="font-bold text-[#12151A]">{activeScopeObj.label}</span>
+          <div className="flex justify-between gap-4">
+            <span className="text-[#5F646D]">Dataset Volume:</span>
+            <span className="font-bold text-[#12151A] text-right">{volumeSummary}</span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between gap-4">
             <span className="text-[#5F646D]">Timeline Urgency:</span>
-            <span className="font-bold text-[#EC5E27]">{activeTimelineObj.time}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-[#5F646D]">Confidentiality:</span>
-            <span className="font-bold text-[#12151A]">
-              {securityAddons.nda ? "Pre-Execution NDA Active" : "Standard Confidentiality"}
-            </span>
+            <span className="font-bold text-[#EC5E27] text-right">{activeTimelineObj.time}</span>
           </div>
         </div>
 
@@ -175,60 +162,50 @@ export function ContactForm() {
           Architect Your Project Requirements
         </h2>
         <p className="text-xs md:text-sm text-[#5F646D] mt-1">
-          Select your target modality, project scale, and compliance constraints to initiate a structured technical discovery.
+          Select your target service, dataset volume, and delivery window to initiate a structured technical discovery.
         </p>
       </div>
 
-      {/* STEP 1: Interactive Capability Grid (8 Core Services) */}
+      {/* STEP 1: Primary AI Capability Dropdown */}
       <div className="mb-6">
-        <label className="text-xs font-bold uppercase tracking-wider text-[#12151A] flex items-center justify-between mb-2">
+        <label
+          htmlFor="capability-select"
+          className="text-xs font-bold uppercase tracking-wider text-[#12151A] flex items-center justify-between mb-2"
+        >
           <span>1. Select Primary AI Capability</span>
-          <span className="text-[10px] font-mono text-[#8E939D] font-normal">Step 1 of 4</span>
+          <span className="text-[10px] font-mono text-[#8E939D] font-normal">Step 1 of 3</span>
         </label>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          {CAPABILITIES.map((c) => {
-            const Icon = c.icon;
-            const isSelected = selectedService === c.id;
-            return (
-              <button
-                key={c.id}
-                type="button"
-                onClick={() => setSelectedService(c.id)}
-                className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
-                  isSelected
-                    ? "border-[#EC5E27] bg-[#FFF3ED]/70 shadow-sm ring-1 ring-[#EC5E27]/50"
-                    : "border-[rgba(20,23,26,0.08)] bg-white hover:border-[rgba(20,23,26,0.25)]"
-                }`}
-              >
-                <div className={`w-7 h-7 rounded-lg flex items-center justify-center mb-1.5 ${
-                  isSelected ? "bg-[#EC5E27] text-white" : "bg-[#F1F3F5] text-[#5F646D]"
-                }`}>
-                  <Icon size={14} />
-                </div>
-                <div>
-                  <span className={`text-[11.5px] font-bold block leading-tight ${
-                    isSelected ? "text-[#EC5E27]" : "text-[#12151A]"
-                  }`}>
-                    {c.label}
-                  </span>
-                  <span className="text-[10px] text-[#5F646D] line-clamp-1 mt-0.5">
-                    {c.short}
-                  </span>
-                </div>
-              </button>
-            );
-          })}
+        <div className="relative">
+          <select
+            id="capability-select"
+            value={selectedService}
+            onChange={(e) => setSelectedService(e.target.value)}
+            className="w-full appearance-none rounded-xl border border-[rgba(20,23,26,0.14)] bg-white px-4 py-3 pr-10 text-sm font-semibold text-[#12151A] outline-none transition-all cursor-pointer hover:border-[rgba(20,23,26,0.3)] focus:border-[#EC5E27] focus:ring-2 focus:ring-[#EC5E27]/20"
+          >
+            {CAPABILITIES.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.label}
+              </option>
+            ))}
+          </select>
+          <ChevronDown
+            size={18}
+            className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#5F646D]"
+          />
         </div>
       </div>
 
-      {/* STEP 2: Project Scope & Cadence */}
+      {/* STEP 2 & 3: Dataset Volume & Delivery Window */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        {/* Scope Tier */}
+        {/* Dataset Volume: Clean Tiers + Custom Numeric Input */}
         <div>
-          <label className="text-xs font-bold uppercase tracking-wider text-[#12151A] block mb-2">
+          <label
+            htmlFor="dataset-volume-number"
+            className="text-xs font-bold uppercase tracking-wider text-[#12151A] block mb-2"
+          >
             2. Estimated Dataset Volume
           </label>
-          <div className="grid grid-cols-2 gap-1.5">
+          <div className="grid grid-cols-2 gap-1.5 mb-2">
             {SCOPE_TIERS.map((s) => {
               const isSelected = selectedScope === s.id;
               return (
@@ -236,17 +213,44 @@ export function ContactForm() {
                   key={s.id}
                   type="button"
                   onClick={() => setSelectedScope(s.id)}
-                  className={`p-2.5 rounded-xl border text-left cursor-pointer transition-all ${
+                  className={`px-3 py-2.5 rounded-xl border text-left cursor-pointer transition-all ${
                     isSelected
                       ? "border-[#EC5E27] bg-[#FFF3ED]/70 text-[#EC5E27] shadow-sm font-semibold"
                       : "border-[rgba(20,23,26,0.08)] bg-white text-[#12151A] hover:border-[rgba(20,23,26,0.2)]"
                   }`}
                 >
                   <div className="text-xs font-bold leading-tight">{s.label}</div>
-                  <div className="text-[10px] text-[#5F646D] mt-0.5">{s.desc}</div>
                 </button>
               );
             })}
+          </div>
+          <div className="flex items-stretch gap-1.5">
+            <input
+              id="dataset-volume-number"
+              type="number"
+              min="1"
+              step="1"
+              inputMode="numeric"
+              value={volumeCount}
+              onChange={(e) => setVolumeCount(e.target.value)}
+              placeholder="Enter exact volume (e.g. 50000)"
+              className="flex-1 min-w-0 rounded-xl border border-[rgba(20,23,26,0.14)] bg-white px-3.5 py-2 text-sm text-[#12151A] placeholder:text-[#8E939D] outline-none transition-all focus:border-[#EC5E27] focus:ring-2 focus:ring-[#EC5E27]/20"
+            />
+            <div className="relative shrink-0">
+              <select
+                aria-label="Dataset volume unit"
+                value={volumeUnit}
+                onChange={(e) => setVolumeUnit(e.target.value)}
+                className="h-full appearance-none rounded-xl border border-[rgba(20,23,26,0.14)] bg-white pl-3 pr-8 py-2 text-xs font-semibold text-[#12151A] outline-none transition-all cursor-pointer focus:border-[#EC5E27] focus:ring-2 focus:ring-[#EC5E27]/20"
+              >
+                <option value="items">items</option>
+                <option value="hours">hours</option>
+              </select>
+              <ChevronDown
+                size={14}
+                className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-[#5F646D]"
+              />
+            </div>
           </div>
         </div>
 
@@ -282,67 +286,7 @@ export function ContactForm() {
         </div>
       </div>
 
-      {/* STEP 3: Enterprise Security & Compliance Add-ons */}
-      <div className="mb-6 p-4 rounded-2xl bg-[#F8FAFC] border border-[rgba(20,23,26,0.06)]">
-        <label className="text-xs font-bold uppercase tracking-wider text-[#12151A] block mb-2">
-          4. Security & Compliance Requirements
-        </label>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          <button
-            type="button"
-            onClick={() => toggleSecurity("nda")}
-            className={`p-2 rounded-lg border text-xs text-left cursor-pointer transition-all flex items-center gap-1.5 ${
-              securityAddons.nda
-                ? "border-[#EC5E27] bg-[#FFF3ED] text-[#EC5E27] font-bold"
-                : "border-[rgba(20,23,26,0.08)] bg-white text-[#5F646D]"
-            }`}
-          >
-            <ShieldCheck size={14} className={securityAddons.nda ? "text-[#EC5E27]" : "text-[#8E939D]"} />
-            <span>Mutual NDA</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => toggleSecurity("soc2")}
-            className={`p-2 rounded-lg border text-xs text-left cursor-pointer transition-all flex items-center gap-1.5 ${
-              securityAddons.soc2
-                ? "border-[#EC5E27] bg-[#FFF3ED] text-[#EC5E27] font-bold"
-                : "border-[rgba(20,23,26,0.08)] bg-white text-[#5F646D]"
-            }`}
-          >
-            <Shield size={14} className={securityAddons.soc2 ? "text-[#EC5E27]" : "text-[#8E939D]"} />
-            <span>ISO 27001 Certified</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => toggleSecurity("airgap")}
-            className={`p-2 rounded-lg border text-xs text-left cursor-pointer transition-all flex items-center gap-1.5 ${
-              securityAddons.airgap
-                ? "border-[#EC5E27] bg-[#FFF3ED] text-[#EC5E27] font-bold"
-                : "border-[rgba(20,23,26,0.08)] bg-white text-[#5F646D]"
-            }`}
-          >
-            <Lock size={14} className={securityAddons.airgap ? "text-[#EC5E27]" : "text-[#8E939D]"} />
-            <span>Air-Gapped VDI</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => toggleSecurity("hipaa")}
-            className={`p-2 rounded-lg border text-xs text-left cursor-pointer transition-all flex items-center gap-1.5 ${
-              securityAddons.hipaa
-                ? "border-[#EC5E27] bg-[#FFF3ED] text-[#EC5E27] font-bold"
-                : "border-[rgba(20,23,26,0.08)] bg-white text-[#5F646D]"
-            }`}
-          >
-            <FileCheck2 size={14} className={securityAddons.hipaa ? "text-[#EC5E27]" : "text-[#8E939D]"} />
-            <span>HIPAA / BAA</span>
-          </button>
-        </div>
-      </div>
-
-      {/* STEP 4: Contact & Technical Brief */}
+      {/* Contact & Technical Brief */}
       <div className="form-grid">
         <label>
           Full Name <span>*</span>
@@ -390,15 +334,10 @@ export function ContactForm() {
       </div>
 
       {/* Live Scope Blueprint Summary Strip */}
-      <div className="mt-5 p-3.5 rounded-xl bg-[#FFF3ED]/60 border border-[#EC5E27]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-        <div className="flex items-center gap-2">
-          <Sparkles size={16} className="text-[#EC5E27] shrink-0" />
-          <span className="text-[#12151A] font-medium">
-            Active Scoping Blueprint: <strong>{activeCapability.label}</strong> ({activeScopeObj.label}) · <strong>{activeTimelineObj.time}</strong>
-          </span>
-        </div>
-        <span className="text-[11px] font-mono text-[#5F646D] shrink-0">
-          Mutual NDA: {securityAddons.nda ? "Requested" : "Standard"}
+      <div className="mt-5 p-3.5 rounded-xl bg-[#FFF3ED]/60 border border-[#EC5E27]/20 flex items-center gap-2 text-xs">
+        <Sparkles size={16} className="text-[#EC5E27] shrink-0" />
+        <span className="text-[#12151A] font-medium">
+          Active Scoping Blueprint: <strong>{activeCapability.label}</strong> ({volumeSummary}) · <strong>{activeTimelineObj.time}</strong>
         </span>
       </div>
 
