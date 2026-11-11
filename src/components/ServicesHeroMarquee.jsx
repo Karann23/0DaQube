@@ -47,14 +47,14 @@ export const DEFAULT_HERO_CARDS = [
         id: "card-7",
         title: "Document Structure & Layout Annotation",
         category: "Document AI",
-        image: "/services-motion/Text_motion.png",
+        image: "/services-motion/Text_motion.webp",
         heightClass: "height-compact",
     },
     {
         id: "card-8",
         title: "Shipping Label & OCR Data Annotation",
         category: "OCR & Document Processing",
-        image: "/services-motion/Text_motion2.png",
+        image: "/services-motion/Text_motion2.webp",
         heightClass: "height-medium",
     },
     {
@@ -177,7 +177,7 @@ export function ServicesHeroMarquee({ cards = DEFAULT_HERO_CARDS, headlineTop = 
                     width: "100%",
                     height: "100%",
                     background: "linear-gradient(135deg, #161a23 0%, #0d0f14 100%)",
-                }}/>) : (<img src={card.image} alt={card.title} className="marquee-card-image" loading="lazy" onError={() => handleImageError(uniqueKey)}/>)}
+                }}/>) : (<img src={card.image} alt={card.title} className="marquee-card-image" loading="eager" decoding="async" onError={() => handleImageError(uniqueKey)}/>)}
 
         {/* Dark Vignette Scrim */}
         <div className="marquee-card-scrim"/>

@@ -10,7 +10,7 @@ const serviceLinks = {
 };
 export function ServiceCard({ icon: Icon, number, title, description, tags, image, imageAlt }) {
     return (<Link className="service-card" to={serviceLinks[number] ?? "/services"}>
-      <div className="service-card-image"><img src={image} alt={imageAlt} loading="lazy"/><span>{number} / CAPABILITY</span></div>
+      <div className="service-card-image"><img src={image} alt={imageAlt} loading="eager" decoding="async"/><span>{number} / CAPABILITY</span></div>
       <div className="service-card-top"><span className="service-icon"><Icon size={23}/></span><span className="service-number">{number}</span></div>
       <h3>{title}</h3>
       <p>{description}</p>

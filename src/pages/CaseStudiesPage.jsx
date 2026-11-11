@@ -173,7 +173,8 @@ export function CaseStudiesPage() {
                     <img
                       src={item.image}
                       alt={item.imageAlt}
-                      loading="lazy"
+                      loading="eager"
+                      decoding="async"
                       onError={(e) => {
                         const current = e.currentTarget.getAttribute("src");
                         if (current && current.startsWith("/images/case-studies/")) {

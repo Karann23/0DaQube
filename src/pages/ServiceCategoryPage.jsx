@@ -4,8 +4,7 @@ import { getServiceCategory, SERVICE_CATEGORIES } from "../lib/services-taxonomy
 import { ImagePlaceholder } from "../components/image-placeholder";
 import { ServiceDetailPage } from "./ServiceDetailPage";
 import { services } from "../lib/content";
-import { SpatialDomainStage, ServiceCaseStudiesSection, getServiceSubpageImage } from "../components/SpatialDomainStage";
-import { ThreeDTiltCard } from "../components/ThreeDVisualizers";
+import { SpatialDomainStage, ServiceCaseStudiesSection } from "../components/SpatialDomainStage";
 
 export function ServiceCategoryPage() {
   const { categorySlug } = useParams();
@@ -45,8 +44,8 @@ export function ServiceCategoryPage() {
             <Link className="button button-crimson" to={`/contact?service=${encodeURIComponent(category.title)}`}>
               Scope {category.title} <ArrowUpRight size={17} />
             </Link>
-            <a className="text-link text-link-light" href="#subpages-list">
-              Explore Sub-Disciplines <ArrowRight size={16} />
+            <a className="text-link text-link-light" href="#domain-stage">
+              Explore Target Domains <ArrowRight size={16} />
             </a>
           </div>
         </div>
@@ -72,73 +71,6 @@ export function ServiceCategoryPage() {
 
       {/* Case Studies Section with 3D Animation for this Service */}
       <ServiceCaseStudiesSection serviceSlug={category.slug} serviceTitle={category.title} />
-
-      {/* Sub-Specializations / Subpages Grid (With 3D Cards) */}
-      <section id="subpages-list" className="section section-tint">
-        <div className="container">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
-            <div>
-              <span className="eyebrow">SPECIALIZED SUB-DISCIPLINES</span>
-              <h2 className="font-display text-2xl md:text-4xl font-extrabold text-[#12151A] tracking-tight mt-1">
-                Engineered for specialized requirements.
-              </h2>
-            </div>
-            <p className="text-sm text-[#5F646D] max-w-md mt-2 md:mt-0 leading-relaxed">
-              Select a specialized sub-practice to inspect specific deliverable schemas, annotator credentialing, and empirical quality benchmarks.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {category.subpages.map((sub, idx) => {
-              const cardImg = getServiceSubpageImage(category.slug, sub.slug, idx);
-              return (
-              <ThreeDTiltCard key={sub.slug} maxTilt={6}>
-                <article className="flex flex-col p-7 rounded-2xl bg-white border border-[#E9ECEF] hover:border-[#EC5E27] hover:shadow-xl transition-all duration-300 h-full">
-                  <div className="mb-5">
-                    {cardImg ? (
-                      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-[#E9ECEF] bg-[#0F172A]">
-                        <img
-                          src={cardImg}
-                          alt={sub.title}
-                          className="h-full w-full object-cover object-center transition-transform duration-500 hover:scale-105"
-                          loading="lazy"
-                        />
-                      </div>
-                    ) : (
-                      <ImagePlaceholder
-                        aspect="16/10"
-                        label={sub.title.toUpperCase()}
-                        caption={`Dataset sample & ground truth schema for ${sub.title}`}
-                        specs="Annotated Frame · Ground Truth Coordinate Layer"
-                      />
-                    )}
-                  </div>
-
-                  <span className="text-xs font-bold text-[#EC5E27] tracking-wider uppercase mb-1">
-                    {sub.eyebrow}
-                  </span>
-                  <h3 className="font-display text-xl font-bold text-[#12151A] mb-2.5">
-                    {sub.title}
-                  </h3>
-                  <p className="text-sm text-[#5F646D] leading-relaxed mb-6">
-                    {sub.short}
-                  </p>
-
-                  <div className="mt-auto pt-4 border-t border-[#F8F9FA] flex items-center justify-between">
-                    <Link
-                      to={`/solutions/${category.slug}/${sub.slug}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#EC5E27] hover:underline"
-                    >
-                      View Technical Specs & Workflow <ArrowRight size={14} />
-                    </Link>
-                  </div>
-                </article>
-              </ThreeDTiltCard>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       {/* Enterprise Capabilities & Sourcing Standards */}
       <section className="section section-white">

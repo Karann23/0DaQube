@@ -22,7 +22,7 @@ export const serviceItems = [
     accentTitle: "MULTILINGUAL VOICE ENGINE",
     description: "Build speech and sound datasets for voice assistants, automatic speech recognition, acoustic events, and localized multilingual experiences.",
     tags: ["Speech & accents", "Sound events", "Language coverage"],
-    image: "/images/speech_main.png",
+    image: "/images/speech_main.webp",
     imageAlt: "Microphone and headphones for speech data recording",
     callout1: "SPEECH & ACCENTS",
     callout2: "ACOUSTIC COVERAGE",
@@ -35,7 +35,7 @@ export const serviceItems = [
     accentTitle: "GROUND-TRUTH DOCUMENT NLP",
     description: "Turn recordings and documents into usable language data with transcription, normalization, OCR-ready text, and locale-aware human review.",
     tags: ["Transcription", "OCR & documents", "Localization"],
-    image: "/images/text_annotation.png",
+    image: "/images/text_annotation.webp",
     imageAlt: "Writing and transcription workspace",
     callout1: "DOCUMENT OCR",
     callout2: "LOCALE ADAPTATION",
@@ -61,7 +61,7 @@ export const serviceItems = [
     accentTitle: "TIME-ALIGNED SENSOR FUSION",
     description: "Connect modalities with aligned timestamps, transcripts, metadata, and labels for systems that interpret the real world from multiple signals.",
     tags: ["Image + text", "Audio + video", "Aligned metadata"],
-    image: "/images/robotics_main.png",
+    image: "/images/robotics_main.webp",
     imageAlt: "Robotics and connected sensor technology",
     callout1: "TIMESTAMP ALIGNMENT",
     callout2: "MULTI-SENSOR FUSION",
@@ -74,7 +74,7 @@ export const serviceItems = [
     accentTitle: "RLHF & RUBRIC EVALUATION",
     description: "Evaluate model outputs against clear rubrics, compare responses, surface failure patterns, and create closed feedback loops for continuous improvement.",
     tags: ["Rubric scoring", "Preference ranking", "Error analysis"],
-    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=900&q=85",
+    image: "/images/services_ots.webp",
     imageAlt: "Team reviewing data and project results",
     callout1: "RLHF SCORING",
     callout2: "PREFERENCE RANKING",
@@ -185,7 +185,8 @@ export function VerkosStackSection() {
                               src={item.image}
                               alt={item.imageAlt}
                               className="verkos-slab-image"
-                              loading="lazy"
+                              loading="eager"
+                              decoding="async"
                             />
                             <div className="verkos-photo-overlay">
                               <span className="verkos-slab-label">{item.accentTitle}</span>

@@ -51,7 +51,7 @@ export const ESTIMATOR_MODALITIES = [
   {
     id: "speech-collection",
     name: "Speech Data Collection",
-    subtitle: "1,000+ dialects, multi-mic far-field, expressive TTS",
+    subtitle: "120+ languages, 1,000+ locales, multi-mic & expressive TTS",
     unitLabel: "recorded hours",
     icon: Mic,
     baseMultiplier: 1.3,

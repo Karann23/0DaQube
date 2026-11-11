@@ -25,7 +25,7 @@ import {
 const CAPABILITIES = [
   { id: "image-collection", label: "Image Data Collection", icon: Camera, short: "Visual perception & defect capture" },
   { id: "video-collection", label: "Video Data Collection", icon: Video, short: "60/120 FPS action & egocentric AR" },
-  { id: "speech-collection", label: "Speech Data Collection", icon: Mic, short: "1,000+ dialects, multi-mic ASR & TTS" },
+  { id: "speech-collection", label: "Speech Data Collection", icon: Mic, short: "120+ languages, 1,000+ locales, multi-mic ASR & TTS" },
   { id: "text-collection", label: "Text Data & Labeling", icon: FileText, short: "Multilingual corpora, table OCR & NLP" },
   { id: "annotation", label: "Image & Video Annotation", icon: Layers, short: "Sub-pixel polygon masks & 3D cuboids" },
   { id: "transcription", label: "Audio Transcription", icon: Headphones, short: "Verbatim speech-to-text & Praat tiers" },

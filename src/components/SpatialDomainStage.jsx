@@ -106,7 +106,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Surveillance & Security",
       icon: Shield,
       summary: "Wide-area security camera and thermal infrared photos for automated facility monitoring, safety alerts, and perimeter defense.",
-      photoUrl: "/images/Solutions/Image Collection/Surveillance & Security_card.png",
+      photoUrl: "/images/Solutions/Image Collection/Surveillance & Security_card.webp",
       photoLabel: "Perimeter Security Camera Array",
       useCases: [
         "Perimeter intrusion and unauthorized access alerts",
@@ -830,7 +830,7 @@ export const SERVICE_DOMAINS_MAP = {
       badge: "Multilingual Transcription",
       title: "Multilingual Audio Transcription",
       icon: Users2,
-      summary: "Audio transcription and synchronized translation across 100+ global languages, regional dialects, and accents.",
+      summary: "Audio transcription and synchronized translation across 120+ global languages and 1,000+ regional locales.",
       photoUrl: "/images/Solutions/Speech Transcription/Multilingual Audio Transcription_card.jpg",
       photoLabel: "Global Multilingual Audio Console",
       useCases: [
@@ -1137,6 +1137,17 @@ export function SpatialDomainStage({ serviceSlug = "image-collection", serviceTi
   const [currentIndex, setCurrentIndex] = useState(0);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
+  // Preload all domain photos for current category so tab switching is instant
+  useEffect(() => {
+    domainList.forEach((d) => {
+      if (d?.photoUrl) {
+        const img = new Image();
+        img.decoding = "async";
+        img.src = d.photoUrl;
+      }
+    });
+  }, [domainList]);
+
   const activeDomain = domainList[currentIndex] || domainList[0];
   const cardRef = useRef(null);
   const canvasRef = useRef(null);
@@ -1319,7 +1330,8 @@ export function SpatialDomainStage({ serviceSlug = "image-collection", serviceTi
                   src={activeDomain.photoUrl}
                   alt={activeDomain.title}
                   className="spatial-media-img"
-                  loading="lazy"
+                  loading="eager"
+                  decoding="async"
                 />
 
                 <div className="spatial-media-badge">
@@ -1403,39 +1415,6 @@ export function SpatialDomainStage({ serviceSlug = "image-collection", serviceTi
   );
 }
 
-// Helper to pick a real Solutions card photo matching a sub-discipline card
-const SUBPAGE_PHOTO_OVERRIDES = {
-  "retail-shelf": "/images/Solutions/Image Collection/Retail & Food Dataset Collection_card.jpg",
-  "object-detection": "/images/Solutions/Image Collection/Object & Specific Scenarios Collections_card.jpg",
-  "cultural-heritage": "/images/Solutions/Image Collection/Cultural & Heritage Preservation_card.avif",
-  "sports-activities": "/images/Solutions/Image Collection/Sports & Activities_card.webp",
-  "healthcare-medical": "/images/Solutions/Image Collection/Heathcare_card.jpg",
-  "surveillance-security": "/images/Solutions/Image Collection/Surveillance & Security_card.png",
-  "action-recognition": "/images/Solutions/video collection/Human Action & Motion Recognition_card.jpg",
-  "egocentric-capture": "/images/Solutions/video collection/First-Person Egocentric Video_card.jpg",
-  "conversational-asr": "/images/Solutions/Audio Collection/Spontaneous Conversational Speech_card.webp",
-  "expressive-tts": "/images/Solutions/Audio Collection/Expressive Neural TTS Voice Sets_card.jpg",
-  "rlhf-preference": "/images/Solutions/Text Collection/Conversational AI & Chatbot Logs_card.jpg",
-  "domain-nlp": "/images/Solutions/Text Collection/Multilingual NLP Corpora_card.jpg",
-  "instance-segmentation": "/images/Solutions/Annotation/Polygonal & Semantic Segmentation_card.jpg",
-  "tracking-keypoints": "/images/Solutions/Annotation/Keypoint & Skeletal Pose Estimation_card.jpg",
-  "phonetic-textgrid": "/images/Solutions/Speech Transcription/Speaker Diarization & Word Timestamps_card.jpg",
-  "clinical-transcription": "/images/Solutions/Speech Transcription/Medical & Clinical Transcription_card.avif",
-  "3d-cuboids": "/images/Solutions/ADAS/3D LiDAR Point Cloud Cuboids_card.jpg",
-  "road-polylines": "/images/Solutions/ADAS/Lane Marking & Drivable Space_card.jpg",
-  "speech-catalog": "/images/Solutions/OTS/Multi-Dialect Speech Audio Libraries_card.jpg",
-  "autonomous-catalog": "/images/Solutions/OTS/ADAS Driving Video Benchmarks_card.jpg",
-};
-
-export function getServiceSubpageImage(serviceSlug, subSlug, index = 0) {
-  if (SUBPAGE_PHOTO_OVERRIDES[subSlug]) {
-    return SUBPAGE_PHOTO_OVERRIDES[subSlug];
-  }
-  const resolvedSlug = ALIASES[serviceSlug] || serviceSlug;
-  const domainList = SERVICE_DOMAINS_MAP[resolvedSlug] || [];
-  return domainList[index % Math.max(domainList.length, 1)]?.photoUrl || "";
-}
-
 // ============================================================================
 // SERVICE-SPECIFIC CASE STUDIES (Mapped directly to real Case Studies page entries)
 // ============================================================================
@@ -1517,7 +1496,7 @@ export function ServiceCaseStudiesSection({ serviceSlug = "image-collection", se
                       src={study.image}
                       alt={study.imageAlt || study.title}
                       className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
+                      loading="eager" decoding="async"
                     />
                     <span className="absolute top-3 left-3 text-[10px] font-mono uppercase font-bold tracking-wider text-white bg-[#12151A]/85 backdrop-blur-sm px-2.5 py-1 rounded-full">
                       {study.type}

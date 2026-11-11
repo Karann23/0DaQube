@@ -191,7 +191,7 @@ export function SiteHeader() {
                         Speech Data Collection
                       </div>
                       <div className="text-[11px] text-[#5F646D] leading-tight mt-0.5">
-                        Multilingual conversational speech & 120+ accents.
+                        Multilingual conversational speech across 120+ languages & 1,000+ locales.
                       </div>
                     </div>
                   </Link>

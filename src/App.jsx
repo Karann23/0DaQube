@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SiteHeader } from "./components/site-header";
 import { SiteFooter } from "./components/site-footer";
@@ -7,7 +8,6 @@ import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { ServiceCategoryPage } from "./pages/ServiceCategoryPage";
-import { ServiceSubSubPage } from "./pages/ServiceSubSubPage";
 import { NetworkPage } from "./pages/NetworkPage";
 import { IndustriesPage } from "./pages/IndustriesPage";
 import { CaseStudiesPage } from "./pages/CaseStudiesPage";
@@ -20,6 +20,49 @@ import { PrivacyPage } from "./pages/PrivacyPage";
 import { TermsPage } from "./pages/TermsPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
+
+const WARMUP_ASSETS = [
+  "/images/services_image_collection.webp",
+  "/images/services_video_collection.webp",
+  "/images/services_speech_collection.webp",
+  "/images/services_text_data_collection.webp",
+  "/images/services_annotation.webp",
+  "/images/services_transcription.webp",
+  "/images/services_adas.webp",
+  "/images/services_ots.webp",
+  "/images/robotics_main.webp",
+  "/images/speech_main.webp",
+  "/images/text_annotation.webp",
+  "/images/network_globe.jpg",
+  "/images/case-studies/adas-data-collection.jpg",
+  "/images/case-studies/multimodal-datasets.jpg",
+  "/images/case-studies/human-vs-self-adas.jpg",
+  "/images/case-studies/image-video-annotation.jpg",
+  "/images/case-studies/medical-images-ai.jpg",
+  "/images/case-studies/video-activity-recognition.jpg",
+  "/images/case-studies/text-data-ml.jpg",
+  "/images/case-studies/unlocking-data-daqube.jpg",
+];
+
+function AssetWarmup() {
+  useEffect(() => {
+    const preloadAll = () => {
+      WARMUP_ASSETS.forEach((url) => {
+        const img = new Image();
+        img.decoding = "async";
+        img.src = url;
+      });
+    };
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(preloadAll, { timeout: 1500 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const t = setTimeout(preloadAll, 450);
+    return () => clearTimeout(t);
+  }, []);
+  return null;
+}
+
 export function App() {
   return (
     <BrowserRouter>
@@ -31,6 +74,7 @@ export function App() {
         Skip to main content
       </a>
       <ScrollToTop />
+      <AssetWarmup />
       <SynapticParticleCanvas global />
       <SiteHeader />
       <main id="main-content">
@@ -43,10 +87,8 @@ export function App() {
           {/* Solutions & Services Taxonomy */}
           <Route path="/solutions" element={<ServicesPage />} />
           <Route path="/solutions/:categorySlug" element={<ServiceCategoryPage />} />
-          <Route path="/solutions/:categorySlug/:subSlug" element={<ServiceSubSubPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:categorySlug" element={<ServiceCategoryPage />} />
-          <Route path="/services/:categorySlug/:subSlug" element={<ServiceSubSubPage />} />
 
           {/* Network */}
           <Route path="/network" element={<NetworkPage />} />

@@ -80,9 +80,25 @@ export function SynapticParticleCanvas({
     }
 
     let animationFrameId;
+    let isVisible = true;
     const mouseGravityRadius = 175;
 
+    let observer;
+    if (!global && typeof IntersectionObserver !== "undefined") {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          isVisible = entry.isIntersecting;
+        },
+        { threshold: 0.01 }
+      );
+      observer.observe(canvas);
+    }
+
     const render = () => {
+      if (!isVisible || document.hidden) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
       ctx.clearRect(0, 0, width, height);
 
       for (let i = 0; i < particles.length; i++) {
@@ -178,6 +194,7 @@ export function SynapticParticleCanvas({
         canvas.parentElement?.removeEventListener("mousemove", handleMouseMove);
         canvas.parentElement?.removeEventListener("mouseleave", handleMouseLeave);
       }
+      if (observer) observer.disconnect();
       cancelAnimationFrame(animationFrameId);
     };
   }, [particleCount, connectionDistance, global]);

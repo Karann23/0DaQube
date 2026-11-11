@@ -29,35 +29,35 @@ const REGIONAL_HUBS = [
   {
     region: "North America",
     countries: "US, Canada, Mexico",
-    specialists: "6,200+",
+    specialists: "5,500+",
     languages: "English (US/CA/Regional), French Canadian, Spanish (MX/US)",
     focus: "Frontier RLHF, Medical AI, Legal Annotation, Autonomous Driving"
   },
   {
     region: "Europe & UK",
     countries: "UK, Germany, France, Netherlands, Nordics, Spain, Italy",
-    specialists: "8,500+",
+    specialists: "7,200+",
     languages: "35+ European Languages & Regional Dialects",
     focus: "GDPR-Compliant Data, Multilingual LLMs, Industrial Computer Vision"
   },
   {
     region: "Asia-Pacific",
     countries: "India, Japan, South Korea, Singapore, Vietnam, Australia",
-    specialists: "7,800+",
+    specialists: "6,800+",
     languages: "Hindi, Japanese, Korean, Mandarin, Vietnamese, 40+ Indic Dialects",
     focus: "Dense LiDAR Segmentation, ASR Speech Corpora, Document Intelligence"
   },
   {
     region: "Latin America",
     countries: "Brazil, Colombia, Argentina, Chile, Peru",
-    specialists: "3,400+",
+    specialists: "3,100+",
     languages: "Brazilian Portuguese, Latin American Spanish Variants",
     focus: "Conversational AI, Localized Retail Datasets, Audio Capture"
   },
   {
     region: "Middle East & Africa",
     countries: "UAE, Saudi Arabia, Egypt, Nigeria, Kenya, South Africa",
-    specialists: "2,600+",
+    specialists: "2,400+",
     languages: "Modern Standard Arabic & 12 Dialects, Swahili, Yoruba, Zulu",
     focus: "Dialectal Speech Processing, Agriculture Vision, Localized OCR"
   }
@@ -313,7 +313,7 @@ export function NetworkPage() {
               
               <div className="mt-6 flex flex-wrap items-center gap-3 text-xs font-mono text-[#5F646D]">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#E9ECEF] shadow-xs">
-                  <Globe2 size={13} className="text-[#EC5E27]" /> 100+ Global Locales
+                  <Globe2 size={13} className="text-[#EC5E27]" /> 1,000+ Global Locales
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#E9ECEF] shadow-xs">
                   <Users size={13} className="text-[#EC5E27]" /> 25,000+ Native Contributors

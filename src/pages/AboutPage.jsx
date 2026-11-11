@@ -26,15 +26,15 @@ import "./AboutPage.css";
 
 const collagePhotos = [
   {
-    src: "/images/robotics_main.png",
+    src: "/images/robotics_main.webp",
     alt: "Robotics research and human interaction with intelligent systems",
   },
   {
-    src: "/images/services_image_collection.png",
+    src: "/images/services_image_collection.webp",
     alt: "Examples of image data collection across different subjects",
   },
   {
-    src: "/images/services_video_collection.png",
+    src: "/images/services_video_collection.webp",
     alt: "Video and motion data collection examples",
   },
   {
@@ -42,19 +42,19 @@ const collagePhotos = [
     alt: "Structured image annotation and bounding box example",
   },
   {
-    src: "/images/services_annotation.png",
+    src: "/images/services_annotation.webp",
     alt: "Examples of visual data annotation",
   },
   {
-    src: "/images/speech_main.png",
+    src: "/images/speech_main.webp",
     alt: "Speech and audio data workflow",
   },
   {
-    src: "/images/services_speech_collection.png",
+    src: "/images/services_speech_collection.webp",
     alt: "Audio and speech collection examples",
   },
   {
-    src: "/images/services_transcription.png",
+    src: "/images/services_transcription.webp",
     alt: "Transcription and language data workflow examples",
   },
   {
@@ -255,7 +255,7 @@ export function AboutPage() {
           <div className="dq-hero-visual" data-dq-reveal>
             <div className="dq-hero-image-frame">
               <img
-                src="/images/robotics_main.png"
+                src="/images/robotics_main.webp"
                 alt="Robotics research and human interaction with intelligent systems"
                 fetchPriority="high"
               />
@@ -453,7 +453,7 @@ export function AboutPage() {
                 data-dq-reveal
                 style={{ "--reveal-delay": `${(index % 4) * 65}ms` }}
               >
-                <img src={photo.src} alt={photo.alt} loading="lazy" />
+                <img src={photo.src} alt={photo.alt} loading="eager" decoding="async" />
               </figure>
             ))}
 

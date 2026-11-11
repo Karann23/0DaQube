@@ -9,6 +9,7 @@ export function Interactive360Globe({
   const containerRef = useRef(null);
   const videoRef = useRef(null);
   const reqAnimRef = useRef(null);
+  const lastRoundedAngleRef = useRef(0);
 
   const [isReady, setIsReady] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -52,7 +53,11 @@ export function Interactive360Globe({
     if (Math.abs(video.currentTime - targetTime) > 0.02) {
       video.currentTime = targetTime;
     }
-    setRotationAngle(Math.round(normalized));
+    const rounded = Math.round(normalized);
+    if (rounded !== lastRoundedAngleRef.current) {
+      lastRoundedAngleRef.current = rounded;
+      setRotationAngle(rounded);
+    }
   }, []);
 
   // Main animation / inertia loop

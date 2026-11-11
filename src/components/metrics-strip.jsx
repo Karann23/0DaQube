@@ -2,15 +2,15 @@ import React from "react";
 export const METRICS_DATA = [
     { value: "100", suffix: "+", label: "Projects delivered" },
     { value: "1M", suffix: "+", label: "Hours of annotation" },
-    { value: "150", suffix: "+", label: "Annotation specialists" },
-    { value: "500K", suffix: "+", label: "Images processed" },
-    { value: "10K", suffix: "+", label: "Audio hours collected" },
-    { value: "50", suffix: "+", label: "Languages covered" },
+    { value: "850", suffix: "+", label: "Annotation specialists" },
+    { value: "2M", suffix: "+", label: "Images processed" },
+    { value: "25K", suffix: "+", label: "Audio hours collected" },
+    { value: "120", suffix: "+", label: "Languages covered" },
     { value: "100", suffix: "+", label: "Countries reached" },
-    { value: "99", suffix: "%", label: "Annotation accuracy" },
+    { value: "99.8", suffix: "%", label: "Annotation accuracy" },
     { value: "99", suffix: "%", label: "Client satisfaction" },
     { value: "20", suffix: "+", label: "Data categories" },
-    { value: "1K", suffix: "+", label: "Active contributors" },
+    { value: "25K", suffix: "+", label: "Active contributors" },
     { value: "200", suffix: "+", label: "Datasets delivered" },
 ];
 export function MetricsStrip() {

@@ -458,7 +458,7 @@ export function QualityPage() {
                       src={cert.logo}
                       alt={cert.alt}
                       className="h-auto max-h-16 w-auto max-w-[140px] rounded object-contain"
-                      loading="lazy"
+                      loading="eager" decoding="async"
                     />
                   </div>
 

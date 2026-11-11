@@ -70,7 +70,7 @@ export function InsightsPage() {
               <ThreeDTiltCard key={article.slug} maxTilt={6}>
                 <Link to={`/insights/${article.slug}`} className="insight-card">
                   <div className="insight-image">
-                    <img src={article.image} alt={article.imageAlt} loading="lazy" />
+                    <img src={article.image} alt={article.imageAlt} loading="eager" decoding="async" />
                     <span>{article.category}</span>
                   </div>
                   <div className="insight-card-copy">

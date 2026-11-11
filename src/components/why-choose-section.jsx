@@ -5,8 +5,8 @@ export const VALUE_PILLARS = [
         title: "Global Scale You Can Count On",
         points: [
             "Vetted contributor & specialist network across 100+ countries",
-            "50+ languages and localized regional dialect coverage",
-            "150+ dedicated specialists & 1K+ active contributors",
+            "120+ languages across 1,000+ regional dialect locales",
+            "850+ domain specialists & 25K+ vetted contributors",
             "Multi-modal data capture: audio, image, video, and text",
             "Remote, mobile on-site, or custom in-field data collection options"
         ],
@@ -27,7 +27,7 @@ export const VALUE_PILLARS = [
             "Full GDPR, CCPA, and international data privacy compliance",
             "Built-in QA: gold tasks, multi-pass reviews, and real-time analytics",
             "Human-in-the-loop validation by default",
-            "99% annotation accuracy on enterprise production pipelines"
+            "99.8% annotation accuracy on enterprise production pipelines"
         ],
         icon: (<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>

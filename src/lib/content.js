@@ -5,7 +5,7 @@ export const services = [
         title: "Image Data Collection",
         short: "Purpose-built image datasets for computer vision, visual recognition, object detection and intelligent automation.",
         eyebrow: "01 / VISUAL DATA",
-        image: "/images/services_image_collection.png",
+        image: "/images/services_image_collection.webp",
         imageAlt: "Real-world image data collection for computer vision and AI training",
         video: "https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_25fps.mp4",
         intro: "Give your computer vision models the visual information they need to understand the real world. DaQube provides structured image data collection services designed around your model requirements, target categories and operational environments. From everyday objects and retail products to industrial equipment, road environments and complex real-world scenes, we collect representative image datasets that capture meaningful variations in lighting, perspective, background, distance and surroundings. Our collection workflows deliver organized, consistent and model-ready visual data, supported by metadata, defined capture guidelines and quality checks.",
@@ -64,7 +64,7 @@ export const services = [
         title: "Video Data Collection",
         short: "Context-rich video datasets for action recognition, scene understanding, object tracking and temporal AI applications.",
         eyebrow: "02 / VIDEO & MOTION",
-        image: "/images/services_video_collection.png",
+        image: "/images/services_video_collection.webp",
         imageAlt: "Video data acquisition for computer vision and AI model training",
         video: "https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_25fps.mp4",
         intro: "AI systems that understand movement, activities and changing environments need more than individual images. They need video data that captures actions, interactions and events over time. DaQube provides video data collection services designed to support video understanding, action recognition, object tracking and intelligent visual systems. We structure video acquisition around specific scenarios, recording conditions, camera perspectives, activity types and environmental variations. Each collection is organized with relevant metadata and quality checks to support downstream annotation and model development.",
@@ -124,7 +124,7 @@ export const services = [
         title: "Speech Data Collection",
         short: "Multilingual speech, voice and conversational datasets for speech recognition, voice assistants and conversational AI.",
         eyebrow: "03 / AUDIO & SPEECH",
-        image: "/images/services_speech_collection.png",
+        image: "/images/services_speech_collection.webp",
         imageAlt: "Speech and voice data recording setup for multilingual AI training",
         video: "https://videos.pexels.com/video-files/7580551/7580551-hd_1920_1080_25fps.mp4",
         intro: "Building reliable speech recognition and voice-based AI systems requires exposure to different languages, accents, pronunciations and speaking environments. DaQube provides speech data collection services designed to support automatic speech recognition (ASR), conversational AI, voice assistants and speech-processing applications. Our collection approach can incorporate regional languages, speaker diversity, natural conversations, scripted recordings and different acoustic environments. Each project follows defined recording specifications, participant requirements and consent procedures to produce structured speech datasets for AI development.",
@@ -184,7 +184,7 @@ export const services = [
         title: "Text Data Collection & Labeling",
         short: "Structured and labeled text datasets for natural language processing, large language models and intelligent language applications.",
         eyebrow: "04 / LANGUAGE DATA",
-        image: "/images/services_text_data_collection.png",
+        image: "/images/services_text_data_collection.webp",
         imageAlt: "Structured text data preparation and annotation for natural language processing",
         intro: "Language models and natural language processing systems depend on diverse, accurately structured text data. DaQube provides text data collection and labeling services to help organizations develop datasets for language understanding, classification, information extraction and conversational AI. We support the preparation of structured text records, language-specific datasets and human-reviewed annotations based on project-defined guidelines. From categorizing customer feedback to identifying entities and classifying conversational intent, our workflows transform unstructured language into structured training data for machine learning applications.",
         useCases: [
@@ -244,7 +244,7 @@ export const services = [
         title: "Image & Video Annotation",
         short: "Accurate image and video labeling for object detection, segmentation, tracking and computer vision model training.",
         eyebrow: "05 / ANNOTATION",
-        image: "/images/services_annotation.png",
+        image: "/images/services_annotation.webp",
         imageAlt: "Image annotation interface showing object detection and computer vision labeling",
         intro: "High-quality computer vision models require more than large volumes of visual data. They need accurately labeled examples that help algorithms identify objects, understand scenes and recognize patterns. DaQube provides image and video annotation services that transform raw visual assets into structured, machine-readable training datasets. Our annotation workflows are built around project-specific taxonomies, labeling instructions, edge-case definitions and quality review processes. Whether your application requires bounding boxes, segmentation masks, keypoints or object tracking, we organize annotation around your model's requirements.",
         useCases: [
@@ -304,7 +304,7 @@ export const services = [
         title: "Audio Transcription Services",
         short: "Human-reviewed audio transcription and speech-to-text datasets for language models, search and conversational AI.",
         eyebrow: "06 / SPEECH TO TEXT",
-        image: "/images/services_transcription.png",
+        image: "/images/services_transcription.webp",
         imageAlt: "Audio transcription and speech-to-text processing on a computer",
         intro: "Audio transcription transforms spoken language into structured, searchable text that can be used across business applications and AI development workflows. DaQube provides audio transcription services designed to convert recorded conversations, interviews, meetings, podcasts and other audio content into structured text. Our workflows can follow verbatim or clean-read transcription conventions, include timestamps and speaker identification, and support multilingual audio according to project requirements. We also support specialized transcription preparation for automatic speech recognition (ASR) training, speech analytics and conversational AI development.",
         useCases: [
@@ -364,7 +364,7 @@ export const services = [
         title: "ADAS & LiDAR Data Annotation",
         short: "Specialized 2D, 3D and sensor-fusion annotation for autonomous driving, ADAS and intelligent mobility systems.",
         eyebrow: "07 / AUTONOMOUS SYSTEMS",
-        image: "/images/services_adas.png",
+        image: "/images/services_adas.webp",
         imageAlt: "3D LiDAR point cloud visualization for autonomous driving and ADAS annotation",
         intro: "Advanced Driver Assistance Systems (ADAS) and autonomous driving technologies depend on accurate perception of the surrounding environment. These systems process information from cameras, LiDAR and other sensors to identify vehicles, pedestrians, road boundaries, traffic signs and changing road conditions. DaQube provides ADAS and LiDAR data annotation services to help transform raw sensor data into structured datasets for autonomous driving research, perception systems and machine learning applications. Our workflows support 2D image annotation, 3D point cloud labeling, object tracking and sensor-fusion annotation, following project-specific taxonomies and quality requirements.",
         useCases: [
@@ -425,7 +425,7 @@ export const services = [
         title: "Off-the-Shelf AI Training Datasets",
         short: "Pre-collected and structured datasets across images, video, audio, speech and text for machine learning and AI development.",
         eyebrow: "08 / PRE-COLLECTED DATASETS",
-        image: "/images/services_ots.png",
+        image: "/images/services_ots.webp",
         imageAlt: "Structured AI training datasets for machine learning and multimodal model development",
         intro: "Building an AI model from scratch often requires significant time and resources to collect, organize and prepare training data. Off-the-Shelf (OTS) datasets offer a practical starting point by providing access to previously collected data that can be evaluated for specific machine learning requirements. DaQube's OTS dataset offering is designed to help organizations explore structured data across visual, audio, speech and text categories. Dataset selection can be based on data type, category, language, metadata, annotation availability and intended application. Each dataset should be evaluated against its documentation, provenance, permitted usage and licensing conditions before deployment.",
         useCases: [
@@ -883,9 +883,9 @@ export const caseStudies = [
         "image": "/images/case-studies/adas-data-collection.jpg",
         "imageAlt": "Autonomous vehicle capturing road images, 3D LiDAR point clouds, and multi-sensor ADAS data",
         "sectionPhotos": {
-            "section1": "/images/case-studies/Beyond the Steering Wheel How ADAS Data Collection Is Shaping the Future of AI/1.png",
-            "section2": "/images/case-studies/Beyond the Steering Wheel How ADAS Data Collection Is Shaping the Future of AI/2.png",
-            "section3": "/images/case-studies/Beyond the Steering Wheel How ADAS Data Collection Is Shaping the Future of AI/3.png"
+            "section1": "/images/case-studies/Beyond the Steering Wheel How ADAS Data Collection Is Shaping the Future of AI/1.webp",
+            "section2": "/images/case-studies/Beyond the Steering Wheel How ADAS Data Collection Is Shaping the Future of AI/2.webp",
+            "section3": "/images/case-studies/Beyond the Steering Wheel How ADAS Data Collection Is Shaping the Future of AI/3.webp"
         },
         "sectionPhotoGuides": {
             "section1": "Forward-facing urban driving scene at dusk/rain showing glowing 3D bounding cuboids around vehicles, pedestrians, and lane lines.",
@@ -1000,9 +1000,9 @@ export const caseStudies = [
         "image": "/images/case-studies/multimodal-datasets.jpg",
         "imageAlt": "3D visualization of multimodal AI combining text, image, audio, video, and sensor datasets",
         "sectionPhotos": {
-            "section1": "/images/case-studies/The Role of Multimodal Datasets in AI Development/1.png",
-            "section2": "/images/case-studies/The Role of Multimodal Datasets in AI Development/2.png",
-            "section3": "/images/case-studies/The Role of Multimodal Datasets in AI Development/3.png"
+            "section1": "/images/case-studies/The Role of Multimodal Datasets in AI Development/1.webp",
+            "section2": "/images/case-studies/The Role of Multimodal Datasets in AI Development/2.webp",
+            "section3": "/images/case-studies/The Role of Multimodal Datasets in AI Development/3.webp"
         },
         "sectionPhotoGuides": {
             "section1": "3D visualization of converging data layers: acoustic waveforms, visual frames, text cards, and sensor nodes flowing into a unified AI core.",
@@ -1113,9 +1113,9 @@ export const caseStudies = [
         "image": "/images/case-studies/human-vs-self-adas.jpg",
         "imageAlt": "Dual-monitor workstation comparing raw rainy street footage with human-verified 3D ADAS annotations",
         "sectionPhotos": {
-            "section1": "/images/case-studies/Human-Annotated vs. Self-Annotated ADAS Data What's the Difference/1.png",
-            "section2": "/images/case-studies/Human-Annotated vs. Self-Annotated ADAS Data What's the Difference/2.png",
-            "section3": "/images/case-studies/Human-Annotated vs. Self-Annotated ADAS Data What's the Difference/3.png"
+            "section1": "/images/case-studies/Human-Annotated vs. Self-Annotated ADAS Data What's the Difference/1.webp",
+            "section2": "/images/case-studies/Human-Annotated vs. Self-Annotated ADAS Data What's the Difference/2.webp",
+            "section3": "/images/case-studies/Human-Annotated vs. Self-Annotated ADAS Data What's the Difference/3.webp"
         },
         "sectionPhotoGuides": {
             "section1": "Dual-monitor workstation showing raw rainy night driving footage on the left screen and crisp 3D bounding cuboids/lane masks on the right screen.",
@@ -1237,9 +1237,9 @@ export const caseStudies = [
         "image": "/images/case-studies/image-video-annotation.jpg",
         "imageAlt": "Computer vision interface displaying object bounding boxes, semantic segmentation, instance masks, and keypoints",
         "sectionPhotos": {
-            "section1": "/images/case-studies/Image and Video Annotation Services Building Reliable Computer Vision/1.png",
-            "section2": "/images/case-studies/Image and Video Annotation Services Building Reliable Computer Vision/2.png",
-            "section3": "/images/case-studies/Image and Video Annotation Services Building Reliable Computer Vision/3.png"
+            "section1": "/images/case-studies/Image and Video Annotation Services Building Reliable Computer Vision/1.webp",
+            "section2": "/images/case-studies/Image and Video Annotation Services Building Reliable Computer Vision/2.webp",
+            "section3": "/images/case-studies/Image and Video Annotation Services Building Reliable Computer Vision/3.webp"
         },
         "sectionPhotoGuides": {
             "section1": "Composite visual showing an urban street and retail store with glowing bounding boxes, colored instance segmentation masks, and tracking paths.",
@@ -1352,9 +1352,9 @@ export const caseStudies = [
         "image": "/images/case-studies/medical-images-ai.jpg",
         "imageAlt": "Clinical workstation displaying 3D brain MRI scan with segmented regions in orange and emerald green",
         "sectionPhotos": {
-            "section1": "/images/case-studies/Where Can I Get Annotated Medical Images for AI Training/1.png",
-            "section2": "/images/case-studies/Where Can I Get Annotated Medical Images for AI Training/2.png",
-            "section3": "/images/case-studies/Where Can I Get Annotated Medical Images for AI Training/3.png"
+            "section1": "/images/case-studies/Where Can I Get Annotated Medical Images for AI Training/1.webp",
+            "section2": "/images/case-studies/Where Can I Get Annotated Medical Images for AI Training/2.webp",
+            "section3": "/images/case-studies/Where Can I Get Annotated Medical Images for AI Training/3.webp"
         },
         "sectionPhotoGuides": {
             "section1": "Radiology workstation displaying a 3D MRI or CT scan with multi-region segmentation contours in high-contrast orange and emerald green.",
@@ -1460,9 +1460,9 @@ export const caseStudies = [
         "image": "/images/case-studies/video-activity-recognition.jpg",
         "imageAlt": "Warehouse logistics scene with 3D human pose keypoints, bounding boxes, and temporal movement trajectories",
         "sectionPhotos": {
-            "section1": "/images/case-studies/Video Datasets for Human Activity Recognition Collection, Labeling & Fit/1.png",
-            "section2": "/images/case-studies/Video Datasets for Human Activity Recognition Collection, Labeling & Fit/2.png",
-            "section3": "/images/case-studies/Video Datasets for Human Activity Recognition Collection, Labeling & Fit/3.png"
+            "section1": "/images/case-studies/Video Datasets for Human Activity Recognition Collection, Labeling & Fit/1.webp",
+            "section2": "/images/case-studies/Video Datasets for Human Activity Recognition Collection, Labeling & Fit/2.webp",
+            "section3": "/images/case-studies/Video Datasets for Human Activity Recognition Collection, Labeling & Fit/3.webp"
         },
         "sectionPhotoGuides": {
             "section1": "Industrial warehouse or motion studio showing workers lifting parcels with glowing 3D pose skeleton keypoints and floor movement trajectories.",
@@ -1576,9 +1576,9 @@ export const caseStudies = [
         "image": "/images/case-studies/text-data-ml.jpg",
         "imageAlt": "Floating translucent document cards with glowing orange and emerald green named entity recognition and sentiment highlights",
         "sectionPhotos": {
-            "section1": "/images/case-studies/Training Machine Learning Models Why Text Data Is So Important/1.png",
-            "section2": "/images/case-studies/Training Machine Learning Models Why Text Data Is So Important/2.png",
-            "section3": "/images/case-studies/Training Machine Learning Models Why Text Data Is So Important/3.png"
+            "section1": "/images/case-studies/Training Machine Learning Models Why Text Data Is So Important/1.webp",
+            "section2": "/images/case-studies/Training Machine Learning Models Why Text Data Is So Important/2.webp",
+            "section3": "/images/case-studies/Training Machine Learning Models Why Text Data Is So Important/3.webp"
         },
         "sectionPhotoGuides": {
             "section1": "3D visualization of translucent document cards with glowing orange and emerald entity highlight tags connected by semantic vector lines.",
@@ -1692,9 +1692,9 @@ export const caseStudies = [
         "image": "/images/case-studies/unlocking-data-daqube.jpg",
         "imageAlt": "Isometric 3D enterprise AI data pipeline hub converging image, speech, video, and text streams into a glowing orange core",
         "sectionPhotos": {
-            "section1": "/images/case-studies/Unlocking the Power of Data Improve Your AI Projects with DaQube.ai/1.png",
-            "section2": "/images/case-studies/Unlocking the Power of Data Improve Your AI Projects with DaQube.ai/2.png",
-            "section3": "/images/case-studies/Unlocking the Power of Data Improve Your AI Projects with DaQube.ai/3.png"
+            "section1": "/images/case-studies/Unlocking the Power of Data Improve Your AI Projects with DaQube.ai/1.webp",
+            "section2": "/images/case-studies/Unlocking the Power of Data Improve Your AI Projects with DaQube.ai/2.webp",
+            "section3": "/images/case-studies/Unlocking the Power of Data Improve Your AI Projects with DaQube.ai/3.webp"
         },
         "sectionPhotoGuides": {
             "section1": "Isometric 3D pipeline hub showing 6 distinct data streams (Images, Speech, Video, Text, Annotation, Transcription) converging into the DaQube.ai core.",

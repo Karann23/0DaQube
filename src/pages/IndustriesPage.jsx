@@ -25,16 +25,16 @@ const industrySectors = [
     summary: "Pixel-accurate 3D LiDAR point clouds, oriented bounding cuboids, 8-camera video temporal tracking, and calibrated sensor fusion.",
     metrics: "IoU ≥ 0.94 · Sub-5cm Corner Tolerance",
     deliverables: ["KITTI & nuScenes format cuboids", "Dense point-cloud ground segmentation", "Persistent vehicle/pedestrian Re-ID through occlusion", "Dynamic velocity and trajectory vectors"],
-    link: "/services/computer-vision/autonomous-lidar"
+    link: "/solutions/adas-lidar"
   },
   {
     icon: Bot,
     title: "Frontier Foundation Model Laboratories",
     eyebrow: "GENERATIVE AI & ALIGNMENT",
     summary: "High-parameter model alignment via Supervised Fine-Tuning (SFT), Direct Preference Optimization (DPO), and multi-turn adversarial red-teaming.",
-    metrics: "Krippendorff's α ≥ 0.89 · Zero Data Leakage",
+    metrics: "Krippendorff's α ≥ 0.88 · Zero Data Leakage",
     deliverables: ["Domain-expert chain-of-thought traces", "Pairwise preference comparisons (DPO/KTO)", "Harm auditing exploit trees (OWASP Top 10)", "Closed-circuit evaluation benchmarks"],
-    link: "/services/generative-ai/rlhf"
+    link: "/solutions/text-collection"
   },
   {
     icon: Activity,
@@ -43,16 +43,16 @@ const industrySectors = [
     summary: "Air-gapped clinical record OCR, diagnostic lab extraction, medical named-entity recognition (NER), and pharmacology attribution.",
     metrics: "HIPAA BAA · 99.9% Character Accuracy",
     deliverables: ["Cell-accurate lab test panel extraction", "Differential diagnosis reasoning validation", "De-identified medical imaging annotation", "Biomedical vocabulary mapping (SNOMED, ICD-10)"],
-    link: "/services/document-nlp/ocr-ground-truth"
+    link: "/solutions/text-collection"
   },
   {
     icon: Languages,
     title: "Multilingual Speech & Conversational AI",
     eyebrow: "VOICE INTELLIGENCE",
-    summary: "Spontaneous conversational voice datasets across 140 regional micro-dialects with millisecond Praat TextGrid phonetic alignments.",
+    summary: "Spontaneous conversational voice datasets across 120+ languages and 1,000+ regional locales with millisecond Praat TextGrid phonetic alignments.",
     metrics: "1,000+ Locales · 48kHz 24-bit Lossless",
     deliverables: ["In-cabin automotive reverberant audio", "Multi-microphone array recordings", "Phonetic diphones/triphones for expressive TTS", "Explicit biometric consent releases (GDPR/BIPA)"],
-    link: "/services/audio-speech/asr-collection"
+    link: "/solutions/speech-collection"
   },
   {
     icon: ShoppingBag,
@@ -61,7 +61,7 @@ const industrySectors = [
     summary: "60 FPS camera perception for cashierless checkout, 21-point hand skeleton tracking, and shelf-level product recognition.",
     metrics: "60 FPS Tracking · Zero ID Swaps",
     deliverables: ["Product bounding boxes & polygons", "Hand-object interaction event timestamps", "Cross-camera re-identification (ReID)", "SKU packaging variation coverage"],
-    link: "/services/computer-vision/video-tracking"
+    link: "/solutions/annotation"
   },
   {
     icon: Building2,
@@ -70,7 +70,7 @@ const industrySectors = [
     summary: "Key-value pair extraction from SEC filings, 10-K tables, trade finance documents, and earnings call transcript diarization.",
     metrics: "ISO 27001 Certified · Zero Hallucination",
     deliverables: ["Multi-page table reading order graphs", "Financial entity extraction & ticker mapping", "Earnings call sentiment & tone tagging", "Audit-ready provenance certificates"],
-    link: "/services/document-nlp/ocr-ground-truth"
+    link: "/solutions/text-collection"
   }
 ];
 

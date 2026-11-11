@@ -22,7 +22,7 @@ function SectionPhotoSpace({ photoUrl, altText, sectionLabel, recommendation, co
   if (photoUrl && photoUrl.trim() !== "") {
     return (
       <div className="case-section-photo-box">
-        <img src={photoUrl} alt={altText} loading="lazy" />
+        <img src={photoUrl} alt={altText} loading="eager" decoding="async" />
       </div>
     );
   }
@@ -355,7 +355,7 @@ export function CaseStudyDetailPage() {
             {relatedStudies.map((rel) => (
               <ThreeDTiltCard key={rel.slug} maxTilt={6}>
                 <Link className="related-article-card h-full" to={`/case-studies/${rel.slug}`}>
-                  <img src={rel.image} alt={rel.imageAlt} loading="lazy" />
+                  <img src={rel.image} alt={rel.imageAlt} loading="eager" decoding="async" />
                   <div>
                     <span className="eyebrow">{rel.industry}</span>
                     <h3>{rel.title}</h3>
