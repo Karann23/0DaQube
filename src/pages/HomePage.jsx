@@ -9,6 +9,11 @@ import { WhyChooseSection } from "../components/why-choose-section";
 import { DatasetEstimator } from "../components/dataset-estimator";
 import { ThreeDTiltCard } from "../components/ThreeDVisualizers";
 import { homeModalityCards, homeProcessSteps } from "../lib/home-content";
+import { caseStudies } from "../lib/content";
+
+const featuredHomeCaseStudy =
+  caseStudies.find((cs) => cs.slug === "image-and-video-annotation-services") ||
+  caseStudies[0];
 
 export function HomePage() {
     return (<>
@@ -143,12 +148,24 @@ export function HomePage() {
                 <div><span className="eyebrow">DATA STRATEGY · 5 MIN READ</span><h3>Why data coverage matters more than dataset size</h3><p>Plan around real-world variation, not just a file count.</p><span className="text-link">Read the article <ArrowRight size={15}/></span></div>
               </Link>
             </ThreeDTiltCard>
-            <ThreeDTiltCard maxTilt={6} style={{ borderRadius: "16px" }}>
-              <Link to="/case-studies/retail-shelf-vision" className="home-editorial-card" style={{ height: "100%", width: "100%" }}>
-                <img src="https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?auto=format&fit=crop&w=1000&q=85" alt="Retail shelf display"/>
-                <div><span className="eyebrow">ILLUSTRATIVE WORKFLOW</span><h3>Designing a retail shelf dataset for visual recognition</h3><p>See how coverage planning, image capture and annotation could fit together.</p><span className="text-link">Explore the workflow <ArrowRight size={15}/></span></div>
-              </Link>
-            </ThreeDTiltCard>
+            {featuredHomeCaseStudy && (
+              <ThreeDTiltCard maxTilt={6} style={{ borderRadius: "16px" }}>
+                <Link to={`/case-studies/${featuredHomeCaseStudy.slug}`} className="home-editorial-card" style={{ height: "100%", width: "100%" }}>
+                  <img
+                    src={featuredHomeCaseStudy.image}
+                    alt={featuredHomeCaseStudy.imageAlt || featuredHomeCaseStudy.title}
+                  />
+                  <div>
+                    <span className="eyebrow">
+                      {featuredHomeCaseStudy.type?.toUpperCase() || "CASE STUDY"} · {featuredHomeCaseStudy.readTime?.toUpperCase()}
+                    </span>
+                    <h3>{featuredHomeCaseStudy.title}</h3>
+                    <p>{featuredHomeCaseStudy.excerpt || featuredHomeCaseStudy.summary}</p>
+                    <span className="text-link">Explore case study <ArrowRight size={15}/></span>
+                  </div>
+                </Link>
+              </ThreeDTiltCard>
+            )}
           </div>
           <div className="section-bottom-link">
             <span>More practical guides and example workflows</span>

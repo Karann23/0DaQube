@@ -4,7 +4,7 @@ import { getServiceCategory, SERVICE_CATEGORIES } from "../lib/services-taxonomy
 import { ImagePlaceholder } from "../components/image-placeholder";
 import { ServiceDetailPage } from "./ServiceDetailPage";
 import { services } from "../lib/content";
-import { SpatialDomainStage, ServiceCaseStudiesSection } from "../components/SpatialDomainStage";
+import { SpatialDomainStage, ServiceCaseStudiesSection, getServiceSubpageImage } from "../components/SpatialDomainStage";
 import { ThreeDTiltCard } from "../components/ThreeDVisualizers";
 
 export function ServiceCategoryPage() {
@@ -89,16 +89,29 @@ export function ServiceCategoryPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {category.subpages.map((sub) => (
+            {category.subpages.map((sub, idx) => {
+              const cardImg = getServiceSubpageImage(category.slug, sub.slug, idx);
+              return (
               <ThreeDTiltCard key={sub.slug} maxTilt={6}>
                 <article className="flex flex-col p-7 rounded-2xl bg-white border border-[#E9ECEF] hover:border-[#EC5E27] hover:shadow-xl transition-all duration-300 h-full">
                   <div className="mb-5">
-                    <ImagePlaceholder
-                      aspect="16/10"
-                      label={sub.title.toUpperCase()}
-                      caption={`Dataset sample & ground truth schema for ${sub.title}`}
-                      specs="Annotated Frame · Ground Truth Coordinate Layer"
-                    />
+                    {cardImg ? (
+                      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-[#E9ECEF] bg-[#0F172A]">
+                        <img
+                          src={cardImg}
+                          alt={sub.title}
+                          className="h-full w-full object-cover object-center transition-transform duration-500 hover:scale-105"
+                          loading="lazy"
+                        />
+                      </div>
+                    ) : (
+                      <ImagePlaceholder
+                        aspect="16/10"
+                        label={sub.title.toUpperCase()}
+                        caption={`Dataset sample & ground truth schema for ${sub.title}`}
+                        specs="Annotated Frame · Ground Truth Coordinate Layer"
+                      />
+                    )}
                   </div>
 
                   <span className="text-xs font-bold text-[#EC5E27] tracking-wider uppercase mb-1">
@@ -121,7 +134,8 @@ export function ServiceCategoryPage() {
                   </div>
                 </article>
               </ThreeDTiltCard>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

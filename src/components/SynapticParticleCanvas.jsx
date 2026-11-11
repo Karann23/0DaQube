@@ -3,10 +3,15 @@ import { useEffect, useRef } from "react";
 /**
  * SynapticParticleCanvas
  * Lightweight, hardware-accelerated HTML5 2D canvas particle constellation.
- * Generates floating synaptic nodes with pulsing axons and smooth cursor gravity.
- * 60/120fps locked, zero external dependencies, battery friendly.
+ * Generates floating electric cyan-blue (#0EA5E9) and crimson-orange (#EC5E27) nodes,
+ * pulsing axons, and active mouse gravity lines across the website.
  */
-export function SynapticParticleCanvas({ className = "", particleCount = 55, connectionDistance = 140 }) {
+export function SynapticParticleCanvas({
+  className = "",
+  particleCount,
+  connectionDistance = 155,
+  global = false,
+}) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -15,90 +20,127 @@ export function SynapticParticleCanvas({ className = "", particleCount = 55, con
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let width = canvas.offsetWidth;
-    let height = canvas.offsetHeight;
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    ctx.scale(dpr, dpr);
+    const count = particleCount ?? (global ? 64 : 55);
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let width = global ? window.innerWidth : canvas.offsetWidth;
+    let height = global ? window.innerHeight : canvas.offsetHeight;
 
-    const handleResize = () => {
+    const resizeCanvas = () => {
       if (!canvas) return;
-      const d = Math.min(window.devicePixelRatio || 1, 2);
-      width = canvas.offsetWidth;
-      height = canvas.offsetHeight;
-      canvas.width = width * d;
-      canvas.height = height * d;
-      ctx.scale(d, d);
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = global ? window.innerWidth : canvas.offsetWidth;
+      height = global ? window.innerHeight : canvas.offsetHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
-    window.addEventListener("resize", handleResize);
 
-    // Particle nodes: vibrant crimson-orange (#EC5E27) and electric cyan-blue (#0EA5E9)
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    // Particle nodes: electric cyan-blue (#0EA5E9) and crimson-orange (#EC5E27)
     const particles = [];
-    for (let i = 0; i < particleCount; i++) {
-      const isBlue = Math.random() < 0.45;
+    for (let i = 0; i < count; i++) {
+      const isBlue = i % 2 === 0;
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.55,
         vy: (Math.random() - 0.5) * 0.55,
-        radius: Math.random() * 2.2 + 1.2,
+        radius: Math.random() * 2.0 + 1.35,
         isBlue,
         color: isBlue ? "#0EA5E9" : "#EC5E27",
-        pulse: Math.random() * Math.PI,
+        pulse: Math.random() * Math.PI * 2,
       });
     }
 
-    let mouse = { x: -1000, y: -1000, active: false };
+    const mouse = { x: -1000, y: -1000, active: false };
     const handleMouseMove = (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      if (global) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      } else {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      }
       mouse.active = true;
     };
     const handleMouseLeave = () => {
       mouse.active = false;
     };
 
-    canvas.parentElement?.addEventListener("mousemove", handleMouseMove);
-    canvas.parentElement?.addEventListener("mouseleave", handleMouseLeave);
+    if (global) {
+      window.addEventListener("mousemove", handleMouseMove, { passive: true });
+      document.addEventListener("mouseleave", handleMouseLeave);
+    } else {
+      canvas.parentElement?.addEventListener("mousemove", handleMouseMove);
+      canvas.parentElement?.addEventListener("mouseleave", handleMouseLeave);
+    }
 
     let animationFrameId;
+    const mouseGravityRadius = 185;
+
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Update and draw particles
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
-        p.pulse += 0.025;
+        p.pulse += 0.032;
 
-        // Bounce boundaries
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
+        // Bounce softly off viewport / container edges
+        if (p.x < 0) {
+          p.x = 0;
+          p.vx *= -1;
+        } else if (p.x > width) {
+          p.x = width;
+          p.vx *= -1;
+        }
+        if (p.y < 0) {
+          p.y = 0;
+          p.vy *= -1;
+        } else if (p.y > height) {
+          p.y = height;
+          p.vy *= -1;
+        }
 
-        // Soft mouse gravity
+        // Mouse gravity pull & active mouse gravity lines
         if (mouse.active) {
           const dx = mouse.x - p.x;
           const dy = mouse.y - p.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 160) {
-            p.x += dx * 0.015;
-            p.y += dy * 0.015;
+          if (dist < mouseGravityRadius && dist > 1) {
+            p.x += dx * 0.012;
+            p.y += dy * 0.012;
+
+            const tetherAlpha = (1 - dist / mouseGravityRadius) * 0.42;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = p.isBlue
+              ? `rgba(14, 165, 233, ${tetherAlpha.toFixed(3)})`
+              : `rgba(236, 94, 39, ${tetherAlpha.toFixed(3)})`;
+            ctx.lineWidth = 1.05;
+            ctx.shadowBlur = 0;
+            ctx.stroke();
           }
         }
 
-        // Draw node
-        const dynamicRadius = p.radius + Math.sin(p.pulse) * 0.5;
+        // Pulsing node circle
+        const pulseWave = Math.sin(p.pulse);
+        const dynamicRadius = p.radius + pulseWave * 0.55;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, Math.max(0.6, dynamicRadius), 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, Math.max(0.75, dynamicRadius), 0, Math.PI * 2);
         ctx.fillStyle = p.color;
+        ctx.globalAlpha = global ? 0.62 + pulseWave * 0.14 : 0.92;
         ctx.shadowBlur = 10;
         ctx.shadowColor = p.color;
         ctx.fill();
+        ctx.globalAlpha = 1;
 
-        // Connect nearby nodes
+        // Pulsing axons connecting nearby nodes
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dx = p.x - p2.x;
@@ -106,13 +148,14 @@ export function SynapticParticleCanvas({ className = "", particleCount = 55, con
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < connectionDistance) {
+            const axonPulse = 0.72 + 0.28 * Math.sin((p.pulse + p2.pulse) * 0.5);
+            const alpha = (1 - dist / connectionDistance) * (global ? 0.24 : 0.36) * axonPulse;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            const alpha = (1 - dist / connectionDistance) * 0.35;
             ctx.strokeStyle = p.isBlue
-              ? `rgba(14, 165, 233, ${alpha})`
-              : `rgba(236, 94, 39, ${alpha})`;
+              ? `rgba(14, 165, 233, ${alpha.toFixed(3)})`
+              : `rgba(236, 94, 39, ${alpha.toFixed(3)})`;
             ctx.lineWidth = 1.0;
             ctx.shadowBlur = 0;
             ctx.stroke();
@@ -126,17 +169,26 @@ export function SynapticParticleCanvas({ className = "", particleCount = 55, con
     render();
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-      canvas.parentElement?.removeEventListener("mousemove", handleMouseMove);
-      canvas.parentElement?.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("resize", resizeCanvas);
+      if (global) {
+        window.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseleave", handleMouseLeave);
+      } else {
+        canvas.parentElement?.removeEventListener("mousemove", handleMouseMove);
+        canvas.parentElement?.removeEventListener("mouseleave", handleMouseLeave);
+      }
       cancelAnimationFrame(animationFrameId);
     };
-  }, [particleCount, connectionDistance]);
+  }, [particleCount, connectionDistance, global]);
+
+  const baseClass = global
+    ? "pointer-events-none fixed inset-0 z-[25] w-screen h-screen"
+    : "pointer-events-none absolute inset-0 z-[6] w-full h-full";
 
   return (
     <canvas
       ref={canvasRef}
-      className={`pointer-events-none absolute inset-0 z-[6] w-full h-full ${className}`}
+      className={`${baseClass} ${className}`.trim()}
       aria-hidden="true"
     />
   );

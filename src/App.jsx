@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SiteHeader } from "./components/site-header";
 import { SiteFooter } from "./components/site-footer";
 import { ScrollToTop } from "./components/scroll-to-top";
+import { SynapticParticleCanvas } from "./components/SynapticParticleCanvas";
 import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
 import { ServicesPage } from "./pages/ServicesPage";
@@ -30,6 +31,7 @@ export function App() {
         Skip to main content
       </a>
       <ScrollToTop />
+      <SynapticParticleCanvas global />
       <SiteHeader />
       <main id="main-content">
         <Routes>

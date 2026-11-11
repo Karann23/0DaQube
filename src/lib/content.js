@@ -1460,9 +1460,9 @@ export const caseStudies = [
         "image": "/images/case-studies/video-activity-recognition.jpg",
         "imageAlt": "Warehouse logistics scene with 3D human pose keypoints, bounding boxes, and temporal movement trajectories",
         "sectionPhotos": {
-            "section1": "",
-            "section2": "",
-            "section3": ""
+            "section1": "/images/case-studies/Video Datasets for Human Activity Recognition Collection, Labeling & Fit/1.png",
+            "section2": "/images/case-studies/Video Datasets for Human Activity Recognition Collection, Labeling & Fit/2.png",
+            "section3": "/images/case-studies/Video Datasets for Human Activity Recognition Collection, Labeling & Fit/3.png"
         },
         "sectionPhotoGuides": {
             "section1": "Industrial warehouse or motion studio showing workers lifting parcels with glowing 3D pose skeleton keypoints and floor movement trajectories.",
@@ -1576,9 +1576,9 @@ export const caseStudies = [
         "image": "/images/case-studies/text-data-ml.jpg",
         "imageAlt": "Floating translucent document cards with glowing orange and emerald green named entity recognition and sentiment highlights",
         "sectionPhotos": {
-            "section1": "",
-            "section2": "",
-            "section3": ""
+            "section1": "/images/case-studies/Training Machine Learning Models Why Text Data Is So Important/1.png",
+            "section2": "/images/case-studies/Training Machine Learning Models Why Text Data Is So Important/2.png",
+            "section3": "/images/case-studies/Training Machine Learning Models Why Text Data Is So Important/3.png"
         },
         "sectionPhotoGuides": {
             "section1": "3D visualization of translucent document cards with glowing orange and emerald entity highlight tags connected by semantic vector lines.",
@@ -1692,9 +1692,9 @@ export const caseStudies = [
         "image": "/images/case-studies/unlocking-data-daqube.jpg",
         "imageAlt": "Isometric 3D enterprise AI data pipeline hub converging image, speech, video, and text streams into a glowing orange core",
         "sectionPhotos": {
-            "section1": "",
-            "section2": "",
-            "section3": ""
+            "section1": "/images/case-studies/Unlocking the Power of Data Improve Your AI Projects with DaQube.ai/1.png",
+            "section2": "/images/case-studies/Unlocking the Power of Data Improve Your AI Projects with DaQube.ai/2.png",
+            "section3": "/images/case-studies/Unlocking the Power of Data Improve Your AI Projects with DaQube.ai/3.png"
         },
         "sectionPhotoGuides": {
             "section1": "Isometric 3D pipeline hub showing 6 distinct data streams (Images, Speech, Video, Text, Annotation, Transcription) converging into the DaQube.ai core.",

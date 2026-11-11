@@ -28,6 +28,7 @@ import {
   Headphones
 } from "lucide-react";
 import "./SpatialDomainStage.css";
+import { caseStudies } from "../lib/content";
 
 // ============================================================================
 // SERVICE DOMAIN REGISTRY
@@ -909,7 +910,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "3D LiDAR Point Cloud Cuboids",
       icon: Crosshair,
       summary: "3D bounding boxes enclosing vehicles, pedestrians, cyclists, and obstacles with 9 degrees-of-freedom orientation.",
-      photoUrl: "/images/Solutions/Speech Transcription/",
+      photoUrl: "/images/Solutions/ADAS/3D LiDAR Point Cloud Cuboids_card.jpg",
       photoLabel: "3D LiDAR Point Cloud Cuboid Array",
       useCases: [
         "Autonomous driving vehicle and pedestrian detection",
@@ -924,7 +925,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Camera + LiDAR Sensor Fusion",
       icon: Bot,
       summary: "Synchronized cross-modal annotation projecting 3D LiDAR point clouds directly onto calibrated 2D camera images.",
-      photoUrl: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/ADAS/Camera + LiDAR Sensor Fusion_card.jpg",
       photoLabel: "Camera + LiDAR Calibrated Fusion Projection",
       useCases: [
         "Redundant perception across adverse weather",
@@ -939,7 +940,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "3D LiDAR Semantic Segmentation",
       icon: Layers,
       summary: "Point-by-point spatial classification labeling every return as road surface, sidewalk, building, vegetation, or sky.",
-      photoUrl: "https://images.unsplash.com/photo-1477959858617-67f30bc75b82?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/ADAS/3D LiDAR Semantic Segmentation_card.jpg",
       photoLabel: "Point-Wise 3D Semantic Classification",
       useCases: [
         "Drivable road corridor identification",
@@ -954,7 +955,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Lane Marking & Drivable Space",
       icon: Car,
       summary: "Dense vector polylines identifying solid and dashed lane markings, crosswalks, bike lanes, and construction barriers.",
-      photoUrl: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/ADAS/Lane Marking & Drivable Space_card.jpg",
       photoLabel: "Lane Polyline & Drivable Space Layer",
       useCases: [
         "Highway lane keeping and lane centering",
@@ -969,7 +970,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Radar & Ultrasonic Point Annotation",
       icon: Orbit,
       summary: "Sparse radar point clouds and ultrasonic distance reflections labeled for relative target speed, range, and azimuth.",
-      photoUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/ADAS/Radar & Ultrasonic Point Annotation_card.jpg",
       photoLabel: "Automotive Radar Doppler Velocity Plot",
       useCases: [
         "Adaptive cruise control forward collision warning",
@@ -984,7 +985,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "HD Map Feature Extraction",
       icon: Landmark,
       summary: "Survey-grade extraction of traffic light heads, road signs, utility poles, stop lines, and speed limit markings.",
-      photoUrl: "https://images.unsplash.com/photo-1477959858617-67f30bc75b82?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/ADAS/HD Map Feature Extraction_card.webp",
       photoLabel: "High-Definition Map Road Furniture Layer",
       useCases: [
         "Autonomous vehicle localization against HD maps",
@@ -999,7 +1000,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Ego-Motion & Trajectory Prediction",
       icon: Activity,
       summary: "Continuous vehicle ego-motion and surrounding actor future trajectories annotated over 3 to 5 second horizons.",
-      photoUrl: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/ADAS/Ego-Motion & Trajectory Prediction_card.jpg",
       photoLabel: "Surrounding Actor Future Trajectory Vectors",
       useCases: [
         "Pedestrian street crossing behavior prediction",
@@ -1018,7 +1019,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Biometric Facial & Demographic Banks",
       icon: Users2,
       summary: "Pre-collected, fully consent-cleared face datasets spanning balanced ages, ethnicities, and facial expressions.",
-      photoUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/OTS/Biometric Facial & Demographic Banks_card.jpg",
       photoLabel: "Pre-Cleared Biometric Face Bank",
       useCases: [
         "Instant biometric verification model training",
@@ -1033,7 +1034,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Multi-Dialect Speech Audio Libraries",
       icon: Mic,
       summary: "Ready-to-use audio collections featuring over 10,000+ hours of multi-speaker speech across dozens of languages.",
-      photoUrl: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/OTS/Multi-Dialect Speech Audio Libraries_card.jpg",
       photoLabel: "Pre-Collected Multilingual Speech Library",
       useCases: [
         "Rapid ASR foundation model fine-tuning",
@@ -1048,7 +1049,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "ADAS Driving Video Benchmarks",
       icon: Car,
       summary: "Over 500,000 annotated driving video frames recorded across highways, city avenues, and adverse weather conditions.",
-      photoUrl: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/OTS/ADAS Driving Video Benchmarks_card.jpg",
       photoLabel: "Pre-Annotated Road Perception Library",
       useCases: [
         "Immediate ADAS model baseline benchmarking",
@@ -1063,7 +1064,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Retail & E-Commerce SKU Datasets",
       icon: ShoppingBag,
       summary: "100,000+ packaged goods and supermarket items photographed from multiple angles with standard UPC manifests.",
-      photoUrl: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/OTS/Retail & E-Commerce SKU Datasets_card.jpg",
       photoLabel: "E-Commerce Packaged Product SKU Bank",
       useCases: [
         "Automated checkout visual item identification",
@@ -1078,7 +1079,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Multilingual Scanned Document Datasets",
       icon: FileText,
       summary: "Thousands of de-identified receipts, invoices, bills of lading, and official forms annotated with key-value pairs.",
-      photoUrl: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/OTS/Multilingual Scanned Document Datasets_card.jpg",
       photoLabel: "Commercial Scanned Document Library",
       useCases: [
         "Document OCR pipeline pretraining",
@@ -1093,7 +1094,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "De-Identified Healthcare Image Banks",
       icon: HeartPulse,
       summary: "Fully HIPAA de-identified dermoscopy, chest X-ray, and pathology images with expert clinician ground truth labels.",
-      photoUrl: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/OTS/De-Identified Healthcare Image Banks_card.jpg",
       photoLabel: "Clinical Diagnostic Medical Image Archive",
       useCases: [
         "Medical computer vision algorithm benchmarking",
@@ -1108,7 +1109,7 @@ export const SERVICE_DOMAINS_MAP = {
       title: "Conversational Dialogue Corpora",
       icon: MessageSquare,
       summary: "Curated multi-turn dialogues across customer support, technical assistance, and general knowledge interactions.",
-      photoUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85",
+      photoUrl: "/images/Solutions/OTS/Conversational Dialogue Corpora_card.jpg",
       photoLabel: "Customer Interaction Dialogue Archive",
       useCases: [
         "Conversational AI agent pretraining",
@@ -1402,222 +1403,152 @@ export function SpatialDomainStage({ serviceSlug = "image-collection", serviceTi
   );
 }
 
+// Helper to pick a real Solutions card photo matching a sub-discipline card
+const SUBPAGE_PHOTO_OVERRIDES = {
+  "retail-shelf": "/images/Solutions/Image Collection/Retail & Food Dataset Collection_card.jpg",
+  "object-detection": "/images/Solutions/Image Collection/Object & Specific Scenarios Collections_card.jpg",
+  "cultural-heritage": "/images/Solutions/Image Collection/Cultural & Heritage Preservation_card.avif",
+  "sports-activities": "/images/Solutions/Image Collection/Sports & Activities_card.webp",
+  "healthcare-medical": "/images/Solutions/Image Collection/Heathcare_card.jpg",
+  "surveillance-security": "/images/Solutions/Image Collection/Surveillance & Security_card.png",
+  "action-recognition": "/images/Solutions/video collection/Human Action & Motion Recognition_card.jpg",
+  "egocentric-capture": "/images/Solutions/video collection/First-Person Egocentric Video_card.jpg",
+  "conversational-asr": "/images/Solutions/Audio Collection/Spontaneous Conversational Speech_card.webp",
+  "expressive-tts": "/images/Solutions/Audio Collection/Expressive Neural TTS Voice Sets_card.jpg",
+  "rlhf-preference": "/images/Solutions/Text Collection/Conversational AI & Chatbot Logs_card.jpg",
+  "domain-nlp": "/images/Solutions/Text Collection/Multilingual NLP Corpora_card.jpg",
+  "instance-segmentation": "/images/Solutions/Annotation/Polygonal & Semantic Segmentation_card.jpg",
+  "tracking-keypoints": "/images/Solutions/Annotation/Keypoint & Skeletal Pose Estimation_card.jpg",
+  "phonetic-textgrid": "/images/Solutions/Speech Transcription/Speaker Diarization & Word Timestamps_card.jpg",
+  "clinical-transcription": "/images/Solutions/Speech Transcription/Medical & Clinical Transcription_card.avif",
+  "3d-cuboids": "/images/Solutions/ADAS/3D LiDAR Point Cloud Cuboids_card.jpg",
+  "road-polylines": "/images/Solutions/ADAS/Lane Marking & Drivable Space_card.jpg",
+  "speech-catalog": "/images/Solutions/OTS/Multi-Dialect Speech Audio Libraries_card.jpg",
+  "autonomous-catalog": "/images/Solutions/OTS/ADAS Driving Video Benchmarks_card.jpg",
+};
+
+export function getServiceSubpageImage(serviceSlug, subSlug, index = 0) {
+  if (SUBPAGE_PHOTO_OVERRIDES[subSlug]) {
+    return SUBPAGE_PHOTO_OVERRIDES[subSlug];
+  }
+  const resolvedSlug = ALIASES[serviceSlug] || serviceSlug;
+  const domainList = SERVICE_DOMAINS_MAP[resolvedSlug] || [];
+  return domainList[index % Math.max(domainList.length, 1)]?.photoUrl || "";
+}
+
 // ============================================================================
-// SERVICE-SPECIFIC CASE STUDIES COMPONENT WITH 3D HOVER CARDS
+// SERVICE-SPECIFIC CASE STUDIES (Mapped directly to real Case Studies page entries)
 // ============================================================================
 
-export const SERVICE_CASE_STUDIES_MAP = {
+export const SERVICE_CASE_STUDY_SLUGS_MAP = {
   "image-collection": [
-    {
-      id: "autonomous-perception",
-      title: "Autonomous Driving Road Perception",
-      client: "Tier-1 Autonomous OEM",
-      highlight: "500,000 multi-weather road images delivered across 4 continents with zero false positive boundary drift.",
-      stats: [
-        { label: "Delivered Units", value: "500k+" },
-        { label: "Acceptance Rate", value: "99.94%" },
-        { label: "Turnaround", value: "6 Weeks" }
-      ],
-      link: "/case-studies/autonomous-perception"
-    },
-    {
-      id: "retail-sku-inventory",
-      title: "High-Density Supermarket Shelf Perception",
-      client: "Global Retail Analytics Group",
-      highlight: "In-situ camera captures across 12,000 retail SKUs covering foil reflection and severe package crumpling.",
-      stats: [
-        { label: "SKU Diversity", value: "12,000" },
-        { label: "Recognition F1", value: "0.992" },
-        { label: "Coverage", value: "15 Cities" }
-      ],
-      link: "/case-studies/retail-shelf-perception"
-    },
-    {
-      id: "clinical-derm-screening",
-      title: "Demographically Balanced Clinical Dermatology",
-      client: "Medical Diagnostics Foundation",
-      highlight: "Standardized medical photography across Fitzpatrick skin types I-VI with triple-blind clinician review.",
-      stats: [
-        { label: "Clinical Cohorts", value: "6 Types" },
-        { label: "Inter-Rater α", value: "0.94" },
-        { label: "HIPAA Clearance", value: "100%" }
-      ],
-      link: "/case-studies/multimodal-medical-qa"
-    }
+    "image-and-video-annotation-services",
+    "annotated-medical-images-ai-training",
+    "adas-data-collection-future-ai",
   ],
   "video-collection": [
-    {
-      id: "action-recognition-benchmark",
-      title: "High-Framerate 120 FPS Human Activity Recognition",
-      client: "Augmented Reality Hardware Pioneer",
-      highlight: "Synchronized multi-camera studio recordings of athletic movements and fine-motor hand gestures.",
-      stats: [
-        { label: "Framerate", value: "120 FPS" },
-        { label: "Activity Classes", value: "180+" },
-        { label: "Temporal Accuracy", value: "±8ms" }
-      ],
-      link: "/case-studies/autonomous-perception"
-    },
-    {
-      id: "smart-city-traffic",
-      title: "Continuous 4K Urban Intersection Video",
-      client: "Metropolitan Transit Authority",
-      highlight: "Multi-angle traffic surveillance feeds capturing vehicle maneuvers, jaywalking, and near-miss incidents.",
-      stats: [
-        { label: "Video Duration", value: "2,400 Hrs" },
-        { label: "Intersection Nodes", value: "48" },
-        { label: "Detection Recall", value: "99.4%" }
-      ],
-      link: "/case-studies/autonomous-perception"
-    }
+    "video-datasets-human-activity-recognition",
+    "adas-data-collection-future-ai",
+    "image-and-video-annotation-services",
   ],
   "speech-collection": [
-    {
-      id: "global-accent-asr",
-      title: "1,000-Locale Conversational ASR Corpora",
-      client: "Leading Voice Assistant Developer",
-      highlight: "Spontaneous conversational multi-speaker audio recorded across 45 countries with authentic dialect variation.",
-      stats: [
-        { label: "Audio Hours", value: "15,000h" },
-        { label: "Distinct Speakers", value: "8,500+" },
-        { label: "Acoustic SNR", value: "32 dB" }
-      ],
-      link: "/case-studies/multilingual-llm-eval"
-    }
+    "multimodal-datasets-ai-development",
+    "unlocking-power-of-data-daqube",
   ],
   "text-collection": [
-    {
-      id: "low-resource-nlp",
-      title: "Multilingual Parallel NLP Translation Corpora",
-      client: "Global Search Engine",
-      highlight: "Human-verified translation pairs across 32 low-resource languages with culturally nuanced terminology.",
-      stats: [
-        { label: "Sentence Pairs", value: "4.2M" },
-        { label: "Languages", value: "32" },
-        { label: "BLEU Boost", value: "+8.4" }
-      ],
-      link: "/case-studies/multilingual-llm-eval"
-    }
+    "training-ml-models-text-data",
+    "multimodal-datasets-ai-development",
+    "unlocking-power-of-data-daqube",
   ],
   "annotation": [
-    {
-      id: "subpixel-polygonal-segmentation",
-      title: "Sub-Pixel Polygonal Segmentation at Scale",
-      client: "Autonomous Robotics Unicorn",
-      highlight: "Over 1.2 million images segmented with sub-pixel contour accuracy and 99.8% first-pass acceptance rate.",
-      stats: [
-        { label: "Annotated Masks", value: "1.2M+" },
-        { label: "Boundary IOU", value: "96.4%" },
-        { label: "Throughput", value: "25k / Wk" }
-      ],
-      link: "/case-studies/autonomous-perception"
-    }
+    "image-and-video-annotation-services",
+    "human-vs-self-annotated-adas-data",
+    "annotated-medical-images-ai-training",
   ],
   "transcription": [
-    {
-      id: "subsecond-praat-transcription",
-      title: "Sub-10ms Time-Aligned Audio Transcription",
-      client: "Enterprise Speech Foundation",
-      highlight: "Strict verbatim multi-speaker transcription with Praat phonetic TextGrid alignments and speaker diarization.",
-      stats: [
-        { label: "Transcribed Hours", value: "5,000h" },
-        { label: "Word Error Rate", value: "< 1.2%" },
-        { label: "Alignment Error", value: "< 10ms" }
-      ],
-      link: "/case-studies/multilingual-llm-eval"
-    }
+    "multimodal-datasets-ai-development",
+    "training-ml-models-text-data",
+    "unlocking-power-of-data-daqube",
   ],
   "adas-lidar": [
-    {
-      id: "lidar-camera-fusion",
-      title: "3D LiDAR Point Cloud & Camera Sensor Fusion",
-      client: "Autonomous Trucking Pioneer",
-      highlight: "Calibrated 3D cuboid tracking across dense highway point clouds with synchronized camera boundary validation.",
-      stats: [
-        { label: "3D Cuboids", value: "850,000" },
-        { label: "Angular Precision", value: "±0.5°" },
-        { label: "Sensor Modalities", value: "4-LiDAR" }
-      ],
-      link: "/case-studies/autonomous-perception"
-    }
+    "adas-data-collection-future-ai",
+    "human-vs-self-annotated-adas-data",
   ],
   "off-the-shelf": [
-    {
-      id: "biometric-commercial-deployment",
-      title: "Pre-Cleared Biometric Face Bank Deployment",
-      client: "Fintech Security Leader",
-      highlight: "Immediate deployment of 50,000 diverse facial identities with complete commercial model training releases.",
-      stats: [
-        { label: "Identities", value: "50,000" },
-        { label: "Ethnic Balance", value: "Global" },
-        { label: "Legal Provenance", value: "100%" }
-      ],
-      link: "/case-studies/multimodal-medical-qa"
-    }
-  ]
+    "unlocking-power-of-data-daqube",
+    "annotated-medical-images-ai-training",
+    "video-datasets-human-activity-recognition",
+  ],
 };
 
 export function ServiceCaseStudiesSection({ serviceSlug = "image-collection", serviceTitle = "Image Data Collection" }) {
   const resolvedSlug = ALIASES[serviceSlug] || serviceSlug;
-  const studies = SERVICE_CASE_STUDIES_MAP[resolvedSlug] || SERVICE_CASE_STUDIES_MAP["image-collection"];
+  const slugs = SERVICE_CASE_STUDY_SLUGS_MAP[resolvedSlug] || SERVICE_CASE_STUDY_SLUGS_MAP["image-collection"];
+  const studies = slugs
+    .map((s) => caseStudies.find((cs) => cs.slug === s))
+    .filter(Boolean);
 
   return (
     <section className="service-case-studies-section">
       <div className="container">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
           <div>
-            <span className="eyebrow">EMPIRICAL BENCHMARKS & CASE STUDIES</span>
+            <span className="eyebrow">CASE STUDIES &amp; TECHNICAL BLUEPRINTS</span>
             <h2 className="font-display text-2xl md:text-4xl font-extrabold text-[#12151A] tracking-tight mt-1">
-              Proven Deployments in {serviceTitle}
+              Related Case Studies in {serviceTitle}
             </h2>
           </div>
           <Link
             to="/case-studies"
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[#EC5E27] hover:underline mt-2 md:mt-0"
           >
-            <span>View All Engineering Case Studies</span>
+            <span>Browse All Case Studies</span>
             <ArrowRight size={14} />
           </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {studies.map((study) => (
-            <article key={study.id} className="case-study-3d-card group">
-              <div className="case-study-card-inner">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-mono uppercase font-bold tracking-wider text-[#EC5E27] bg-[#FFF2ED] px-2 py-0.5 rounded">
-                    {study.client}
-                  </span>
-                  <ArrowUpRight size={16} className="text-[#8E939D] group-hover:text-[#EC5E27] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <article key={study.slug} className="case-study-3d-card group">
+              <Link to={`/case-studies/${study.slug}`} className="case-study-card-inner !p-0 overflow-hidden flex flex-col h-full">
+                {study.image && (
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#0F172A]">
+                    <img
+                      src={study.image}
+                      alt={study.imageAlt || study.title}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <span className="absolute top-3 left-3 text-[10px] font-mono uppercase font-bold tracking-wider text-white bg-[#12151A]/85 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                      {study.type}
+                    </span>
+                  </div>
+                )}
+
+                <div className="p-6 flex flex-col flex-1">
+                  <div className="flex items-center justify-between gap-2 mb-2.5">
+                    <span className="text-[10px] font-mono uppercase font-bold tracking-wider text-[#EC5E27] bg-[#FFF2ED] px-2 py-0.5 rounded">
+                      {study.industry}
+                    </span>
+                    <span className="text-[11px] font-mono text-[#64748B]">
+                      {study.readTime}
+                    </span>
+                  </div>
+
+                  <h3 className="font-display text-lg font-bold text-[#12151A] mb-2 leading-snug group-hover:text-[#EC5E27] transition-colors">
+                    {study.title}
+                  </h3>
+
+                  <p className="text-xs text-[#5F646D] leading-relaxed mb-5 line-clamp-3">
+                    {study.excerpt || study.summary}
+                  </p>
+
+                  <div className="mt-auto pt-3 border-t border-[#F1F3F5] flex items-center justify-between text-xs font-bold text-[#12151A] group-hover:text-[#EC5E27] transition-colors">
+                    <span>Read Full Case Study</span>
+                    <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                  </div>
                 </div>
-
-                <h3 className="font-display text-lg font-bold text-[#12151A] mb-2 leading-snug group-hover:text-[#EC5E27] transition-colors">
-                  {study.title}
-                </h3>
-
-                <p className="text-xs text-[#5F646D] leading-relaxed mb-6">
-                  {study.highlight}
-                </p>
-
-                <div className="case-study-stats-grid">
-                  {study.stats.map((st, i) => (
-                    <div key={i} className="stat-pill">
-                      <span className="stat-value">{st.value}</span>
-                      <span className="stat-label">{st.label}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-[#F1F3F5] flex items-center justify-between">
-                  <Link
-                    to={study.link}
-                    className="text-xs font-bold text-[#12151A] group-hover:text-[#EC5E27] inline-flex items-center gap-1 transition-colors"
-                  >
-                    <span>Read Full Methodology</span>
-                    <ArrowRight size={12} />
-                  </Link>
-                </div>
-              </div>
+              </Link>
             </article>
           ))}
         </div>
@@ -1625,5 +1556,3 @@ export function ServiceCaseStudiesSection({ serviceSlug = "image-collection", se
     </section>
   );
 }
-
-export default SpatialDomainStage;
