@@ -1,4 +1,5 @@
 
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -341,24 +342,69 @@ function LegalSection({ section }) {
 }
 
 export function QualityPage() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
+
   return (
     <>
-      {/* PAGE HERO */}
-      <section className="page-hero relative overflow-hidden">
-        <div className="container relative z-10">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#EC5E27]/30 bg-[#FFF3ED] px-3.5 py-1.5">
+      {/* PAGE HERO with Background Video */}
+      <section className="page-hero relative overflow-hidden min-h-[480px] md:min-h-[540px] flex items-center">
+        {/* Background Video */}
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          webkit-playsinline="true"
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none opacity-100 mix-blend-multiply z-0"
+        >
+          <source src="/videos/Quality.mp4" type="video/mp4" />
+        </video>
+
+        {/* Minimal Soft Readability Veil — keeps robotic & human hands crisp and undulled */}
+        <div
+          className="absolute inset-0 pointer-events-none z-[1]"
+          style={{
+            background:
+              "radial-gradient(ellipse 68% 78% at 40% 50%, rgba(253, 253, 241, 0.52) 0%, rgba(253, 253, 241, 0.25) 55%, rgba(253, 253, 241, 0.0) 100%)",
+          }}
+        />
+
+        {/* Subtle bottom fade into content */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-14 pointer-events-none z-[1]"
+          style={{
+            background: "linear-gradient(to bottom, transparent, rgba(253, 253, 241, 0.65) 75%, #FFFFFF 100%)",
+          }}
+        />
+
+        <div className="container relative z-10 w-full">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#EC5E27]/30 bg-[#FFF3ED]/95 backdrop-blur-sm px-3.5 py-1.5 shadow-sm">
             <span className="h-2 w-2 animate-ping rounded-full bg-[#EC5E27]" />
             <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#EC5E27]">
               ENTERPRISE TRUST & QUALITY ASSURANCE
             </span>
           </div>
 
-          <h1 className="max-w-4xl text-3xl font-extrabold leading-[1.12] tracking-tight text-[#12151A] sm:text-4xl md:text-6xl">
+          <h1
+            className="max-w-4xl text-3xl font-extrabold leading-[1.12] tracking-tight text-[#12151A] sm:text-4xl md:text-6xl"
+            style={{ textShadow: "0 2px 18px rgba(253, 253, 241, 0.95), 0 0 8px rgba(255, 255, 255, 0.85)" }}
+          >
             Quality is an Empirical Science. <br />
             <span className="text-[#EC5E27]">Not a Marketing Slogan.</span>
           </h1>
 
-          <p className="mb-8 mt-4 max-w-2xl text-base leading-relaxed text-[#5F646D] md:text-lg">
+          <p
+            className="mb-8 mt-4 max-w-2xl text-base font-medium leading-relaxed text-[#3D424B] md:text-lg"
+            style={{ textShadow: "0 1px 12px rgba(253, 253, 241, 0.95)" }}
+          >
             Frontier AI systems fail when trained on noisy, ambiguous, or
             uncalibrated labels. DaQube focuses on clear project specifications,
             structured review, and dependable quality checks for AI data
@@ -371,6 +417,7 @@ export function QualityPage() {
             </Link>
             <a
               className="text-link flex items-center gap-1 font-semibold text-[#12151A] hover:text-[#EC5E27]"
+              style={{ textShadow: "0 1px 10px rgba(253, 253, 241, 0.95)" }}
               href="#certifications"
             >
               View Certifications & Standards <ArrowRight size={16} />

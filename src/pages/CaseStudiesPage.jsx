@@ -65,25 +65,25 @@ export function CaseStudiesPage() {
           playsInline
           webkit-playsinline="true"
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover object-[75%_center] md:object-[center_right] pointer-events-none opacity-90 z-0"
+          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none opacity-100 z-0"
         >
           <source src="/videos/case-study.mp4" type="video/mp4" />
         </video>
 
-        {/* Soft Contrast Gradient Overlay ensuring text legibility while letting 3D visual shine */}
+        {/* Light Contrast Gradient Overlay keeping the 3D background vivid while preserving text legibility */}
         <div
           className="absolute inset-0 pointer-events-none z-[1]"
           style={{
             background:
-              "linear-gradient(95deg, rgba(253, 253, 241, 0.97) 0%, rgba(253, 253, 241, 0.90) 38%, rgba(253, 253, 241, 0.55) 68%, rgba(253, 253, 241, 0.20) 100%)",
+              "linear-gradient(95deg, rgba(253, 253, 241, 0.68) 0%, rgba(253, 253, 241, 0.42) 36%, rgba(253, 253, 241, 0.12) 66%, rgba(253, 253, 241, 0.0) 100%)",
           }}
         />
 
         {/* Subtle bottom fade into content */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none z-[1]"
+          className="absolute bottom-0 left-0 right-0 h-14 pointer-events-none z-[1]"
           style={{
-            background: "linear-gradient(to bottom, transparent, rgba(253, 253, 241, 0.8) 70%, #FFFFFF 100%)",
+            background: "linear-gradient(to bottom, transparent, rgba(253, 253, 241, 0.7) 75%, #FFFFFF 100%)",
           }}
         />
 
@@ -91,11 +91,14 @@ export function CaseStudiesPage() {
           <span className="eyebrow eyebrow-light">
             ENTERPRISE AI DATA CASE STUDIES & TECHNICAL GUIDES
           </span>
-          <h1>
+          <h1 style={{ textShadow: "0 2px 16px rgba(253, 253, 241, 0.9)" }}>
             From High-Dimensional Chaos<br />
             <span>to Calibrated Ground Truth.</span>
           </h1>
-          <p className="max-w-2xl text-base md:text-lg text-[#5F646D] leading-relaxed mt-4 mb-8">
+          <p
+            className="max-w-2xl text-base md:text-lg text-[#3D424B] font-medium leading-relaxed mt-4 mb-8"
+            style={{ textShadow: "0 1px 10px rgba(253, 253, 241, 0.95)" }}
+          >
             Explore interactive case studies and technical blueprints covering ADAS sensor collection, multimodal AI datasets, human vs. automated annotation, medical imaging, human activity video, and NLP training pipelines.
           </p>
 
