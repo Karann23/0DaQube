@@ -1,7 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, CheckCircle2, ChevronRight, Layers, Sparkles, Shield, Cpu, FileCheck2, HelpCircle } from "lucide-react";
 import { getServiceCategory, SERVICE_CATEGORIES } from "../lib/services-taxonomy";
-import { ImagePlaceholder } from "../components/image-placeholder";
 import { ServiceDetailPage } from "./ServiceDetailPage";
 import { services } from "../lib/content";
 import { SpatialDomainStage, ServiceCaseStudiesSection } from "../components/SpatialDomainStage";
@@ -110,12 +109,24 @@ export function ServiceCategoryPage() {
             </div>
 
             <div>
-              <ImagePlaceholder
-                aspect="4/3"
-                label="AIR-GAPPED SECURITY & DATA CLEANROOM"
-                caption="ISO/IEC 27001 & HIPAA BAA compliant secure data labeling infrastructure"
-                specs="Secure Virtual Desktop Infrastructure (VDI) · DLP Monitored"
-              />
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[#E9ECEF] bg-[#0B0E14] shadow-lg">
+                <img
+                  src="/images/cleanroom-security.webp"
+                  alt="Air-Gapped Security & Data Cleanroom Virtual Desktop Infrastructure"
+                  className="h-full w-full object-cover object-center"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#080A0F]/90 via-[#080A0F]/45 to-transparent px-5 py-4 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 text-xs font-semibold text-white">
+                    <Shield size={14} className="text-[#EC5E27] shrink-0" />
+                    <span>Air-Gapped Cleanroom · VDI &amp; DLP Monitored</span>
+                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#CBD5E1] shrink-0">
+                    ISO/IEC 27001 · HIPAA BAA
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
